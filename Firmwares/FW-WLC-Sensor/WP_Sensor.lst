@@ -1,0 +1,1869 @@
+$0000: $C394:  J: goto $395 (RJMP)
+$0001: $9518:  J: RETI
+$0002: $9518:  J: RETI
+$0003: $9518:  J: RETI
+$0004: $9518:  J: RETI
+$0005: $9518:  J: RETI
+$0006: $C013:  J: goto $1A (RJMP)
+$0007: $9518:  J: RETI
+$0008: $9518:  J: RETI
+$0009: $9518:  J: RETI
+$000A: $9518:  J: RETI
+$000B: $9518:  J: RETI
+$000C: $9518:  J: RETI
+$000D: $9518:  J: RETI
+$000E: $9518:  J: RETI
+$000F: $9518:  J: RETI
+$0010: $9518:  J: RETI
+$0011: $9518:  J: RETI
+$0012: $9518:  J: RETI
+$0013: $9518:  J: RETI
+$0014: $9518:  J: RETI
+$0015: $C3AD:  J: goto $3C3 (RJMP)
+$0016: $9518:  J: RETI
+$0017: $9518:  J: RETI
+$0018: $9518:  J: RETI
+$0019: $9518:  J: RETI
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Sensor\WP_Sensor.alp    ***********
+-----          V: Watchdog_Time_Out
+$001A: $930F:  F: r16 -> (r16 ->)
+$001B: $931F:  F: r17 -> (r17 ->)
+               F: SREG ->  ...
+$001C: $B70F:     p$3F -> r16
+$001D: $930F:     r16 ->
+               F: 1 -> WDIE  ...
+$001E: $9100:     [$0060] -> r16
+$001F: $0060:  
+$0020: $6400:     r16 ! $40
+$0021: $9300:     r16 -> [$0060]
+$0022: $0060:  
+               F: -> SREG  ...
+$0023: $910F:     -> r16
+$0024: $BF0F:     r16 -> p$3F
+$0025: $911F:  F: -> r17 (-> r17)
+$0026: $910F:  F: -> r16 (-> r16)
+$0027: $9518:  F: RETI (RetI)
+-----          V: Init_Sensor_Def
+$0028: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0029: $D439:  F: rcall $463 (RF_PWR_Down)
+$002A: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + EN_AA -> SPDR  ...
+$002B: $E201:     $21 -> r16
+$002C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $002D ...
+$002D: $B50D:     p$2D -> r16
+$002E: $FF07:     if (r16.7=1 then SKIP
+$002F: $CFFD:     goto $2D (RJMP)
+               F: #b00111111 -> SPDR  ...
+$0030: $E30F:     $3F -> r16
+$0031: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0032 ...
+$0032: $B50D:     p$2D -> r16
+$0033: $FF07:     if (r16.7=1 then SKIP
+$0034: $CFFD:     goto $32 (RJMP)
+$0035: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0036: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + EN_RXADDR -> SPDR  ...
+$0037: $E202:     $22 -> r16
+$0038: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0039 ...
+$0039: $B50D:     p$2D -> r16
+$003A: $FF07:     if (r16.7=1 then SKIP
+$003B: $CFFD:     goto $39 (RJMP)
+               F: #b00111111 -> SPDR  ...
+$003C: $E30F:     $3F -> r16
+$003D: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $003E ...
+$003E: $B50D:     p$2D -> r16
+$003F: $FF07:     if (r16.7=1 then SKIP
+$0040: $CFFD:     goto $3E (RJMP)
+$0041: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0042: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + SETUP_AW -> SPDR  ...
+$0043: $E203:     $23 -> r16
+$0044: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0045 ...
+$0045: $B50D:     p$2D -> r16
+$0046: $FF07:     if (r16.7=1 then SKIP
+$0047: $CFFD:     goto $45 (RJMP)
+               F: #b00000001 -> SPDR  ...
+$0048: $E001:     $01 -> r16
+$0049: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $004A ...
+$004A: $B50D:     p$2D -> r16
+$004B: $FF07:     if (r16.7=1 then SKIP
+$004C: $CFFD:     goto $4A (RJMP)
+$004D: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$004E: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + SETUP_RETR -> SPDR  ...
+$004F: $E204:     $24 -> r16
+$0050: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0051 ...
+$0051: $B50D:     p$2D -> r16
+$0052: $FF07:     if (r16.7=1 then SKIP
+$0053: $CFFD:     goto $51 (RJMP)
+               F: #b00000011 -> SPDR  ...
+$0054: $E003:     $03 -> r16
+$0055: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0056 ...
+$0056: $B50D:     p$2D -> r16
+$0057: $FF07:     if (r16.7=1 then SKIP
+$0058: $CFFD:     goto $56 (RJMP)
+$0059: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$005A: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_CH -> SPDR  ...
+$005B: $E205:     $25 -> r16
+$005C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $005D ...
+$005D: $B50D:     p$2D -> r16
+$005E: $FF07:     if (r16.7=1 then SKIP
+$005F: $CFFD:     goto $5D (RJMP)
+               F: RF_CH_Def -> SPDR  ...
+$0060: $E604:     $64 -> r16
+$0061: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0062 ...
+$0062: $B50D:     p$2D -> r16
+$0063: $FF07:     if (r16.7=1 then SKIP
+$0064: $CFFD:     goto $62 (RJMP)
+$0065: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0066: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_SETUP -> SPDR  ...
+$0067: $E206:     $26 -> r16
+$0068: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0069 ...
+$0069: $B50D:     p$2D -> r16
+$006A: $FF07:     if (r16.7=1 then SKIP
+$006B: $CFFD:     goto $69 (RJMP)
+               F: #b00000110 -> SPDR  ...
+$006C: $E006:     $06 -> r16
+$006D: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $006E ...
+$006E: $B50D:     p$2D -> r16
+$006F: $FF07:     if (r16.7=1 then SKIP
+$0070: $CFFD:     goto $6E (RJMP)
+$0071: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0072: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P0 -> SPDR  ...
+$0073: $E301:     $31 -> r16
+$0074: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0075 ...
+$0075: $B50D:     p$2D -> r16
+$0076: $FF07:     if (r16.7=1 then SKIP
+$0077: $CFFD:     goto $75 (RJMP)
+               F: 4 -> SPDR  ...
+$0078: $E004:     $04 -> r16
+$0079: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $007A ...
+$007A: $B50D:     p$2D -> r16
+$007B: $FF07:     if (r16.7=1 then SKIP
+$007C: $CFFD:     goto $7A (RJMP)
+$007D: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$007E: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P1 -> SPDR  ...
+$007F: $E302:     $32 -> r16
+$0080: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0081 ...
+$0081: $B50D:     p$2D -> r16
+$0082: $FF07:     if (r16.7=1 then SKIP
+$0083: $CFFD:     goto $81 (RJMP)
+               F: 4 -> SPDR  ...
+$0084: $E004:     $04 -> r16
+$0085: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0086 ...
+$0086: $B50D:     p$2D -> r16
+$0087: $FF07:     if (r16.7=1 then SKIP
+$0088: $CFFD:     goto $86 (RJMP)
+$0089: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$008A: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P2 -> SPDR  ...
+$008B: $E303:     $33 -> r16
+$008C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $008D ...
+$008D: $B50D:     p$2D -> r16
+$008E: $FF07:     if (r16.7=1 then SKIP
+$008F: $CFFD:     goto $8D (RJMP)
+               F: 4 -> SPDR  ...
+$0090: $E004:     $04 -> r16
+$0091: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0092 ...
+$0092: $B50D:     p$2D -> r16
+$0093: $FF07:     if (r16.7=1 then SKIP
+$0094: $CFFD:     goto $92 (RJMP)
+$0095: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0096: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P3 -> SPDR  ...
+$0097: $E304:     $34 -> r16
+$0098: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0099 ...
+$0099: $B50D:     p$2D -> r16
+$009A: $FF07:     if (r16.7=1 then SKIP
+$009B: $CFFD:     goto $99 (RJMP)
+               F: 4 -> SPDR  ...
+$009C: $E004:     $04 -> r16
+$009D: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $009E ...
+$009E: $B50D:     p$2D -> r16
+$009F: $FF07:     if (r16.7=1 then SKIP
+$00A0: $CFFD:     goto $9E (RJMP)
+$00A1: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$00A2: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P4 -> SPDR  ...
+$00A3: $E305:     $35 -> r16
+$00A4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00A5 ...
+$00A5: $B50D:     p$2D -> r16
+$00A6: $FF07:     if (r16.7=1 then SKIP
+$00A7: $CFFD:     goto $A5 (RJMP)
+               F: 4 -> SPDR  ...
+$00A8: $E004:     $04 -> r16
+$00A9: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00AA ...
+$00AA: $B50D:     p$2D -> r16
+$00AB: $FF07:     if (r16.7=1 then SKIP
+$00AC: $CFFD:     goto $AA (RJMP)
+$00AD: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$00AE: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P5 -> SPDR  ...
+$00AF: $E306:     $36 -> r16
+$00B0: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00B1 ...
+$00B1: $B50D:     p$2D -> r16
+$00B2: $FF07:     if (r16.7=1 then SKIP
+$00B3: $CFFD:     goto $B1 (RJMP)
+               F: 4 -> SPDR  ...
+$00B4: $E004:     $04 -> r16
+$00B5: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00B6 ...
+$00B6: $B50D:     p$2D -> r16
+$00B7: $FF07:     if (r16.7=1 then SKIP
+$00B8: $CFFD:     goto $B6 (RJMP)
+$00B9: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$00BA: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + DYNPD -> SPDR  ...
+$00BB: $E30C:     $3C -> r16
+$00BC: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00BD ...
+$00BD: $B50D:     p$2D -> r16
+$00BE: $FF07:     if (r16.7=1 then SKIP
+$00BF: $CFFD:     goto $BD (RJMP)
+               F: #b00111111 -> SPDR  ...
+$00C0: $E30F:     $3F -> r16
+$00C1: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00C2 ...
+$00C2: $B50D:     p$2D -> r16
+$00C3: $FF07:     if (r16.7=1 then SKIP
+$00C4: $CFFD:     goto $C2 (RJMP)
+$00C5: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$00C6: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + FEATURE -> SPDR  ...
+$00C7: $E30D:     $3D -> r16
+$00C8: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00C9 ...
+$00C9: $B50D:     p$2D -> r16
+$00CA: $FF07:     if (r16.7=1 then SKIP
+$00CB: $CFFD:     goto $C9 (RJMP)
+               F: #b000000110 -> SPDR  ...
+$00CC: $E006:     $06 -> r16
+$00CD: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00CE ...
+$00CE: $B50D:     p$2D -> r16
+$00CF: $FF07:     if (r16.7=1 then SKIP
+$00D0: $CFFD:     goto $CE (RJMP)
+$00D1: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$00D2: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$00D3: $E200:     $20 -> r16
+$00D4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00D5 ...
+$00D5: $B50D:     p$2D -> r16
+$00D6: $FF07:     if (r16.7=1 then SKIP
+$00D7: $CFFD:     goto $D5 (RJMP)
+               F: #b00001001 -> SPDR  ...
+$00D8: $E009:     $09 -> r16
+$00D9: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00DA ...
+$00DA: $B50D:     p$2D -> r16
+$00DB: $FF07:     if (r16.7=1 then SKIP
+$00DC: $CFFD:     goto $DA (RJMP)
+$00DD: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+               F: ID_Def_3 -> [@TX_Buffer + 0]  ...
+$00DE: $E409:     $49 -> r16
+$00DF: $9300:     r16 -> [$010A]
+$00E0: $010A:  
+               F: ID_Def_2 -> [@TX_Buffer + 1]  ...
+$00E1: $E40F:     $4F -> r16
+$00E2: $9300:     r16 -> [$010B]
+$00E3: $010B:  
+               F: ID_Def_1 -> [@TX_Buffer + 2]  ...
+$00E4: $E503:     $53 -> r16
+$00E5: $9300:     r16 -> [$010C]
+$00E6: $010C:  
+$00E7: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P1 -> SPDR  ...
+$00E8: $E20B:     $2B -> r16
+$00E9: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00EA ...
+$00EA: $B50D:     p$2D -> r16
+$00EB: $FF07:     if (r16.7=1 then SKIP
+$00EC: $CFFD:     goto $EA (RJMP)
+               F: X ->  ...
+$00ED: $93AF:     r26 ->
+$00EE: $93BF:     r27 ->
+               F: 3 -> Byte_Cnt  ...
+$00EF: $E003:     $03 -> r16
+$00F0: $2E20:     r16 -> r2
+               F: @TX_Buffer -> X  ...
+$00F1: $E0AA:     $0A -> r26
+$00F2: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$00F3: $910D:     [X++] -> r16
+$00F4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00F5 ...
+$00F5: $B50D:     p$2D -> r16
+$00F6: $FF07:     if (r16.7=1 then SKIP
+$00F7: $CFFD:     goto $F5 (RJMP)
+               C: if (Byte_Cnt --) then goto $00F3 ...
+$00F8: $942A:     r2 --
+$00F9: $F7C9:     if (Z=0) then goto $F3
+               F: -> X  ...
+$00FA: $91BF:     -> r27
+$00FB: $91AF:     -> r26
+$00FC: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$00FD: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P2 -> SPDR  ...
+$00FE: $E20C:     $2C -> r16
+$00FF: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0100 ...
+$0100: $B50D:     p$2D -> r16
+$0101: $FF07:     if (r16.7=1 then SKIP
+$0102: $CFFD:     goto $100 (RJMP)
+               F: "2" -> SPDR  ...
+$0103: $E302:     $32 -> r16
+$0104: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0105 ...
+$0105: $B50D:     p$2D -> r16
+$0106: $FF07:     if (r16.7=1 then SKIP
+$0107: $CFFD:     goto $105 (RJMP)
+$0108: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0109: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P3 -> SPDR  ...
+$010A: $E20D:     $2D -> r16
+$010B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $010C ...
+$010C: $B50D:     p$2D -> r16
+$010D: $FF07:     if (r16.7=1 then SKIP
+$010E: $CFFD:     goto $10C (RJMP)
+               F: "3" -> SPDR  ...
+$010F: $E303:     $33 -> r16
+$0110: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0111 ...
+$0111: $B50D:     p$2D -> r16
+$0112: $FF07:     if (r16.7=1 then SKIP
+$0113: $CFFD:     goto $111 (RJMP)
+$0114: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0115: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P4 -> SPDR  ...
+$0116: $E20E:     $2E -> r16
+$0117: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0118 ...
+$0118: $B50D:     p$2D -> r16
+$0119: $FF07:     if (r16.7=1 then SKIP
+$011A: $CFFD:     goto $118 (RJMP)
+               F: "4" -> SPDR  ...
+$011B: $E304:     $34 -> r16
+$011C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $011D ...
+$011D: $B50D:     p$2D -> r16
+$011E: $FF07:     if (r16.7=1 then SKIP
+$011F: $CFFD:     goto $11D (RJMP)
+$0120: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0121: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P5 -> SPDR  ...
+$0122: $E20F:     $2F -> r16
+$0123: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0124 ...
+$0124: $B50D:     p$2D -> r16
+$0125: $FF07:     if (r16.7=1 then SKIP
+$0126: $CFFD:     goto $124 (RJMP)
+               F: "5" -> SPDR  ...
+$0127: $E305:     $35 -> r16
+$0128: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0129 ...
+$0129: $B50D:     p$2D -> r16
+$012A: $FF07:     if (r16.7=1 then SKIP
+$012B: $CFFD:     goto $129 (RJMP)
+$012C: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+$012D: $D365:  F: rcall $493 (Clear_STATUS)
+$012E: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_RX -> SPDR  ...
+$012F: $EE02:     $E2 -> r16
+$0130: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0131 ...
+$0131: $B50D:     p$2D -> r16
+$0132: $FF07:     if (r16.7=1 then SKIP
+$0133: $CFFD:     goto $131 (RJMP)
+$0134: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0135: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_TX -> SPDR  ...
+$0136: $EE01:     $E1 -> r16
+$0137: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0138 ...
+$0138: $B50D:     p$2D -> r16
+$0139: $FF07:     if (r16.7=1 then SKIP
+$013A: $CFFD:     goto $138 (RJMP)
+$013B: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$013C: $D2F3:  F: rcall $430 (RF_PWR_Up)
+$013D: $D3A1:  F: rcall $4DF (Start_RX)
+$013E: $9508:  F: RET (Ret)
+-----          V: Init_Sensor
+$013F: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0140: $D322:  F: rcall $463 (RF_PWR_Down)
+$0141: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + EN_AA -> SPDR  ...
+$0142: $E201:     $21 -> r16
+$0143: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0144 ...
+$0144: $B50D:     p$2D -> r16
+$0145: $FF07:     if (r16.7=1 then SKIP
+$0146: $CFFD:     goto $144 (RJMP)
+               F: #b00000001 -> SPDR  ...
+$0147: $E001:     $01 -> r16
+$0148: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0149 ...
+$0149: $B50D:     p$2D -> r16
+$014A: $FF07:     if (r16.7=1 then SKIP
+$014B: $CFFD:     goto $149 (RJMP)
+$014C: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$014D: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + EN_RXADDR -> SPDR  ...
+$014E: $E202:     $22 -> r16
+$014F: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0150 ...
+$0150: $B50D:     p$2D -> r16
+$0151: $FF07:     if (r16.7=1 then SKIP
+$0152: $CFFD:     goto $150 (RJMP)
+               F: #b00000001 -> SPDR  ...
+$0153: $E001:     $01 -> r16
+$0154: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0155 ...
+$0155: $B50D:     p$2D -> r16
+$0156: $FF07:     if (r16.7=1 then SKIP
+$0157: $CFFD:     goto $155 (RJMP)
+$0158: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0159: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + SETUP_AW -> SPDR  ...
+$015A: $E203:     $23 -> r16
+$015B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $015C ...
+$015C: $B50D:     p$2D -> r16
+$015D: $FF07:     if (r16.7=1 then SKIP
+$015E: $CFFD:     goto $15C (RJMP)
+               F: #b00000001 -> SPDR  ...
+$015F: $E001:     $01 -> r16
+$0160: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0161 ...
+$0161: $B50D:     p$2D -> r16
+$0162: $FF07:     if (r16.7=1 then SKIP
+$0163: $CFFD:     goto $161 (RJMP)
+$0164: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0165: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + SETUP_RETR -> SPDR  ...
+$0166: $E204:     $24 -> r16
+$0167: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0168 ...
+$0168: $B50D:     p$2D -> r16
+$0169: $FF07:     if (r16.7=1 then SKIP
+$016A: $CFFD:     goto $168 (RJMP)
+               F: #b00000011 -> SPDR  ...
+$016B: $E003:     $03 -> r16
+$016C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $016D ...
+$016D: $B50D:     p$2D -> r16
+$016E: $FF07:     if (r16.7=1 then SKIP
+$016F: $CFFD:     goto $16D (RJMP)
+$0170: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0171: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_CH -> SPDR  ...
+$0172: $E205:     $25 -> r16
+$0173: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0174 ...
+$0174: $B50D:     p$2D -> r16
+$0175: $FF07:     if (r16.7=1 then SKIP
+$0176: $CFFD:     goto $174 (RJMP)
+               F: EE_RF_CH -> SPDR  ...
+$0177: $E013:     $03 -> r17
+$0178: $BD11:     r17 -> p$21
+$0179: $9AF8:     1 -> p$1F.0
+$017A: $B500:     p$20 -> r16
+$017B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $017C ...
+$017C: $B50D:     p$2D -> r16
+$017D: $FF07:     if (r16.7=1 then SKIP
+$017E: $CFFD:     goto $17C (RJMP)
+$017F: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0180: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_SETUP -> SPDR  ...
+$0181: $E206:     $26 -> r16
+$0182: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0183 ...
+$0183: $B50D:     p$2D -> r16
+$0184: $FF07:     if (r16.7=1 then SKIP
+$0185: $CFFD:     goto $183 (RJMP)
+               F: #b00000110 -> SPDR  ...
+$0186: $E006:     $06 -> r16
+$0187: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0188 ...
+$0188: $B50D:     p$2D -> r16
+$0189: $FF07:     if (r16.7=1 then SKIP
+$018A: $CFFD:     goto $188 (RJMP)
+$018B: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$018C: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$018D: $E200:     $20 -> r16
+$018E: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $018F ...
+$018F: $B50D:     p$2D -> r16
+$0190: $FF07:     if (r16.7=1 then SKIP
+$0191: $CFFD:     goto $18F (RJMP)
+               F: #b00001000 -> SPDR  ...
+$0192: $E008:     $08 -> r16
+$0193: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0194 ...
+$0194: $B50D:     p$2D -> r16
+$0195: $FF07:     if (r16.7=1 then SKIP
+$0196: $CFFD:     goto $194 (RJMP)
+$0197: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+               F: EE_ID_3 -> [@TX_Buffer + 0]  ...
+$0198: $E012:     $02 -> r17
+$0199: $BD11:     r17 -> p$21
+$019A: $9AF8:     1 -> p$1F.0
+$019B: $B500:     p$20 -> r16
+$019C: $9300:     r16 -> [$010A]
+$019D: $010A:  
+               F: EE_ID_2 -> [@TX_Buffer + 1]  ...
+$019E: $E011:     $01 -> r17
+$019F: $BD11:     r17 -> p$21
+$01A0: $9AF8:     1 -> p$1F.0
+$01A1: $B500:     p$20 -> r16
+$01A2: $9300:     r16 -> [$010B]
+$01A3: $010B:  
+               F: EE_ID_1 -> [@TX_Buffer + 2]  ...
+$01A4: $E010:     $00 -> r17
+$01A5: $BD11:     r17 -> p$21
+$01A6: $9AF8:     1 -> p$1F.0
+$01A7: $B500:     p$20 -> r16
+$01A8: $9300:     r16 -> [$010C]
+$01A9: $010C:  
+$01AA: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P0 -> SPDR  ...
+$01AB: $E20A:     $2A -> r16
+$01AC: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01AD ...
+$01AD: $B50D:     p$2D -> r16
+$01AE: $FF07:     if (r16.7=1 then SKIP
+$01AF: $CFFD:     goto $1AD (RJMP)
+               F: X ->  ...
+$01B0: $93AF:     r26 ->
+$01B1: $93BF:     r27 ->
+               F: 3 -> Byte_Cnt  ...
+$01B2: $E003:     $03 -> r16
+$01B3: $2E20:     r16 -> r2
+               F: @TX_Buffer -> X  ...
+$01B4: $E0AA:     $0A -> r26
+$01B5: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$01B6: $910D:     [X++] -> r16
+$01B7: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01B8 ...
+$01B8: $B50D:     p$2D -> r16
+$01B9: $FF07:     if (r16.7=1 then SKIP
+$01BA: $CFFD:     goto $1B8 (RJMP)
+               C: if (Byte_Cnt --) then goto $01B6 ...
+$01BB: $942A:     r2 --
+$01BC: $F7C9:     if (Z=0) then goto $1B6
+               F: -> X  ...
+$01BD: $91BF:     -> r27
+$01BE: $91AF:     -> r26
+$01BF: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+               F: EE_ID_3 -> [@TX_Buffer + 0]  ...
+$01C0: $E012:     $02 -> r17
+$01C1: $BD11:     r17 -> p$21
+$01C2: $9AF8:     1 -> p$1F.0
+$01C3: $B500:     p$20 -> r16
+$01C4: $9300:     r16 -> [$010A]
+$01C5: $010A:  
+               F: EE_ID_2 -> [@TX_Buffer + 1]  ...
+$01C6: $E011:     $01 -> r17
+$01C7: $BD11:     r17 -> p$21
+$01C8: $9AF8:     1 -> p$1F.0
+$01C9: $B500:     p$20 -> r16
+$01CA: $9300:     r16 -> [$010B]
+$01CB: $010B:  
+               F: EE_ID_1 -> [@TX_Buffer + 2]  ...
+$01CC: $E010:     $00 -> r17
+$01CD: $BD11:     r17 -> p$21
+$01CE: $9AF8:     1 -> p$1F.0
+$01CF: $B500:     p$20 -> r16
+$01D0: $9300:     r16 -> [$010C]
+$01D1: $010C:  
+$01D2: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + TX_ADDR -> SPDR  ...
+$01D3: $E300:     $30 -> r16
+$01D4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01D5 ...
+$01D5: $B50D:     p$2D -> r16
+$01D6: $FF07:     if (r16.7=1 then SKIP
+$01D7: $CFFD:     goto $1D5 (RJMP)
+               F: X ->  ...
+$01D8: $93AF:     r26 ->
+$01D9: $93BF:     r27 ->
+               F: 3 -> Byte_Cnt  ...
+$01DA: $E003:     $03 -> r16
+$01DB: $2E20:     r16 -> r2
+               F: @TX_Buffer -> X  ...
+$01DC: $E0AA:     $0A -> r26
+$01DD: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$01DE: $910D:     [X++] -> r16
+$01DF: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01E0 ...
+$01E0: $B50D:     p$2D -> r16
+$01E1: $FF07:     if (r16.7=1 then SKIP
+$01E2: $CFFD:     goto $1E0 (RJMP)
+               C: if (Byte_Cnt --) then goto $01DE ...
+$01E3: $942A:     r2 --
+$01E4: $F7C9:     if (Z=0) then goto $1DE
+               F: -> X  ...
+$01E5: $91BF:     -> r27
+$01E6: $91AF:     -> r26
+$01E7: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+$01E8: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P0 -> SPDR  ...
+$01E9: $E301:     $31 -> r16
+$01EA: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01EB ...
+$01EB: $B50D:     p$2D -> r16
+$01EC: $FF07:     if (r16.7=1 then SKIP
+$01ED: $CFFD:     goto $1EB (RJMP)
+               F: X ->  ...
+$01EE: $93AF:     r26 ->
+$01EF: $93BF:     r27 ->
+               F: 2 -> Byte_Cnt  ...
+$01F0: $E002:     $02 -> r16
+$01F1: $2E20:     r16 -> r2
+               F: @TX_Buffer -> X  ...
+$01F2: $E0AA:     $0A -> r26
+$01F3: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$01F4: $910D:     [X++] -> r16
+$01F5: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01F6 ...
+$01F6: $B50D:     p$2D -> r16
+$01F7: $FF07:     if (r16.7=1 then SKIP
+$01F8: $CFFD:     goto $1F6 (RJMP)
+               C: if (Byte_Cnt --) then goto $01F4 ...
+$01F9: $942A:     r2 --
+$01FA: $F7C9:     if (Z=0) then goto $1F4
+               F: -> X  ...
+$01FB: $91BF:     -> r27
+$01FC: $91AF:     -> r26
+$01FD: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$01FE: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P1 -> SPDR  ...
+$01FF: $E302:     $32 -> r16
+$0200: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0201 ...
+$0201: $B50D:     p$2D -> r16
+$0202: $FF07:     if (r16.7=1 then SKIP
+$0203: $CFFD:     goto $201 (RJMP)
+               F: X ->  ...
+$0204: $93AF:     r26 ->
+$0205: $93BF:     r27 ->
+               F: 2 -> Byte_Cnt  ...
+$0206: $E002:     $02 -> r16
+$0207: $2E20:     r16 -> r2
+               F: @TX_Buffer -> X  ...
+$0208: $E0AA:     $0A -> r26
+$0209: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$020A: $910D:     [X++] -> r16
+$020B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $020C ...
+$020C: $B50D:     p$2D -> r16
+$020D: $FF07:     if (r16.7=1 then SKIP
+$020E: $CFFD:     goto $20C (RJMP)
+               C: if (Byte_Cnt --) then goto $020A ...
+$020F: $942A:     r2 --
+$0210: $F7C9:     if (Z=0) then goto $20A
+               F: -> X  ...
+$0211: $91BF:     -> r27
+$0212: $91AF:     -> r26
+$0213: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0214: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + DYNPD -> SPDR  ...
+$0215: $E30C:     $3C -> r16
+$0216: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0217 ...
+$0217: $B50D:     p$2D -> r16
+$0218: $FF07:     if (r16.7=1 then SKIP
+$0219: $CFFD:     goto $217 (RJMP)
+               F: #b00000011 -> SPDR  ...
+$021A: $E003:     $03 -> r16
+$021B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $021C ...
+$021C: $B50D:     p$2D -> r16
+$021D: $FF07:     if (r16.7=1 then SKIP
+$021E: $CFFD:     goto $21C (RJMP)
+$021F: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0220: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + FEATURE -> SPDR  ...
+$0221: $E30D:     $3D -> r16
+$0222: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0223 ...
+$0223: $B50D:     p$2D -> r16
+$0224: $FF07:     if (r16.7=1 then SKIP
+$0225: $CFFD:     goto $223 (RJMP)
+               F: #b000000110 -> SPDR  ...
+$0226: $E006:     $06 -> r16
+$0227: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0228 ...
+$0228: $B50D:     p$2D -> r16
+$0229: $FF07:     if (r16.7=1 then SKIP
+$022A: $CFFD:     goto $228 (RJMP)
+$022B: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+$022C: $D266:  F: rcall $493 (Clear_STATUS)
+$022D: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_RX -> SPDR  ...
+$022E: $EE02:     $E2 -> r16
+$022F: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0230 ...
+$0230: $B50D:     p$2D -> r16
+$0231: $FF07:     if (r16.7=1 then SKIP
+$0232: $CFFD:     goto $230 (RJMP)
+$0233: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0234: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_TX -> SPDR  ...
+$0235: $EE01:     $E1 -> r16
+$0236: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0237 ...
+$0237: $B50D:     p$2D -> r16
+$0238: $FF07:     if (r16.7=1 then SKIP
+$0239: $CFFD:     goto $237 (RJMP)
+$023A: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$023B: $9508:  F: RET (Ret)
+-----          V: Setup_Mode
+$023C: $DDEB:  F: rcall $28 (Init_Sensor_Def)
+$023D: $9A5F:  F: 1 -> p$0B.7 (Led_On -> LedStatus)
+               F: $FFFF -> Count  ...
+$023E: $EF0F:     $FF -> r16
+$023F: $9300:     r16 -> [$0101]
+$0240: $0101:  
+$0241: $9300:     r16 -> [$0102]
+$0242: $0102:  
+-----          L: 
+               F: Count --  ...
+$0243: $9100:     [$0101] -> r16
+$0244: $0101:  
+$0245: $5001:     r16 - $01
+$0246: $9300:     r16 -> [$0101]
+$0247: $0101:  
+$0248: $9100:     [$0102] -> r16
+$0249: $0102:  
+$024A: $4000:     r16 - $00 -
+$024B: $9300:     r16 -> [$0102]
+$024C: $0102:  
+               C: if (Count = 0) then goto $0312 ...
+$024D: $9100:     [$0101] -> r16
+$024E: $0101:  
+$024F: $3000:     r16 = $00
+$0250: $9100:     [$0102] -> r16
+$0251: $0102:  
+$0252: $4000:     r16 - $00 -
+$0253: $F409:     if (Z=0) then goto $255
+$0254: $C0BD:     goto $312 (RJMP)
+$0255: $9918:  C: if (p$03.0=0 then SKIP (nRF_IRQ = 1)
+$0256: $CFEC:  C: goto $243 (RJMP) (nRF_IRQ = 1)
+$0257: $985F:  F: 0 -> p$0B.7 (Led_Off -> LedStatus)
+               F: (250*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$0258: $EF09:     $F9 -> r16
+$0259: $E010:     $00 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $025A ...
+$025A: $5001:     r16 - $01
+$025B: $4010:     r17 - $00 -
+$025C: $F7E9:     if (Z=0) then goto $25A
+$025D: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+$025E: $0000:  F: NOP (NOP)
+-----          L: 
+$025F: $0000:  F: NOP (NOP)
+-----          L: 
+$0260: $D232:  F: rcall $493 (Clear_STATUS)
+$0261: $D201:  F: rcall $463 (RF_PWR_Down)
+$0262: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: STATUS -> SPDR  ...
+$0263: $E007:     $07 -> r16
+$0264: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0265 ...
+$0265: $B50D:     p$2D -> r16
+$0266: $FF07:     if (r16.7=1 then SKIP
+$0267: $CFFD:     goto $265 (RJMP)
+               F: X ->  ...
+$0268: $93AF:     r26 ->
+$0269: $93BF:     r27 ->
+               F: 1 -> Byte_Cnt  ...
+$026A: $E001:     $01 -> r16
+$026B: $2E20:     r16 -> r2
+               F: @RX_Buffer -> X  ...
+$026C: $E2AA:     $2A -> r26
+$026D: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$026E: $EF0F:     $FF -> r16
+$026F: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0270 ...
+$0270: $B50D:     p$2D -> r16
+$0271: $FF07:     if (r16.7=1 then SKIP
+$0272: $CFFD:     goto $270 (RJMP)
+               F: SPDR -> [X++]  ...
+$0273: $B50E:     p$2E -> r16
+$0274: $930D:     r16 -> [X++]
+               C: if (Byte_Cnt --) then goto $026E ...
+$0275: $942A:     r2 --
+$0276: $F7B9:     if (Z=0) then goto $26E
+               F: -> X  ...
+$0277: $91BF:     -> r27
+$0278: $91AF:     -> r26
+$0279: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_STATUS  ...
+$027A: $9100:     [$012A] -> r16
+$027B: $012A:  
+$027C: $9300:     r16 -> [$0105]
+$027D: $0105:  
+               F: [@RX_Buffer + 0] & #b00001110  ...
+$027E: $9100:     [$012A] -> r16
+$027F: $012A:  
+$0280: $700E:     r16 & $0E
+$0281: $9300:     r16 -> [$012A]
+$0282: $012A:  
+               F: [@RX_Buffer + 0] >>  ...
+$0283: $9100:     [$012A] -> r16
+$0284: $012A:  
+$0285: $9506:     r16 >>
+$0286: $9300:     r16 -> [$012A]
+$0287: $012A:  
+               F: [@RX_Buffer + 0] -> nPipe  ...
+$0288: $9100:     [$012A] -> r16
+$0289: $012A:  
+$028A: $9300:     r16 -> [$014A]
+$028B: $014A:  
+               C: if (nPipe > 5) then goto $02DC ...
+$028C: $E005:     $05 -> r16
+$028D: $9110:     [$014A] -> r17
+$028E: $014A:  
+$028F: $1701:     r16 = r17
+$0290: $F408:     if ( >= ) then goto $292
+$0291: $C04A:     goto $2DC (RJMP)
+               F: << nPipe  ...
+$0292: $9100:     [$014A] -> r16
+$0293: $014A:  
+$0294: $0F00:     << r16
+$0295: $9300:     r16 -> [$014A]
+$0296: $014A:  
+               F: << nPipe  ...
+$0297: $9100:     [$014A] -> r16
+$0298: $014A:  
+$0299: $0F00:     << r16
+$029A: $9300:     r16 -> [$014A]
+$029B: $014A:  
+               F: << nPipe  ...
+$029C: $9100:     [$014A] -> r16
+$029D: $014A:  
+$029E: $0F00:     << r16
+$029F: $9300:     r16 -> [$014A]
+$02A0: $014A:  
+               F: << nPipe  ...
+$02A1: $9100:     [$014A] -> r16
+$02A2: $014A:  
+$02A3: $0F00:     << r16
+$02A4: $9300:     r16 -> [$014A]
+$02A5: $014A:  
+               F: << nPipe  ...
+$02A6: $9100:     [$014A] -> r16
+$02A7: $014A:  
+$02A8: $0F00:     << r16
+$02A9: $9300:     r16 -> [$014A]
+$02AA: $014A:  
+$02AB: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: R_RX_PAYLOAD -> SPDR  ...
+$02AC: $E601:     $61 -> r16
+$02AD: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02AE ...
+$02AE: $B50D:     p$2D -> r16
+$02AF: $FF07:     if (r16.7=1 then SKIP
+$02B0: $CFFD:     goto $2AE (RJMP)
+               F: X ->  ...
+$02B1: $93AF:     r26 ->
+$02B2: $93BF:     r27 ->
+               F: 4 -> Byte_Cnt  ...
+$02B3: $E004:     $04 -> r16
+$02B4: $2E20:     r16 -> r2
+               F: @RX_Buffer -> X  ...
+$02B5: $E2AA:     $2A -> r26
+$02B6: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$02B7: $EF0F:     $FF -> r16
+$02B8: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02B9 ...
+$02B9: $B50D:     p$2D -> r16
+$02BA: $FF07:     if (r16.7=1 then SKIP
+$02BB: $CFFD:     goto $2B9 (RJMP)
+               F: SPDR -> [X++]  ...
+$02BC: $B50E:     p$2E -> r16
+$02BD: $930D:     r16 -> [X++]
+               C: if (Byte_Cnt --) then goto $02B7 ...
+$02BE: $942A:     r2 --
+$02BF: $F7B9:     if (Z=0) then goto $2B7
+               F: -> X  ...
+$02C0: $91BF:     -> r27
+$02C1: $91AF:     -> r26
+$02C2: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_R_RX_PAYLOAD  ...
+$02C3: $9100:     [$012A] -> r16
+$02C4: $012A:  
+$02C5: $9300:     r16 -> [$0109]
+$02C6: $0109:  
+               F: X ->  ...
+$02C7: $93AF:     r26 ->
+$02C8: $93BF:     r27 ->
+               F: Y ->  ...
+$02C9: $93CF:     r28 ->
+$02CA: $93DF:     r29 ->
+               F: 4 -> Byte_Cnt  ...
+$02CB: $E004:     $04 -> r16
+$02CC: $2E20:     r16 -> r2
+               F: @RX_Buffer -> X  ...
+$02CD: $E2AA:     $2A -> r26
+$02CE: $E0B1:     $01 -> r27
+               F: nPipe -> Y  ...
+$02CF: $91C0:     [$014A] -> r28
+$02D0: $014A:  
+$02D1: $E0D0:     $00 -> r29
+               F: Y + @Arr_RX_P  ...
+$02D2: $5BC5:     r28 - $B5
+$02D3: $4FDE:     r29 - $FE -
+-----          L: 
+               F: [X++] -> [Y++]  ...
+$02D4: $910D:     [X++] -> r16
+$02D5: $9309:     r16 -> [Y++]
+               C: if (Byte_Cnt --) then goto $02D4 ...
+$02D6: $942A:     r2 --
+$02D7: $F7E1:     if (Z=0) then goto $2D4
+               F: -> Y  ...
+$02D8: $91DF:     -> r29
+$02D9: $91CF:     -> r28
+               F: -> X  ...
+$02DA: $91BF:     -> r27
+$02DB: $91AF:     -> r26
+-----          L: 
+$02DC: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_RX -> SPDR  ...
+$02DD: $EE02:     $E2 -> r16
+$02DE: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02DF ...
+$02DF: $B50D:     p$2D -> r16
+$02E0: $FF07:     if (r16.7=1 then SKIP
+$02E1: $CFFD:     goto $2DF (RJMP)
+$02E2: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: RX_1 -> EE_ID_3  ...
+$02E3: $9100:     [$012A] -> r16
+$02E4: $012A:  
+$02E5: $99F9:     if (p$1F.1=0 then SKIP
+$02E6: $CFFE:     goto $2E5 (RJMP)
+$02E7: $E012:     $02 -> r17
+$02E8: $BD11:     r17 -> p$21
+$02E9: $BD00:     r16 -> p$20
+$02EA: $94F8:     0 -> I
+$02EB: $9AFA:     1 -> p$1F.2
+$02EC: $9AF9:     1 -> p$1F.1
+$02ED: $9478:     1 -> I
+               F: RX_2 -> EE_ID_2  ...
+$02EE: $9100:     [$012B] -> r16
+$02EF: $012B:  
+$02F0: $99F9:     if (p$1F.1=0 then SKIP
+$02F1: $CFFE:     goto $2F0 (RJMP)
+$02F2: $E011:     $01 -> r17
+$02F3: $BD11:     r17 -> p$21
+$02F4: $BD00:     r16 -> p$20
+$02F5: $94F8:     0 -> I
+$02F6: $9AFA:     1 -> p$1F.2
+$02F7: $9AF9:     1 -> p$1F.1
+$02F8: $9478:     1 -> I
+               F: RX_3 -> EE_ID_1  ...
+$02F9: $9100:     [$012C] -> r16
+$02FA: $012C:  
+$02FB: $99F9:     if (p$1F.1=0 then SKIP
+$02FC: $CFFE:     goto $2FB (RJMP)
+$02FD: $E010:     $00 -> r17
+$02FE: $BD11:     r17 -> p$21
+$02FF: $BD00:     r16 -> p$20
+$0300: $94F8:     0 -> I
+$0301: $9AFA:     1 -> p$1F.2
+$0302: $9AF9:     1 -> p$1F.1
+$0303: $9478:     1 -> I
+               F: RX_4 -> EE_RF_CH  ...
+$0304: $9100:     [$012D] -> r16
+$0305: $012D:  
+$0306: $99F9:     if (p$1F.1=0 then SKIP
+$0307: $CFFE:     goto $306 (RJMP)
+$0308: $E013:     $03 -> r17
+$0309: $BD11:     r17 -> p$21
+$030A: $BD00:     r16 -> p$20
+$030B: $94F8:     0 -> I
+$030C: $9AFA:     1 -> p$1F.2
+$030D: $9AF9:     1 -> p$1F.1
+$030E: $9478:     1 -> I
+               F: 250-1 -> r16:Word  ...
+$030F: $EF09:     $F9 -> r16
+$0310: $E010:     $00 -> r17
+$0311: $D1EF:  F: rcall $501 (_Wait_ms_)
+-----          L: 
+-----          L: 
+$0312: $985F:  F: 0 -> p$0B.7 (Led_Off -> LedStatus)
+$0313: $9508:  F: RET (Ret)
+-----          V: Work_Mode
+$0314: $DF27:  F: rcall $23C (Setup_Mode)
+$0315: $DE29:  F: rcall $13F (Init_Sensor)
+-----          L: 
+-----          L: 
+$0316: $9A5E:  F: 1 -> p$0B.6 (Led_On -> PWR_Sensor)
+-----          L: 
+$0317: $E30F:  S: $3F -> r16 ($3F->r16)
+$0318: $9300:  S: r16 -> [$007E] (r16->DIDR0)
+$0319: $007E:  
+$031A: $9100:  S: [$007B] -> r16 (ADCSRB->r16)
+$031B: $007B:  
+$031C: $7F08:  S: r16 & $F8 (r16 &| $07)
+$031D: $9300:  S: r16 -> [$007B] (r16->ADCSRB)
+$031E: $007B:  
+$031F: $E60E:  S: $6E -> r16 ($6E->r16)
+$0320: $9300:  S: r16 -> [$007C] (r16->ADMUX)
+$0321: $007C:  
+$0322: $ED0D:  S: $DD -> r16 ($DD->r16)
+$0323: $9300:  S: r16 -> [$007A] (r16->ADCSRA)
+$0324: $007A:  
+               F: 1 -> F_ADC_Bat  ...
+$0325: $E002:     $02 -> r16
+$0326: $2AF0:     r15 ! r16
+-----          L: 
+$0327: $FEF0:  C: if (r15.0=1 then SKIP (F_ADC_Ready = 0)
+$0328: $CFFE:  C: goto $327 (RJMP) (F_ADC_Ready = 0)
+               F: 0 -> Flag_ADC  ...
+$0329: $E000:     $00 -> r16
+$032A: $2EF0:     r16 -> r15
+$032B: $E30F:  S: $3F -> r16 ($3F->r16)
+$032C: $9300:  S: r16 -> [$007E] (r16->DIDR0)
+$032D: $007E:  
+$032E: $9100:  S: [$007B] -> r16 (ADCSRB->r16)
+$032F: $007B:  
+$0330: $7F08:  S: r16 & $F8 (r16 &| $07)
+$0331: $9300:  S: r16 -> [$007B] (r16->ADCSRB)
+$0332: $007B:  
+$0333: $E40E:  S: $4E -> r16 ($4E->r16)
+$0334: $9300:  S: r16 -> [$007C] (r16->ADMUX)
+$0335: $007C:  
+$0336: $E005:  S: $05 -> r16 ($05->r16)
+$0337: $9300:  S: r16 -> [$007A] (r16->ADCSRA)
+$0338: $007A:  
+-----          L: 
+$0339: $E30F:  S: $3F -> r16 ($3F->r16)
+$033A: $9300:  S: r16 -> [$007E] (r16->DIDR0)
+$033B: $007E:  
+$033C: $9100:  S: [$007B] -> r16 (ADCSRB->r16)
+$033D: $007B:  
+$033E: $7F08:  S: r16 & $F8 (r16 &| $07)
+$033F: $9300:  S: r16 -> [$007B] (r16->ADCSRB)
+$0340: $007B:  
+$0341: $EE00:  S: $E0 -> r16 ($E0->r16)
+$0342: $9300:  S: r16 -> [$007C] (r16->ADMUX)
+$0343: $007C:  
+$0344: $ED0D:  S: $DD -> r16 ($DD->r16)
+$0345: $9300:  S: r16 -> [$007A] (r16->ADCSRA)
+$0346: $007A:  
+               F: 1 -> F_ADC_Sens  ...
+$0347: $E004:     $04 -> r16
+$0348: $2AF0:     r15 ! r16
+-----          L: 
+$0349: $FEF0:  C: if (r15.0=1 then SKIP (F_ADC_Ready = 0)
+$034A: $CFFE:  C: goto $349 (RJMP) (F_ADC_Ready = 0)
+               F: 0 -> Flag_ADC  ...
+$034B: $E000:     $00 -> r16
+$034C: $2EF0:     r16 -> r15
+$034D: $E30F:  S: $3F -> r16 ($3F->r16)
+$034E: $9300:  S: r16 -> [$007E] (r16->DIDR0)
+$034F: $007E:  
+$0350: $9100:  S: [$007B] -> r16 (ADCSRB->r16)
+$0351: $007B:  
+$0352: $7F08:  S: r16 & $F8 (r16 &| $07)
+$0353: $9300:  S: r16 -> [$007B] (r16->ADCSRB)
+$0354: $007B:  
+$0355: $E400:  S: $40 -> r16 ($40->r16)
+$0356: $9300:  S: r16 -> [$007C] (r16->ADMUX)
+$0357: $007C:  
+$0358: $E005:  S: $05 -> r16 ($05->r16)
+$0359: $9300:  S: r16 -> [$007A] (r16->ADCSRA)
+$035A: $007A:  
+$035B: $985E:  F: 0 -> p$0B.6 (Led_Off -> PWR_Sensor)
+-----          L: 
+-----          L: 
+               F: 2 -> Byte_Cnt  ...
+$035C: $E002:     $02 -> r16
+$035D: $2E20:     r16 -> r2
+$035E: $D18A:  F: rcall $4E9 (_Rand)
+$035F: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_TX_PAYLOAD -> SPDR  ...
+$0360: $EA00:     $A0 -> r16
+$0361: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0362 ...
+$0362: $B50D:     p$2D -> r16
+$0363: $FF07:     if (r16.7=1 then SKIP
+$0364: $CFFD:     goto $362 (RJMP)
+               F: X ->  ...
+$0365: $93AF:     r26 ->
+$0366: $93BF:     r27 ->
+               F: 2 -> Byte_Cnt  ...
+$0367: $E002:     $02 -> r16
+$0368: $2E20:     r16 -> r2
+               F: @TX_Buffer -> X  ...
+$0369: $E0AA:     $0A -> r26
+$036A: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$036B: $910D:     [X++] -> r16
+$036C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $036D ...
+$036D: $B50D:     p$2D -> r16
+$036E: $FF07:     if (r16.7=1 then SKIP
+$036F: $CFFD:     goto $36D (RJMP)
+               C: if (Byte_Cnt --) then goto $036B ...
+$0370: $942A:     r2 --
+$0371: $F7C9:     if (Z=0) then goto $36B
+               F: -> X  ...
+$0372: $91BF:     -> r27
+$0373: $91AF:     -> r26
+$0374: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0375: $D0BA:  F: rcall $430 (RF_PWR_Up)
+-----          L: 
+-----          L: 
+-----          L: 
+$0376: $D14C:  F: rcall $4C3 (Start_TX)
+-----          L: 
+$0377: $9A5F:  F: 1 -> p$0B.7 (Led_On -> LedStatus)
+-----          L: 
+$0378: $9918:  C: if (p$03.0=0 then SKIP (nRF_IRQ = 1)
+$0379: $CFFE:  C: goto $378 (RJMP) (nRF_IRQ = 1)
+$037A: $D118:  F: rcall $493 (Clear_STATUS)
+               C: if (RF_STATUS.4 = 0) then goto $0387 ...
+$037B: $9100:     [$0105] -> r16
+$037C: $0105:  
+$037D: $FF04:     if (r16.4=1 then SKIP
+$037E: $C008:     goto $387 (RJMP)
+$037F: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: REUSE_TX_PL -> SPDR  ...
+$0380: $EE03:     $E3 -> r16
+$0381: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0382 ...
+$0382: $B50D:     p$2D -> r16
+$0383: $FF07:     if (r16.7=1 then SKIP
+$0384: $CFFD:     goto $382 (RJMP)
+$0385: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0386: $CFEF:  J: goto $376 (RJMP)
+-----          L: 
+$0387: $985F:  F: 0 -> p$0B.7 (Led_Off -> LedStatus)
+$0388: $D0DA:  F: rcall $463 (RF_PWR_Down)
+-----          L: 
+$0389: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_TX -> SPDR  ...
+$038A: $EE01:     $E1 -> r16
+$038B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $038C ...
+$038C: $B50D:     p$2D -> r16
+$038D: $FF07:     if (r16.7=1 then SKIP
+$038E: $CFFD:     goto $38C (RJMP)
+$038F: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0390: $95A8:  F: WDR (WDR)
+$0391: $E005:  S: $05 -> r16 ($05->r16)
+$0392: $BF03:  S: r16 -> p$33 (r16->SMCR)
+$0393: $9588:  F: SLEEP (SLEEP)
+$0394: $CF81:  J: goto $316 (RJMP)
+-----          V: Reset
+$0395: $EF0F:  S: $FF -> r16 ($FF->r16)
+$0396: $BF0D:  S: r16 -> p$3D (r16->p61)
+$0397: $E002:  S: $02 -> r16 ($02->r16)
+$0398: $BF0E:  S: r16 -> p$3E (r16->p62)
+               F: SRAM_Org -> Z  ...
+$0399: $E0E0:     $00 -> r30
+$039A: $E0F1:     $01 -> r31
+-----          L: 
+               F: 0 -> [Z++]  ...
+$039B: $E000:     $00 -> r16
+$039C: $9301:     r16 -> [Z++]
+               C: if (Z -= SRAM_Size) then goto $039B ...
+$039D: $30E0:     r30 = $00
+$039E: $E013:     $03 -> r17
+$039F: $07F1:     r31 = r17=
+$03A0: $F7D1:     if (Z=0) then goto $39B
+$03A1: $E1EE:  F: $1E -> r30 (30 -> ZL)
+$03A2: $27FF:  F: ^ r31 (^ZH)
+-----          L: 
+$03A3: $95EA:  F: r30 -- (ZL --)
+               F: 0 -> [Z]  ...
+$03A4: $E000:     $00 -> r16
+$03A5: $8300:     r16 -> [Z+$00]
+$03A6: $F7E1:  C: if (Z=0) then goto $3A3 (-=)
+$03A7: $9100:  S: [$0060] -> r16 (WDTCSR->r16)
+$03A8: $0060:  
+$03A9: $6108:  S: r16 ! $18 (r16 ! $18)
+$03AA: $9300:  S: r16 -> [$0060] (r16->WDTCSR)
+$03AB: $0060:  
+$03AC: $EE09:  S: $E9 -> r16 ($E9->r16)
+$03AD: $9300:  S: r16 -> [$0060] (r16->WDTCSR)
+$03AE: $0060:  
+$03AF: $9A22:  S: 1 -> p$04.2 (1->DDB2)
+$03B0: $9A25:  S: 1 -> p$04.5 (1->DDB5)
+$03B1: $9A23:  S: 1 -> p$04.3 (1->DDB3)
+$03B2: $B50D:  S: p$2D -> r16 (SPSR->r16)
+$03B3: $7F0E:  S: r16 & $FE (r16 &| $01)
+$03B4: $6001:  S: r16 ! $01 (r16 ! $01)
+$03B5: $BD0D:  S: r16 -> p$2D (r16->SPSR)
+$03B6: $E500:  S: $50 -> r16 ($50->r16)
+$03B7: $BD0C:  S: r16 -> p$2C (r16->SPCR)
+$03B8: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$03B9: $9A5A:  F: 1 -> p$0B.2 (1 -> PortD.2)
+               F: #b11101110 -> DDRB  ...
+$03BA: $EE0E:     $EE -> r16
+$03BB: $B904:     r16 -> p$04
+$03BC: $9A56:  F: 1 -> p$0A.6 (1 -> DDRD.6)
+$03BD: $9A57:  F: 1 -> p$0A.7 (1 -> DDRD.7)
+               F: 500-1 -> r16:Word  ...
+$03BE: $EF03:     $F3 -> r16
+$03BF: $E011:     $01 -> r17
+$03C0: $D140:  F: rcall $501 (_Wait_ms_)
+-----          L: 
+$03C1: $9478:  F: 1 -> I (1 -> I)
+$03C2: $DF51:  F: rcall $314 (Work_Mode)
+-----          V: ADC_Complete
+$03C3: $930F:  F: r16 -> (r16 ->)
+$03C4: $931F:  F: r17 -> (r17 ->)
+               F: SREG ->  ...
+$03C5: $B70F:     p$3F -> r16
+$03C6: $930F:     r16 ->
+$03C7: $FCF1:  C: if (r15.1=0 then SKIP (F_ADC_Bat = 1)
+$03C8: $D009:  F: rcall $3D2 (Calc_Bat)
+$03C9: $FCF2:  C: if (r15.2=0 then SKIP (F_ADC_Sens = 1)
+$03CA: $D029:  F: rcall $3F4 (Calc_Sens)
+               F: 1 -> F_ADC_Ready  ...
+$03CB: $E001:     $01 -> r16
+$03CC: $2AF0:     r15 ! r16
+               F: -> SREG  ...
+$03CD: $910F:     -> r16
+$03CE: $BF0F:     r16 -> p$3F
+$03CF: $911F:  F: -> r17 (-> r17)
+$03D0: $910F:  F: -> r16 (-> r16)
+$03D1: $9518:  F: RETI (RetI)
+-----          V: Calc_Bat
+$03D2: $923F:  F: r3 -> (Math_Cnt ->)
+               F: k_ADC -> Val1  ...
+$03D3: $EF45:     $F5 -> r20
+$03D4: $E05A:     $0A -> r21
+               F: ADCH -> Val2  ...
+$03D5: $9160:     [$0079] -> r22
+$03D6: $0079:  
+$03D7: $E070:     $00 -> r23
+               F: 0 -> Val0  ...
+$03D8: $E020:     $00 -> r18
+$03D9: $E030:     $00 -> r19
+$03DA: $9488:  F: 0 -> .C (0 -> C)
+               F: 16 -> Math_Cnt  ...
+$03DB: $E100:     $10 -> r16
+$03DC: $2E30:     r16 -> r3
+               F: << Val1 <  ...
+$03DD: $1F44:     << r20 <
+$03DE: $1F55:     << r21 <
+-----          L: 
+               F: << Val0 <  ...
+$03DF: $1F22:     << r18 <
+$03E0: $1F33:     << r19 <
+               F: Val0 - Val2  ...
+$03E1: $1B26:     r18 - r22
+$03E2: $0B37:     r19 - r23 -
+$03E3: $F420:  C: if (C=0) then goto $3E8 (C = 0)
+               F: Val0 + Val2  ...
+$03E4: $0F26:     r18 + r22
+$03E5: $1F37:     r19 + r23 +
+$03E6: $9488:  F: 0 -> .C (0 -> C)
+$03E7: $C001:  J: goto $3E9 (RJMP)
+-----          L: 
+$03E8: $9408:  F: 1 -> .C (1 -> C)
+-----          L: 
+               F: << Val1 <  ...
+$03E9: $1F44:     << r20 <
+$03EA: $1F55:     << r21 <
+               C: if (Math_Cnt --) then goto $03DF ...
+$03EB: $943A:     r3 --
+$03EC: $F791:     if (Z=0) then goto $3DF
+               F: Val1 -> MRes  ...
+$03ED: $2F84:     r20 -> r24
+$03EE: $2F95:     r21 -> r25
+$03EF: $E0A0:     $00 -> r26
+$03F0: $E0B0:     $00 -> r27
+$03F1: $903F:  F: -> r3 (-> Math_Cnt)
+               F: MRes -> ADC_Bat  ...
+$03F2: $2E48:     r24 -> r4
+$03F3: $9508:  F: RET (Ret)
+-----          V: Calc_Sens
+               F: ADCH -> Val1  ...
+$03F4: $9140:     [$0079] -> r20
+$03F5: $0079:  
+$03F6: $E050:     $00 -> r21
+               F: Val_Max -> Val2  ...
+$03F7: $EB64:     $B4 -> r22
+$03F8: $E070:     $00 -> r23
+               F: 0 -> MRes  ...
+$03F9: $E080:     $00 -> r24
+$03FA: $E090:     $00 -> r25
+$03FB: $E0A0:     $00 -> r26
+$03FC: $E0B0:     $00 -> r27
+$03FD: $923F:  F: r3 -> (Math_Cnt ->)
+               F: 16 -> Math_Cnt  ...
+$03FE: $E100:     $10 -> r16
+$03FF: $2E30:     r16 -> r3
+-----          L: 
+               F: << MRes  ...
+$0400: $0F88:     << r24
+$0401: $1F99:     << r25 <
+$0402: $1FAA:     << r26 <
+$0403: $1FBB:     << r27 <
+               F: << Val2  ...
+$0404: $0F66:     << r22
+$0405: $1F77:     << r23 <
+$0406: $F428:  C: if (C=0) then goto $40C (C = 1)
+               F: MRes + Val1  ...
+$0407: $0F84:     r24 + r20
+$0408: $1F95:     r25 + r21 +
+$0409: $E010:     $00 -> r17
+$040A: $1FA1:     r26 + r17 +
+$040B: $1FB1:     r27 + r17 +
+               C: if (Math_Cnt --) then goto $0400 ...
+$040C: $943A:     r3 --
+$040D: $F791:     if (Z=0) then goto $400
+$040E: $903F:  F: -> r3 (-> Math_Cnt)
+$040F: $923F:  F: r3 -> (Math_Cnt ->)
+               F: MRes -> Val1  ...
+$0410: $2F48:     r24 -> r20
+$0411: $2F59:     r25 -> r21
+               F: ADC_Max -> Val2  ...
+$0412: $EF66:     $F6 -> r22
+$0413: $E079:     $09 -> r23
+               F: 0 -> Val0  ...
+$0414: $E020:     $00 -> r18
+$0415: $E030:     $00 -> r19
+$0416: $9488:  F: 0 -> .C (0 -> C)
+               F: 16 -> Math_Cnt  ...
+$0417: $E100:     $10 -> r16
+$0418: $2E30:     r16 -> r3
+               F: << Val1 <  ...
+$0419: $1F44:     << r20 <
+$041A: $1F55:     << r21 <
+-----          L: 
+               F: << Val0 <  ...
+$041B: $1F22:     << r18 <
+$041C: $1F33:     << r19 <
+               F: Val0 - Val2  ...
+$041D: $1B26:     r18 - r22
+$041E: $0B37:     r19 - r23 -
+$041F: $F420:  C: if (C=0) then goto $424 (C = 0)
+               F: Val0 + Val2  ...
+$0420: $0F26:     r18 + r22
+$0421: $1F37:     r19 + r23 +
+$0422: $9488:  F: 0 -> .C (0 -> C)
+$0423: $C001:  J: goto $425 (RJMP)
+-----          L: 
+$0424: $9408:  F: 1 -> .C (1 -> C)
+-----          L: 
+               F: << Val1 <  ...
+$0425: $1F44:     << r20 <
+$0426: $1F55:     << r21 <
+               C: if (Math_Cnt --) then goto $041B ...
+$0427: $943A:     r3 --
+$0428: $F791:     if (Z=0) then goto $41B
+               F: Val1 -> MRes  ...
+$0429: $2F84:     r20 -> r24
+$042A: $2F95:     r21 -> r25
+$042B: $E0A0:     $00 -> r26
+$042C: $E0B0:     $00 -> r27
+$042D: $903F:  F: -> r3 (-> Math_Cnt)
+               F: MRes -> ADC_Sens  ...
+$042E: $2E58:     r24 -> r5
+$042F: $9508:  F: RET (Ret)
+-----          V: RF_PWR_Up
+$0430: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0431: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: CONFIG_nRF -> SPDR  ...
+$0432: $E000:     $00 -> r16
+$0433: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0434 ...
+$0434: $B50D:     p$2D -> r16
+$0435: $FF07:     if (r16.7=1 then SKIP
+$0436: $CFFD:     goto $434 (RJMP)
+               F: X ->  ...
+$0437: $93AF:     r26 ->
+$0438: $93BF:     r27 ->
+               F: 1 -> Byte_Cnt  ...
+$0439: $E001:     $01 -> r16
+$043A: $2E20:     r16 -> r2
+               F: @RX_Buffer -> X  ...
+$043B: $E2AA:     $2A -> r26
+$043C: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$043D: $EF0F:     $FF -> r16
+$043E: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $043F ...
+$043F: $B50D:     p$2D -> r16
+$0440: $FF07:     if (r16.7=1 then SKIP
+$0441: $CFFD:     goto $43F (RJMP)
+               F: SPDR -> [X++]  ...
+$0442: $B50E:     p$2E -> r16
+$0443: $930D:     r16 -> [X++]
+               C: if (Byte_Cnt --) then goto $043D ...
+$0444: $942A:     r2 --
+$0445: $F7B9:     if (Z=0) then goto $43D
+               F: -> X  ...
+$0446: $91BF:     -> r27
+$0447: $91AF:     -> r26
+$0448: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_CONFIG_nRF  ...
+$0449: $9100:     [$012A] -> r16
+$044A: $012A:  
+$044B: $9300:     r16 -> [$0104]
+$044C: $0104:  
+               F: RF_CONFIG_nRF ! #b00000010  ...
+$044D: $9100:     [$0104] -> r16
+$044E: $0104:  
+$044F: $6002:     r16 ! $02
+$0450: $9300:     r16 -> [$0104]
+$0451: $0104:  
+$0452: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$0453: $E200:     $20 -> r16
+$0454: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0455 ...
+$0455: $B50D:     p$2D -> r16
+$0456: $FF07:     if (r16.7=1 then SKIP
+$0457: $CFFD:     goto $455 (RJMP)
+               F: RF_CONFIG_nRF -> SPDR  ...
+$0458: $9100:     [$0104] -> r16
+$0459: $0104:  
+$045A: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $045B ...
+$045B: $B50D:     p$2D -> r16
+$045C: $FF07:     if (r16.7=1 then SKIP
+$045D: $CFFD:     goto $45B (RJMP)
+$045E: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: 2-1 -> r16:Word  ...
+$045F: $E001:     $01 -> r16
+$0460: $E010:     $00 -> r17
+$0461: $D09F:  F: rcall $501 (_Wait_ms_)
+-----          L: 
+$0462: $9508:  F: RET (Ret)
+-----          V: RF_PWR_Down
+$0463: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0464: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: CONFIG_nRF -> SPDR  ...
+$0465: $E000:     $00 -> r16
+$0466: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0467 ...
+$0467: $B50D:     p$2D -> r16
+$0468: $FF07:     if (r16.7=1 then SKIP
+$0469: $CFFD:     goto $467 (RJMP)
+               F: X ->  ...
+$046A: $93AF:     r26 ->
+$046B: $93BF:     r27 ->
+               F: 1 -> Byte_Cnt  ...
+$046C: $E001:     $01 -> r16
+$046D: $2E20:     r16 -> r2
+               F: @RX_Buffer -> X  ...
+$046E: $E2AA:     $2A -> r26
+$046F: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$0470: $EF0F:     $FF -> r16
+$0471: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0472 ...
+$0472: $B50D:     p$2D -> r16
+$0473: $FF07:     if (r16.7=1 then SKIP
+$0474: $CFFD:     goto $472 (RJMP)
+               F: SPDR -> [X++]  ...
+$0475: $B50E:     p$2E -> r16
+$0476: $930D:     r16 -> [X++]
+               C: if (Byte_Cnt --) then goto $0470 ...
+$0477: $942A:     r2 --
+$0478: $F7B9:     if (Z=0) then goto $470
+               F: -> X  ...
+$0479: $91BF:     -> r27
+$047A: $91AF:     -> r26
+$047B: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_CONFIG_nRF  ...
+$047C: $9100:     [$012A] -> r16
+$047D: $012A:  
+$047E: $9300:     r16 -> [$0104]
+$047F: $0104:  
+               F: RF_CONFIG_nRF & #b11111101  ...
+$0480: $9100:     [$0104] -> r16
+$0481: $0104:  
+$0482: $7F0D:     r16 & $FD
+$0483: $9300:     r16 -> [$0104]
+$0484: $0104:  
+$0485: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$0486: $E200:     $20 -> r16
+$0487: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0488 ...
+$0488: $B50D:     p$2D -> r16
+$0489: $FF07:     if (r16.7=1 then SKIP
+$048A: $CFFD:     goto $488 (RJMP)
+               F: RF_CONFIG_nRF -> SPDR  ...
+$048B: $9100:     [$0104] -> r16
+$048C: $0104:  
+$048D: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $048E ...
+$048E: $B50D:     p$2D -> r16
+$048F: $FF07:     if (r16.7=1 then SKIP
+$0490: $CFFD:     goto $48E (RJMP)
+$0491: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0492: $9508:  F: RET (Ret)
+-----          V: Clear_STATUS
+$0493: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0494: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: STATUS -> SPDR  ...
+$0495: $E007:     $07 -> r16
+$0496: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0497 ...
+$0497: $B50D:     p$2D -> r16
+$0498: $FF07:     if (r16.7=1 then SKIP
+$0499: $CFFD:     goto $497 (RJMP)
+               F: X ->  ...
+$049A: $93AF:     r26 ->
+$049B: $93BF:     r27 ->
+               F: 1 -> Byte_Cnt  ...
+$049C: $E001:     $01 -> r16
+$049D: $2E20:     r16 -> r2
+               F: @RX_Buffer -> X  ...
+$049E: $E2AA:     $2A -> r26
+$049F: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$04A0: $EF0F:     $FF -> r16
+$04A1: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $04A2 ...
+$04A2: $B50D:     p$2D -> r16
+$04A3: $FF07:     if (r16.7=1 then SKIP
+$04A4: $CFFD:     goto $4A2 (RJMP)
+               F: SPDR -> [X++]  ...
+$04A5: $B50E:     p$2E -> r16
+$04A6: $930D:     r16 -> [X++]
+               C: if (Byte_Cnt --) then goto $04A0 ...
+$04A7: $942A:     r2 --
+$04A8: $F7B9:     if (Z=0) then goto $4A0
+               F: -> X  ...
+$04A9: $91BF:     -> r27
+$04AA: $91AF:     -> r26
+$04AB: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_STATUS  ...
+$04AC: $9100:     [$012A] -> r16
+$04AD: $012A:  
+$04AE: $9300:     r16 -> [$0105]
+$04AF: $0105:  
+               F: [@RX_Buffer + 0] & #b01110000  ...
+$04B0: $9100:     [$012A] -> r16
+$04B1: $012A:  
+$04B2: $7700:     r16 & $70
+$04B3: $9300:     r16 -> [$012A]
+$04B4: $012A:  
+$04B5: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + STATUS -> SPDR  ...
+$04B6: $E207:     $27 -> r16
+$04B7: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $04B8 ...
+$04B8: $B50D:     p$2D -> r16
+$04B9: $FF07:     if (r16.7=1 then SKIP
+$04BA: $CFFD:     goto $4B8 (RJMP)
+               F: [@RX_Buffer + 0] -> SPDR  ...
+$04BB: $9100:     [$012A] -> r16
+$04BC: $012A:  
+$04BD: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $04BE ...
+$04BE: $B50D:     p$2D -> r16
+$04BF: $FF07:     if (r16.7=1 then SKIP
+$04C0: $CFFD:     goto $4BE (RJMP)
+$04C1: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$04C2: $9508:  F: RET (Ret)
+-----          V: Start_TX
+$04C3: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+               F: (5*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$04C4: $E004:     $04 -> r16
+$04C5: $E010:     $00 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $04C6 ...
+$04C6: $5001:     r16 - $01
+$04C7: $4010:     r17 - $00 -
+$04C8: $F7E9:     if (Z=0) then goto $4C6
+$04C9: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+$04CA: $0000:  F: NOP (NOP)
+-----          L: 
+$04CB: $0000:  F: NOP (NOP)
+-----          L: 
+$04CC: $9A29:  F: 1 -> p$05.1 (1 -> nRF_CE)
+               F: (15*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$04CD: $E00E:     $0E -> r16
+$04CE: $E010:     $00 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $04CF ...
+$04CF: $5001:     r16 - $01
+$04D0: $4010:     r17 - $00 -
+$04D1: $F7E9:     if (Z=0) then goto $4CF
+$04D2: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+$04D3: $0000:  F: NOP (NOP)
+-----          L: 
+$04D4: $0000:  F: NOP (NOP)
+-----          L: 
+$04D5: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+               F: (150*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$04D6: $E905:     $95 -> r16
+$04D7: $E010:     $00 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $04D8 ...
+$04D8: $5001:     r16 - $01
+$04D9: $4010:     r17 - $00 -
+$04DA: $F7E9:     if (Z=0) then goto $4D8
+$04DB: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+$04DC: $0000:  F: NOP (NOP)
+-----          L: 
+$04DD: $0000:  F: NOP (NOP)
+-----          L: 
+$04DE: $9508:  F: RET (Ret)
+-----          V: Start_RX
+$04DF: $9A29:  F: 1 -> p$05.1 (1 -> nRF_CE)
+               F: (150*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$04E0: $E905:     $95 -> r16
+$04E1: $E010:     $00 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $04E2 ...
+$04E2: $5001:     r16 - $01
+$04E3: $4010:     r17 - $00 -
+$04E4: $F7E9:     if (Z=0) then goto $4E2
+$04E5: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+$04E6: $0000:  F: NOP (NOP)
+-----          L: 
+$04E7: $0000:  F: NOP (NOP)
+-----          L: 
+$04E8: $9508:  F: RET (Ret)
+-----          V: _Rand
+               F: X ->  ...
+$04E9: $93AF:     r26 ->
+$04EA: $93BF:     r27 ->
+               F: @TX_Buffer -> X  ...
+$04EB: $E0AA:     $0A -> r26
+$04EC: $E0B1:     $01 -> r27
+-----          L: 
+               F: << Rnd  ...
+$04ED: $9100:     [$0100] -> r16
+$04EE: $0100:  
+$04EF: $0F00:     << r16
+$04F0: $9300:     r16 -> [$0100]
+$04F1: $0100:  
+$04F2: $F153:  C: if (V=1) then goto $51D (V=1)
+$04F3: $F02D:  C: if (H=1) then goto $4F9 (H=1)
+-----          L: 
+               F: RND ++  ...
+$04F4: $9100:     [$0100] -> r16
+$04F5: $0100:  
+$04F6: $9503:     r16 ++
+$04F7: $9300:     r16 -> [$0100]
+$04F8: $0100:  
+-----          L: 
+               F: RND -> [X++]  ...
+$04F9: $9100:     [$0100] -> r16
+$04FA: $0100:  
+$04FB: $930D:     r16 -> [X++]
+               C: if (Byte_Cnt --) then goto $04ED ...
+$04FC: $942A:     r2 --
+$04FD: $F779:     if (Z=0) then goto $4ED
+               F: -> X  ...
+$04FE: $91BF:     -> r27
+$04FF: $91AF:     -> r26
+$0500: $9508:  F: RET (Ret)
+-----          V: _Wait_ms_
+               F: r16:Word ->  ...
+$0501: $930F:     r16 ->
+$0502: $931F:     r17 ->
+               F: (CPU_Clock_Frequency/1000-17-2)/4 -> r16:Word  ...
+$0503: $EE03:     $E3 -> r16
+$0504: $E013:     $03 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $0505 ...
+$0505: $5001:     r16 - $01
+$0506: $4010:     r17 - $00 -
+$0507: $F7E9:     if (Z=0) then goto $505
+$0508: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+$0509: $0000:  F: NOP (NOP)
+-----          L: 
+               F: -> r16:Word  ...
+$050A: $911F:     -> r17
+$050B: $910F:     -> r16
+-----          L: 
+               F: r16:Word ->  ...
+$050C: $930F:     r16 ->
+$050D: $931F:     r17 ->
+               F: (CPU_Clock_Frequency/1000-12-2)/4 -> r16:Word  ...
+$050E: $EE04:     $E4 -> r16
+$050F: $E013:     $03 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $0510 ...
+$0510: $5001:     r16 - $01
+$0511: $4010:     r17 - $00 -
+$0512: $F7E9:     if (Z=0) then goto $510
+$0513: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+$0514: $0000:  F: NOP (NOP)
+-----          L: 
+$0515: $0000:  F: NOP (NOP)
+-----          L: 
+               F: -> r16:Word  ...
+$0516: $911F:     -> r17
+$0517: $910F:     -> r16
+               C: if (r16:Word --) then goto $050C ...
+$0518: $5001:     r16 - $01
+$0519: $4010:     r17 - $00 -
+$051A: $F789:     if (Z=0) then goto $50C
+$051B: $0000:  F: NOP (NOP)
+$051C: $9508:  F: RET (Ret)
+-----          V: 
+$051D: $F2B5:  C: if (H=1) then goto $4F4 (H=1)
+$051E: $CFDA:  J: goto $4F9 (RJMP)

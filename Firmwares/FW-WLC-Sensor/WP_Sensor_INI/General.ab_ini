@@ -1,0 +1,79 @@
+[Chip]
+Name=ATmega48
+[CPU]
+Clock Frequency=4000000
+[Text reports]
+Generate lst-file=1
+[Monitor chip]
+Using pin=21
+[Template]
+K_to_Z_Interpretation=1
+[Fuse bits]
+CKSEL0=0
+CKSEL1=1
+CKSEL2=1
+CKSEL3=0
+SUT0=0
+SUT1=1
+CKOUT=1
+CKDIV8=1
+BODLEVEL0=1
+BODLEVEL1=1
+BODLEVEL2=1
+EESAVE=1
+WDTON=1
+SPIEN=0
+DWEN=1
+RSTDISBL=1
+BOOTRST=1
+BOOTSZ0=0
+BOOTSZ1=0
+SELFPRGEN=1
+[Lock bits]
+LockBit1=1
+LockBit2=1
+BootLockBit01=1
+BootLockBit02=1
+BootLockBit11=1
+BootLockBit12=1
+[TemplatesForm]
+Opened=0
+Left=50
+Top=50
+[EEMacroOptions]
+WaitEEWEBefore=1
+LockGlobalInterrupt=1
+[SRAM]
+External=0
+[Programmer]
+Counter=74
+Check device=1
+Chip erase=1
+Write to program=1
+Write to EEPROM=0
+Copy calibration byte=0
+Write fuse bits=0
+Write lock bits=0
+Close on completion=1
+Calibration byte address=0
+Calibration byte EEPROM address=0
+[Program]
+Fill value=65535
+[Chip reader]
+Flash file name=
+EEPROM file name=
+[Compiler]
+Auto declaring fragments of working registers=1
+Optimization=1
+Round immediate data=0
+[Debug]
+Configuration=0
+[Port]
+Deceleration=0
+[Control]
+Read only=0
+[MainWindow]
+Left=-8
+Top=-8
+Width=2064
+Height=1128

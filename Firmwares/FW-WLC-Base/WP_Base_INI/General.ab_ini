@@ -1,0 +1,84 @@
+[Chip]
+Name=ATmega328P
+[CPU]
+Clock Frequency=8000000
+[Text reports]
+Generate lst-file=1
+[Monitor chip]
+Using pin=14
+[Template]
+K_to_Z_Interpretation=1
+[Fuse bits]
+CKSEL0=0
+CKSEL1=1
+SUT0=1
+SUT1=1
+CKDIV8=1
+WDTON=1
+EESAVE=0
+SPIEN=0
+RSTDISBL=1
+BODLEVEL0=1
+BODLEVEL1=1
+DWEN=1
+SELFPRGEN=1
+CKSEL2=0
+CKSEL3=0
+CKOUT=1
+BODLEVEL2=1
+BOOTRST=1
+BOOTSZ0=1
+BOOTSZ1=1
+[Lock bits]
+LockBit1=1
+LockBit2=1
+BootLockBit01=1
+BootLockBit02=1
+BootLockBit11=1
+BootLockBit12=1
+[TemplatesForm]
+Opened=0
+Left=50
+Top=50
+[EEMacroOptions]
+WaitEEWEBefore=0
+LockGlobalInterrupt=1
+[SRAM]
+External=0
+[Programmer]
+Counter=130
+Check device=1
+Chip erase=1
+Write to program=1
+Write to EEPROM=0
+Copy calibration byte=0
+Write fuse bits=0
+Write lock bits=0
+Close on completion=1
+Calibration byte address=0
+Calibration byte EEPROM address=0
+[Program]
+Fill value=65535
+[Chip reader]
+Flash file name=
+EEPROM file name=
+[Compiler]
+Auto declaring fragments of working registers=1
+Optimization=1
+Round immediate data=0
+[Debug]
+Configuration=0
+[Port]
+Deceleration=0
+[Control]
+Read only=0
+[MainWindow]
+Left=-8
+Top=32
+Width=1608
+Height=828
+[Pages]
+Page1=Delay.alg
+Page2=nRF24L01.alg
+Page3=ADC.alg
+Page4=SSD1306_I2C.alg

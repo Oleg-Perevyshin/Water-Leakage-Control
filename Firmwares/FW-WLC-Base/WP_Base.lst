@@ -1,0 +1,5653 @@
+$0000: $940C:  J: goto $10C6
+$0001: $10C6:  
+$0002: $9518:  J: RETI
+$0003: $0000:  J: NOP
+$0004: $9518:  J: RETI
+$0005: $0000:  J: NOP
+$0006: $9518:  J: RETI
+$0007: $0000:  J: NOP
+$0008: $9518:  J: RETI
+$0009: $0000:  J: NOP
+$000A: $9518:  J: RETI
+$000B: $0000:  J: NOP
+$000C: $9518:  J: RETI
+$000D: $0000:  J: NOP
+$000E: $9518:  J: RETI
+$000F: $0000:  J: NOP
+$0010: $9518:  J: RETI
+$0011: $0000:  J: NOP
+$0012: $9518:  J: RETI
+$0013: $0000:  J: NOP
+$0014: $9518:  J: RETI
+$0015: $0000:  J: NOP
+$0016: $9518:  J: RETI
+$0017: $0000:  J: NOP
+$0018: $9518:  J: RETI
+$0019: $0000:  J: NOP
+$001A: $9518:  J: RETI
+$001B: $0000:  J: NOP
+$001C: $9518:  J: RETI
+$001D: $0000:  J: NOP
+$001E: $9518:  J: RETI
+$001F: $0000:  J: NOP
+$0020: $9518:  J: RETI
+$0021: $0000:  J: NOP
+$0022: $9518:  J: RETI
+$0023: $0000:  J: NOP
+$0024: $9518:  J: RETI
+$0025: $0000:  J: NOP
+$0026: $9518:  J: RETI
+$0027: $0000:  J: NOP
+$0028: $9518:  J: RETI
+$0029: $0000:  J: NOP
+$002A: $940C:  J: goto $416
+$002B: $0416:  
+$002C: $9518:  J: RETI
+$002D: $0000:  J: NOP
+$002E: $9518:  J: RETI
+$002F: $0000:  J: NOP
+$0030: $9518:  J: RETI
+$0031: $0000:  J: NOP
+$0032: $9518:  J: RETI
+$0033: $0000:  J: NOP
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          V: _Wait_ms_
+               F: r16:Word ->  ...
+$0034: $930F:     r16 ->
+$0035: $931F:     r17 ->
+-----          L: 
+               F: (1000*CPU_Clock_Frequency/1000000-(9+8)-2)/4 -> r16:Word  ...
+$0036: $EC0B:     $CB -> r16
+$0037: $E017:     $07 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $0038 ...
+$0038: $5001:     r16 - $01
+$0039: $4010:     r17 - $00 -
+$003A: $F7E9:     if (Z=0) then goto $38
+$003B: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+-----          L: 
+$003C: $0000:  F: NOP (NOP)
+-----          L: 
+               F: -> r16:Word  ...
+$003D: $911F:     -> r17
+$003E: $910F:     -> r16
+-----          L: 
+               F: r16:Word ->  ...
+$003F: $930F:     r16 ->
+$0040: $931F:     r17 ->
+-----          L: 
+               F: (1000*CPU_Clock_Frequency/1000000-(4+8)-2)/4 -> r16:Word  ...
+$0041: $EC0C:     $CC -> r16
+$0042: $E017:     $07 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $0043 ...
+$0043: $5001:     r16 - $01
+$0044: $4010:     r17 - $00 -
+$0045: $F7E9:     if (Z=0) then goto $43
+$0046: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+-----          L: 
+$0047: $0000:  F: NOP (NOP)
+-----          L: 
+$0048: $0000:  F: NOP (NOP)
+-----          L: 
+               F: -> r16:Word  ...
+$0049: $911F:     -> r17
+$004A: $910F:     -> r16
+               C: if (r16:Word --) then goto $003F ...
+$004B: $5001:     r16 - $01
+$004C: $4010:     r17 - $00 -
+$004D: $F789:     if (Z=0) then goto $3F
+$004E: $0000:  F: NOP (NOP)
+$004F: $9508:  F: RET (Ret)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          V: Init_SPI_nRF
+$0050: $9A22:  S: 1 -> p$04.2 (1->DDB2)
+$0051: $9A25:  S: 1 -> p$04.5 (1->DDB5)
+$0052: $9A23:  S: 1 -> p$04.3 (1->DDB3)
+$0053: $E001:  S: $01 -> r16 ($01->r16)
+$0054: $BD0D:  S: r16 -> p$2D (r16->SPSR)
+$0055: $E501:  S: $51 -> r16 ($51->r16)
+$0056: $BD0C:  S: r16 -> p$2C (r16->SPCR)
+$0057: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0058: $9820:  F: 0 -> p$04.0 (0 -> DDRB.0)
+$0059: $9A28:  F: 1 -> p$05.0 (1 -> PortB.0)
+$005A: $9A21:  F: 1 -> p$04.1 (1 -> DDRB.1)
+$005B: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$005C: $9508:  F: RET (Ret)
+-----          V: RF_PWR_On
+$005D: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$005E: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: CONFIG_nRF -> SPDR  ...
+$005F: $E000:     $00 -> r16
+$0060: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0061 ...
+$0061: $B50D:     p$2D -> r16
+$0062: $FF07:     if (r16.7=1 then SKIP
+$0063: $CFFD:     goto $61 (RJMP)
+               F: X ->  ...
+$0064: $93AF:     r26 ->
+$0065: $93BF:     r27 ->
+               F: 1 -> CByte  ...
+$0066: $E001:     $01 -> r16
+$0067: $9300:     r16 -> [$0142]
+$0068: $0142:  
+               F: @RX_Buffer -> X  ...
+$0069: $E2A2:     $22 -> r26
+$006A: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$006B: $EF0F:     $FF -> r16
+$006C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $006D ...
+$006D: $B50D:     p$2D -> r16
+$006E: $FF07:     if (r16.7=1 then SKIP
+$006F: $CFFD:     goto $6D (RJMP)
+               F: SPDR -> [X++]  ...
+$0070: $B50E:     p$2E -> r16
+$0071: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $006B ...
+$0072: $9100:     [$0142] -> r16
+$0073: $0142:  
+$0074: $5001:     r16 - $01
+$0075: $9300:     r16 -> [$0142]
+$0076: $0142:  
+$0077: $F799:     if (Z=0) then goto $6B
+               F: -> X  ...
+$0078: $91BF:     -> r27
+$0079: $91AF:     -> r26
+$007A: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_CONFIG_nRF  ...
+$007B: $9100:     [$0122] -> r16
+$007C: $0122:  
+$007D: $9300:     r16 -> [$0206]
+$007E: $0206:  
+               F: RF_CONFIG_nRF ! #b00000010  ...
+$007F: $9100:     [$0206] -> r16
+$0080: $0206:  
+$0081: $6002:     r16 ! $02
+$0082: $9300:     r16 -> [$0206]
+$0083: $0206:  
+$0084: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$0085: $E200:     $20 -> r16
+$0086: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0087 ...
+$0087: $B50D:     p$2D -> r16
+$0088: $FF07:     if (r16.7=1 then SKIP
+$0089: $CFFD:     goto $87 (RJMP)
+               F: RF_CONFIG_nRF -> SPDR  ...
+$008A: $9100:     [$0206] -> r16
+$008B: $0206:  
+$008C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $008D ...
+$008D: $B50D:     p$2D -> r16
+$008E: $FF07:     if (r16.7=1 then SKIP
+$008F: $CFFD:     goto $8D (RJMP)
+$0090: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: 2-1 -> r16:Word  ...
+$0091: $E001:     $01 -> r16
+$0092: $E010:     $00 -> r17
+$0093: $DFA0:  F: rcall $34 (_Wait_ms_)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+$0094: $9508:  F: RET (Ret)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          V: RF_PWR_Down
+$0095: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0096: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: CONFIG_nRF -> SPDR  ...
+$0097: $E000:     $00 -> r16
+$0098: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0099 ...
+$0099: $B50D:     p$2D -> r16
+$009A: $FF07:     if (r16.7=1 then SKIP
+$009B: $CFFD:     goto $99 (RJMP)
+               F: X ->  ...
+$009C: $93AF:     r26 ->
+$009D: $93BF:     r27 ->
+               F: 1 -> CByte  ...
+$009E: $E001:     $01 -> r16
+$009F: $9300:     r16 -> [$0142]
+$00A0: $0142:  
+               F: @RX_Buffer -> X  ...
+$00A1: $E2A2:     $22 -> r26
+$00A2: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$00A3: $EF0F:     $FF -> r16
+$00A4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00A5 ...
+$00A5: $B50D:     p$2D -> r16
+$00A6: $FF07:     if (r16.7=1 then SKIP
+$00A7: $CFFD:     goto $A5 (RJMP)
+               F: SPDR -> [X++]  ...
+$00A8: $B50E:     p$2E -> r16
+$00A9: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $00A3 ...
+$00AA: $9100:     [$0142] -> r16
+$00AB: $0142:  
+$00AC: $5001:     r16 - $01
+$00AD: $9300:     r16 -> [$0142]
+$00AE: $0142:  
+$00AF: $F799:     if (Z=0) then goto $A3
+               F: -> X  ...
+$00B0: $91BF:     -> r27
+$00B1: $91AF:     -> r26
+$00B2: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_CONFIG_nRF  ...
+$00B3: $9100:     [$0122] -> r16
+$00B4: $0122:  
+$00B5: $9300:     r16 -> [$0206]
+$00B6: $0206:  
+               F: RF_CONFIG_nRF & #b11111101  ...
+$00B7: $9100:     [$0206] -> r16
+$00B8: $0206:  
+$00B9: $7F0D:     r16 & $FD
+$00BA: $9300:     r16 -> [$0206]
+$00BB: $0206:  
+$00BC: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$00BD: $E200:     $20 -> r16
+$00BE: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00BF ...
+$00BF: $B50D:     p$2D -> r16
+$00C0: $FF07:     if (r16.7=1 then SKIP
+$00C1: $CFFD:     goto $BF (RJMP)
+               F: RF_CONFIG_nRF -> SPDR  ...
+$00C2: $9100:     [$0206] -> r16
+$00C3: $0206:  
+$00C4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00C5 ...
+$00C5: $B50D:     p$2D -> r16
+$00C6: $FF07:     if (r16.7=1 then SKIP
+$00C7: $CFFD:     goto $C5 (RJMP)
+$00C8: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$00C9: $9508:  F: RET (Ret)
+-----          V: Clear_STATUS
+$00CA: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$00CB: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: STATUS -> SPDR  ...
+$00CC: $E007:     $07 -> r16
+$00CD: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00CE ...
+$00CE: $B50D:     p$2D -> r16
+$00CF: $FF07:     if (r16.7=1 then SKIP
+$00D0: $CFFD:     goto $CE (RJMP)
+               F: X ->  ...
+$00D1: $93AF:     r26 ->
+$00D2: $93BF:     r27 ->
+               F: 1 -> CByte  ...
+$00D3: $E001:     $01 -> r16
+$00D4: $9300:     r16 -> [$0142]
+$00D5: $0142:  
+               F: @RX_Buffer -> X  ...
+$00D6: $E2A2:     $22 -> r26
+$00D7: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$00D8: $EF0F:     $FF -> r16
+$00D9: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00DA ...
+$00DA: $B50D:     p$2D -> r16
+$00DB: $FF07:     if (r16.7=1 then SKIP
+$00DC: $CFFD:     goto $DA (RJMP)
+               F: SPDR -> [X++]  ...
+$00DD: $B50E:     p$2E -> r16
+$00DE: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $00D8 ...
+$00DF: $9100:     [$0142] -> r16
+$00E0: $0142:  
+$00E1: $5001:     r16 - $01
+$00E2: $9300:     r16 -> [$0142]
+$00E3: $0142:  
+$00E4: $F799:     if (Z=0) then goto $D8
+               F: -> X  ...
+$00E5: $91BF:     -> r27
+$00E6: $91AF:     -> r26
+$00E7: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_STATUS  ...
+$00E8: $9100:     [$0122] -> r16
+$00E9: $0122:  
+$00EA: $9300:     r16 -> [$0207]
+$00EB: $0207:  
+               F: [@RX_Buffer + 0] & #b01110000  ...
+$00EC: $9100:     [$0122] -> r16
+$00ED: $0122:  
+$00EE: $7700:     r16 & $70
+$00EF: $9300:     r16 -> [$0122]
+$00F0: $0122:  
+$00F1: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + STATUS -> SPDR  ...
+$00F2: $E207:     $27 -> r16
+$00F3: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00F4 ...
+$00F4: $B50D:     p$2D -> r16
+$00F5: $FF07:     if (r16.7=1 then SKIP
+$00F6: $CFFD:     goto $F4 (RJMP)
+               F: [@RX_Buffer + 0] -> SPDR  ...
+$00F7: $9100:     [$0122] -> r16
+$00F8: $0122:  
+$00F9: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $00FA ...
+$00FA: $B50D:     p$2D -> r16
+$00FB: $FF07:     if (r16.7=1 then SKIP
+$00FC: $CFFD:     goto $FA (RJMP)
+$00FD: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$00FE: $9508:  F: RET (Ret)
+-----          V: RF_Standby
+$00FF: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0100: $9508:  F: RET (Ret)
+-----          V: Start_TX
+$0101: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+               F: (5*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$0102: $E009:     $09 -> r16
+$0103: $E010:     $00 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $0104 ...
+$0104: $5001:     r16 - $01
+$0105: $4010:     r17 - $00 -
+$0106: $F7E9:     if (Z=0) then goto $104
+$0107: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+-----          L: 
+$0108: $0000:  F: NOP (NOP)
+-----          L: 
+$0109: $0000:  F: NOP (NOP)
+-----          L: 
+$010A: $9A29:  F: 1 -> p$05.1 (1 -> nRF_CE)
+-----          L: 
+               F: (15*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$010B: $E10D:     $1D -> r16
+$010C: $E010:     $00 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $010D ...
+$010D: $5001:     r16 - $01
+$010E: $4010:     r17 - $00 -
+$010F: $F7E9:     if (Z=0) then goto $10D
+$0110: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+-----          L: 
+$0111: $0000:  F: NOP (NOP)
+-----          L: 
+$0112: $0000:  F: NOP (NOP)
+-----          L: 
+$0113: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+-----          L: 
+               F: (150*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$0114: $E20B:     $2B -> r16
+$0115: $E011:     $01 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $0116 ...
+$0116: $5001:     r16 - $01
+$0117: $4010:     r17 - $00 -
+$0118: $F7E9:     if (Z=0) then goto $116
+$0119: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+-----          L: 
+$011A: $0000:  F: NOP (NOP)
+-----          L: 
+$011B: $0000:  F: NOP (NOP)
+-----          L: 
+$011C: $9508:  F: RET (Ret)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          V: Start_RX
+$011D: $9A29:  F: 1 -> p$05.1 (1 -> nRF_CE)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+               F: (150*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$011E: $E20B:     $2B -> r16
+$011F: $E011:     $01 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $0120 ...
+$0120: $5001:     r16 - $01
+$0121: $4010:     r17 - $00 -
+$0122: $F7E9:     if (Z=0) then goto $120
+$0123: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+-----          L: 
+$0124: $0000:  F: NOP (NOP)
+-----          L: 
+$0125: $0000:  F: NOP (NOP)
+-----          L: 
+$0126: $9508:  F: RET (Ret)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          V: Init_Base_Def
+$0127: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0128: $DF6C:  F: rcall $95 (RF_PWR_Down)
+$0129: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + EN_AA -> SPDR  ...
+$012A: $E201:     $21 -> r16
+$012B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $012C ...
+$012C: $B50D:     p$2D -> r16
+$012D: $FF07:     if (r16.7=1 then SKIP
+$012E: $CFFD:     goto $12C (RJMP)
+               F: #b00000001 -> SPDR  ...
+$012F: $E001:     $01 -> r16
+$0130: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0131 ...
+$0131: $B50D:     p$2D -> r16
+$0132: $FF07:     if (r16.7=1 then SKIP
+$0133: $CFFD:     goto $131 (RJMP)
+$0134: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0135: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + EN_RXADDR -> SPDR  ...
+$0136: $E202:     $22 -> r16
+$0137: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0138 ...
+$0138: $B50D:     p$2D -> r16
+$0139: $FF07:     if (r16.7=1 then SKIP
+$013A: $CFFD:     goto $138 (RJMP)
+               F: #b00000001 -> SPDR  ...
+$013B: $E001:     $01 -> r16
+$013C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $013D ...
+$013D: $B50D:     p$2D -> r16
+$013E: $FF07:     if (r16.7=1 then SKIP
+$013F: $CFFD:     goto $13D (RJMP)
+$0140: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0141: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + SETUP_AW -> SPDR  ...
+$0142: $E203:     $23 -> r16
+$0143: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0144 ...
+$0144: $B50D:     p$2D -> r16
+$0145: $FF07:     if (r16.7=1 then SKIP
+$0146: $CFFD:     goto $144 (RJMP)
+               F: #b00000001 -> SPDR  ...
+$0147: $E001:     $01 -> r16
+$0148: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0149 ...
+$0149: $B50D:     p$2D -> r16
+$014A: $FF07:     if (r16.7=1 then SKIP
+$014B: $CFFD:     goto $149 (RJMP)
+$014C: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$014D: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + SETUP_RETR -> SPDR  ...
+$014E: $E204:     $24 -> r16
+$014F: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0150 ...
+$0150: $B50D:     p$2D -> r16
+$0151: $FF07:     if (r16.7=1 then SKIP
+$0152: $CFFD:     goto $150 (RJMP)
+               F: #b00000011 -> SPDR  ...
+$0153: $E003:     $03 -> r16
+$0154: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0155 ...
+$0155: $B50D:     p$2D -> r16
+$0156: $FF07:     if (r16.7=1 then SKIP
+$0157: $CFFD:     goto $155 (RJMP)
+$0158: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0159: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_CH -> SPDR  ...
+$015A: $E205:     $25 -> r16
+$015B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $015C ...
+$015C: $B50D:     p$2D -> r16
+$015D: $FF07:     if (r16.7=1 then SKIP
+$015E: $CFFD:     goto $15C (RJMP)
+               F: RF_CH_Def -> SPDR  ...
+$015F: $E604:     $64 -> r16
+$0160: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0161 ...
+$0161: $B50D:     p$2D -> r16
+$0162: $FF07:     if (r16.7=1 then SKIP
+$0163: $CFFD:     goto $161 (RJMP)
+$0164: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0165: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_SETUP -> SPDR  ...
+$0166: $E206:     $26 -> r16
+$0167: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0168 ...
+$0168: $B50D:     p$2D -> r16
+$0169: $FF07:     if (r16.7=1 then SKIP
+$016A: $CFFD:     goto $168 (RJMP)
+               F: #b00000110 -> SPDR  ...
+$016B: $E006:     $06 -> r16
+$016C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $016D ...
+$016D: $B50D:     p$2D -> r16
+$016E: $FF07:     if (r16.7=1 then SKIP
+$016F: $CFFD:     goto $16D (RJMP)
+$0170: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0171: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$0172: $E200:     $20 -> r16
+$0173: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0174 ...
+$0174: $B50D:     p$2D -> r16
+$0175: $FF07:     if (r16.7=1 then SKIP
+$0176: $CFFD:     goto $174 (RJMP)
+               F: #b00001000 -> SPDR  ...
+$0177: $E008:     $08 -> r16
+$0178: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0179 ...
+$0179: $B50D:     p$2D -> r16
+$017A: $FF07:     if (r16.7=1 then SKIP
+$017B: $CFFD:     goto $179 (RJMP)
+$017C: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+               F: ID_Def_3 -> [@TX_Buffer + 0]  ...
+$017D: $E409:     $49 -> r16
+$017E: $9300:     r16 -> [$0102]
+$017F: $0102:  
+               F: ID_Def_2 -> [@TX_Buffer + 1]  ...
+$0180: $E40F:     $4F -> r16
+$0181: $9300:     r16 -> [$0103]
+$0182: $0103:  
+               F: ID_Def_1 -> [@TX_Buffer + 2]  ...
+$0183: $E503:     $53 -> r16
+$0184: $9300:     r16 -> [$0104]
+$0185: $0104:  
+$0186: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P0 -> SPDR  ...
+$0187: $E20A:     $2A -> r16
+$0188: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0189 ...
+$0189: $B50D:     p$2D -> r16
+$018A: $FF07:     if (r16.7=1 then SKIP
+$018B: $CFFD:     goto $189 (RJMP)
+               F: X ->  ...
+$018C: $93AF:     r26 ->
+$018D: $93BF:     r27 ->
+               F: 3 -> CByte  ...
+$018E: $E003:     $03 -> r16
+$018F: $9300:     r16 -> [$0142]
+$0190: $0142:  
+               F: @TX_Buffer -> X  ...
+$0191: $E0A2:     $02 -> r26
+$0192: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$0193: $910D:     [X++] -> r16
+$0194: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0195 ...
+$0195: $B50D:     p$2D -> r16
+$0196: $FF07:     if (r16.7=1 then SKIP
+$0197: $CFFD:     goto $195 (RJMP)
+               C: if (CByte --) then goto $0193 ...
+$0198: $9100:     [$0142] -> r16
+$0199: $0142:  
+$019A: $5001:     r16 - $01
+$019B: $9300:     r16 -> [$0142]
+$019C: $0142:  
+$019D: $F7A9:     if (Z=0) then goto $193
+               F: -> X  ...
+$019E: $91BF:     -> r27
+$019F: $91AF:     -> r26
+$01A0: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+               F: ID_Def_3 -> [@TX_Buffer + 0]  ...
+$01A1: $E409:     $49 -> r16
+$01A2: $9300:     r16 -> [$0102]
+$01A3: $0102:  
+               F: ID_Def_2 -> [@TX_Buffer + 1]  ...
+$01A4: $E40F:     $4F -> r16
+$01A5: $9300:     r16 -> [$0103]
+$01A6: $0103:  
+               F: ID_Def_1 -> [@TX_Buffer + 2]  ...
+$01A7: $E503:     $53 -> r16
+$01A8: $9300:     r16 -> [$0104]
+$01A9: $0104:  
+$01AA: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + TX_ADDR -> SPDR  ...
+$01AB: $E300:     $30 -> r16
+$01AC: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01AD ...
+$01AD: $B50D:     p$2D -> r16
+$01AE: $FF07:     if (r16.7=1 then SKIP
+$01AF: $CFFD:     goto $1AD (RJMP)
+               F: X ->  ...
+$01B0: $93AF:     r26 ->
+$01B1: $93BF:     r27 ->
+               F: 3 -> CByte  ...
+$01B2: $E003:     $03 -> r16
+$01B3: $9300:     r16 -> [$0142]
+$01B4: $0142:  
+               F: @TX_Buffer -> X  ...
+$01B5: $E0A2:     $02 -> r26
+$01B6: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$01B7: $910D:     [X++] -> r16
+$01B8: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01B9 ...
+$01B9: $B50D:     p$2D -> r16
+$01BA: $FF07:     if (r16.7=1 then SKIP
+$01BB: $CFFD:     goto $1B9 (RJMP)
+               C: if (CByte --) then goto $01B7 ...
+$01BC: $9100:     [$0142] -> r16
+$01BD: $0142:  
+$01BE: $5001:     r16 - $01
+$01BF: $9300:     r16 -> [$0142]
+$01C0: $0142:  
+$01C1: $F7A9:     if (Z=0) then goto $1B7
+               F: -> X  ...
+$01C2: $91BF:     -> r27
+$01C3: $91AF:     -> r26
+$01C4: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+$01C5: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P0 -> SPDR  ...
+$01C6: $E301:     $31 -> r16
+$01C7: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01C8 ...
+$01C8: $B50D:     p$2D -> r16
+$01C9: $FF07:     if (r16.7=1 then SKIP
+$01CA: $CFFD:     goto $1C8 (RJMP)
+               F: X ->  ...
+$01CB: $93AF:     r26 ->
+$01CC: $93BF:     r27 ->
+               F: 4 -> CByte  ...
+$01CD: $E004:     $04 -> r16
+$01CE: $9300:     r16 -> [$0142]
+$01CF: $0142:  
+               F: @TX_Buffer -> X  ...
+$01D0: $E0A2:     $02 -> r26
+$01D1: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$01D2: $910D:     [X++] -> r16
+$01D3: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01D4 ...
+$01D4: $B50D:     p$2D -> r16
+$01D5: $FF07:     if (r16.7=1 then SKIP
+$01D6: $CFFD:     goto $1D4 (RJMP)
+               C: if (CByte --) then goto $01D2 ...
+$01D7: $9100:     [$0142] -> r16
+$01D8: $0142:  
+$01D9: $5001:     r16 - $01
+$01DA: $9300:     r16 -> [$0142]
+$01DB: $0142:  
+$01DC: $F7A9:     if (Z=0) then goto $1D2
+               F: -> X  ...
+$01DD: $91BF:     -> r27
+$01DE: $91AF:     -> r26
+$01DF: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$01E0: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P1 -> SPDR  ...
+$01E1: $E302:     $32 -> r16
+$01E2: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01E3 ...
+$01E3: $B50D:     p$2D -> r16
+$01E4: $FF07:     if (r16.7=1 then SKIP
+$01E5: $CFFD:     goto $1E3 (RJMP)
+               F: X ->  ...
+$01E6: $93AF:     r26 ->
+$01E7: $93BF:     r27 ->
+               F: 4 -> CByte  ...
+$01E8: $E004:     $04 -> r16
+$01E9: $9300:     r16 -> [$0142]
+$01EA: $0142:  
+               F: @TX_Buffer -> X  ...
+$01EB: $E0A2:     $02 -> r26
+$01EC: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$01ED: $910D:     [X++] -> r16
+$01EE: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01EF ...
+$01EF: $B50D:     p$2D -> r16
+$01F0: $FF07:     if (r16.7=1 then SKIP
+$01F1: $CFFD:     goto $1EF (RJMP)
+               C: if (CByte --) then goto $01ED ...
+$01F2: $9100:     [$0142] -> r16
+$01F3: $0142:  
+$01F4: $5001:     r16 - $01
+$01F5: $9300:     r16 -> [$0142]
+$01F6: $0142:  
+$01F7: $F7A9:     if (Z=0) then goto $1ED
+               F: -> X  ...
+$01F8: $91BF:     -> r27
+$01F9: $91AF:     -> r26
+$01FA: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$01FB: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + DYNPD -> SPDR  ...
+$01FC: $E30C:     $3C -> r16
+$01FD: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $01FE ...
+$01FE: $B50D:     p$2D -> r16
+$01FF: $FF07:     if (r16.7=1 then SKIP
+$0200: $CFFD:     goto $1FE (RJMP)
+               F: #b00000011 -> SPDR  ...
+$0201: $E003:     $03 -> r16
+$0202: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0203 ...
+$0203: $B50D:     p$2D -> r16
+$0204: $FF07:     if (r16.7=1 then SKIP
+$0205: $CFFD:     goto $203 (RJMP)
+$0206: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0207: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + FEATURE -> SPDR  ...
+$0208: $E30D:     $3D -> r16
+$0209: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $020A ...
+$020A: $B50D:     p$2D -> r16
+$020B: $FF07:     if (r16.7=1 then SKIP
+$020C: $CFFD:     goto $20A (RJMP)
+               F: #b000000110 -> SPDR  ...
+$020D: $E006:     $06 -> r16
+$020E: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $020F ...
+$020F: $B50D:     p$2D -> r16
+$0210: $FF07:     if (r16.7=1 then SKIP
+$0211: $CFFD:     goto $20F (RJMP)
+$0212: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0213: $DEB6:  F: rcall $CA (Clear_STATUS)
+$0214: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_RX -> SPDR  ...
+$0215: $EE02:     $E2 -> r16
+$0216: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0217 ...
+$0217: $B50D:     p$2D -> r16
+$0218: $FF07:     if (r16.7=1 then SKIP
+$0219: $CFFD:     goto $217 (RJMP)
+$021A: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$021B: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_TX -> SPDR  ...
+$021C: $EE01:     $E1 -> r16
+$021D: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $021E ...
+$021E: $B50D:     p$2D -> r16
+$021F: $FF07:     if (r16.7=1 then SKIP
+$0220: $CFFD:     goto $21E (RJMP)
+$0221: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0222: $9508:  F: RET (Ret)
+-----          V: Scan_Air
+$0223: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+               F: 100 -> RF_RF_CH  ...
+$0224: $E604:     $64 -> r16
+$0225: $9300:     r16 -> [$0205]
+$0226: $0205:  
+               F: 0 -> RF_Max_CH  ...
+$0227: $E000:     $00 -> r16
+$0228: $9300:     r16 -> [$020C]
+$0229: $020C:  
+               F: 0 -> RF_Series  ...
+$022A: $9300:     r16 -> [$020D]
+$022B: $020D:  
+               F: 0 -> RF_Max_Series  ...
+$022C: $9300:     r16 -> [$020E]
+$022D: $020E:  
+$022E: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$022F: $E200:     $20 -> r16
+$0230: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0231 ...
+$0231: $B50D:     p$2D -> r16
+$0232: $FF07:     if (r16.7=1 then SKIP
+$0233: $CFFD:     goto $231 (RJMP)
+               F: #b00000001 -> SPDR  ...
+$0234: $E001:     $01 -> r16
+$0235: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0236 ...
+$0236: $B50D:     p$2D -> r16
+$0237: $FF07:     if (r16.7=1 then SKIP
+$0238: $CFFD:     goto $236 (RJMP)
+$0239: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$023A: $DE22:  F: rcall $5D (RF_PWR_On)
+-----          L: 
+$023B: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_CH -> SPDR  ...
+$023C: $E205:     $25 -> r16
+$023D: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $023E ...
+$023E: $B50D:     p$2D -> r16
+$023F: $FF07:     if (r16.7=1 then SKIP
+$0240: $CFFD:     goto $23E (RJMP)
+               F: RF_RF_CH -> SPDR  ...
+$0241: $9100:     [$0205] -> r16
+$0242: $0205:  
+$0243: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0244 ...
+$0244: $B50D:     p$2D -> r16
+$0245: $FF07:     if (r16.7=1 then SKIP
+$0246: $CFFD:     goto $244 (RJMP)
+$0247: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0248: $DED4:  F: rcall $11D (Start_RX)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+               F: (300*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$0249: $E507:     $57 -> r16
+$024A: $E012:     $02 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $024B ...
+$024B: $5001:     r16 - $01
+$024C: $4010:     r17 - $00 -
+$024D: $F7E9:     if (Z=0) then goto $24B
+$024E: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+-----          L: 
+$024F: $0000:  F: NOP (NOP)
+-----          L: 
+$0250: $0000:  F: NOP (NOP)
+-----          L: 
+$0251: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: RPD -> SPDR  ...
+$0252: $E009:     $09 -> r16
+$0253: $BD0E:     r16 -> p$2E
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0254 ...
+$0254: $B50D:     p$2D -> r16
+$0255: $FF07:     if (r16.7=1 then SKIP
+$0256: $CFFD:     goto $254 (RJMP)
+               F: X ->  ...
+$0257: $93AF:     r26 ->
+$0258: $93BF:     r27 ->
+               F: 1 -> CByte  ...
+$0259: $E001:     $01 -> r16
+$025A: $9300:     r16 -> [$0142]
+$025B: $0142:  
+               F: @RX_Buffer -> X  ...
+$025C: $E2A2:     $22 -> r26
+$025D: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$025E: $EF0F:     $FF -> r16
+$025F: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0260 ...
+$0260: $B50D:     p$2D -> r16
+$0261: $FF07:     if (r16.7=1 then SKIP
+$0262: $CFFD:     goto $260 (RJMP)
+               F: SPDR -> [X++]  ...
+$0263: $B50E:     p$2E -> r16
+$0264: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $025E ...
+$0265: $9100:     [$0142] -> r16
+$0266: $0142:  
+$0267: $5001:     r16 - $01
+$0268: $9300:     r16 -> [$0142]
+$0269: $0142:  
+$026A: $F799:     if (Z=0) then goto $25E
+               F: -> X  ...
+$026B: $91BF:     -> r27
+$026C: $91AF:     -> r26
+$026D: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_RPD  ...
+$026E: $9100:     [$0122] -> r16
+$026F: $0122:  
+$0270: $9300:     r16 -> [$0209]
+$0271: $0209:  
+$0272: $D13D:  F: rcall $3B0 (Test_Channel)
+               C: if (RF_RF_CH < 125) then goto $023B ...
+$0273: $9100:     [$0205] -> r16
+$0274: $0205:  
+$0275: $370D:     r16 = $7D
+$0276: $F220:     if ( < ) then goto $23B
+$0277: $DE1D:  F: rcall $95 (RF_PWR_Down)
+$0278: $D164:  F: rcall $3DD (_End_Test)
+               F: RF_RF_CH -> EE_RF_CH  ...
+$0279: $9100:     [$0205] -> r16
+$027A: $0205:  
+$027B: $E012:     $02 -> r17
+$027C: $BD11:     r17 -> p$21
+$027D: $E010:     $00 -> r17
+$027E: $BD12:     r17 -> p$22
+$027F: $BD00:     r16 -> p$20
+$0280: $94F8:     0 -> I
+$0281: $9AFA:     1 -> p$1F.2
+$0282: $9AF9:     1 -> p$1F.1
+$0283: $9478:     1 -> I
+$0284: $99F9:     if (p$1F.1=0 then SKIP
+$0285: $CFFE:     goto $284 (RJMP)
+$0286: $9508:  F: RET (Ret)
+-----          V: Init_Base
+$0287: $9829:  F: 0 -> p$05.1 (0 -> nRF_CE)
+$0288: $DE0C:  F: rcall $95 (RF_PWR_Down)
+$0289: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + EN_AA -> SPDR  ...
+$028A: $E201:     $21 -> r16
+$028B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $028C ...
+$028C: $B50D:     p$2D -> r16
+$028D: $FF07:     if (r16.7=1 then SKIP
+$028E: $CFFD:     goto $28C (RJMP)
+               F: #b00111111 -> SPDR  ...
+$028F: $E30F:     $3F -> r16
+$0290: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0291 ...
+$0291: $B50D:     p$2D -> r16
+$0292: $FF07:     if (r16.7=1 then SKIP
+$0293: $CFFD:     goto $291 (RJMP)
+$0294: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0295: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + EN_RXADDR -> SPDR  ...
+$0296: $E202:     $22 -> r16
+$0297: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0298 ...
+$0298: $B50D:     p$2D -> r16
+$0299: $FF07:     if (r16.7=1 then SKIP
+$029A: $CFFD:     goto $298 (RJMP)
+               F: #b00111111 -> SPDR  ...
+$029B: $E30F:     $3F -> r16
+$029C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $029D ...
+$029D: $B50D:     p$2D -> r16
+$029E: $FF07:     if (r16.7=1 then SKIP
+$029F: $CFFD:     goto $29D (RJMP)
+$02A0: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$02A1: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + SETUP_AW -> SPDR  ...
+$02A2: $E203:     $23 -> r16
+$02A3: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02A4 ...
+$02A4: $B50D:     p$2D -> r16
+$02A5: $FF07:     if (r16.7=1 then SKIP
+$02A6: $CFFD:     goto $2A4 (RJMP)
+               F: #b00000001 -> SPDR  ...
+$02A7: $E001:     $01 -> r16
+$02A8: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02A9 ...
+$02A9: $B50D:     p$2D -> r16
+$02AA: $FF07:     if (r16.7=1 then SKIP
+$02AB: $CFFD:     goto $2A9 (RJMP)
+$02AC: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$02AD: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + SETUP_RETR -> SPDR  ...
+$02AE: $E204:     $24 -> r16
+$02AF: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02B0 ...
+$02B0: $B50D:     p$2D -> r16
+$02B1: $FF07:     if (r16.7=1 then SKIP
+$02B2: $CFFD:     goto $2B0 (RJMP)
+               F: #b00000011 -> SPDR  ...
+$02B3: $E003:     $03 -> r16
+$02B4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02B5 ...
+$02B5: $B50D:     p$2D -> r16
+$02B6: $FF07:     if (r16.7=1 then SKIP
+$02B7: $CFFD:     goto $2B5 (RJMP)
+$02B8: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$02B9: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_CH -> SPDR  ...
+$02BA: $E205:     $25 -> r16
+$02BB: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02BC ...
+$02BC: $B50D:     p$2D -> r16
+$02BD: $FF07:     if (r16.7=1 then SKIP
+$02BE: $CFFD:     goto $2BC (RJMP)
+               F: EE_RF_CH -> SPDR  ...
+$02BF: $E012:     $02 -> r17
+$02C0: $BD11:     r17 -> p$21
+$02C1: $E010:     $00 -> r17
+$02C2: $BD12:     r17 -> p$22
+$02C3: $9AF8:     1 -> p$1F.0
+$02C4: $B500:     p$20 -> r16
+$02C5: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02C6 ...
+$02C6: $B50D:     p$2D -> r16
+$02C7: $FF07:     if (r16.7=1 then SKIP
+$02C8: $CFFD:     goto $2C6 (RJMP)
+$02C9: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$02CA: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RF_SETUP -> SPDR  ...
+$02CB: $E206:     $26 -> r16
+$02CC: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02CD ...
+$02CD: $B50D:     p$2D -> r16
+$02CE: $FF07:     if (r16.7=1 then SKIP
+$02CF: $CFFD:     goto $2CD (RJMP)
+               F: #b00000110 -> SPDR  ...
+$02D0: $E006:     $06 -> r16
+$02D1: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02D2 ...
+$02D2: $B50D:     p$2D -> r16
+$02D3: $FF07:     if (r16.7=1 then SKIP
+$02D4: $CFFD:     goto $2D2 (RJMP)
+$02D5: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$02D6: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P0 -> SPDR  ...
+$02D7: $E301:     $31 -> r16
+$02D8: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02D9 ...
+$02D9: $B50D:     p$2D -> r16
+$02DA: $FF07:     if (r16.7=1 then SKIP
+$02DB: $CFFD:     goto $2D9 (RJMP)
+               F: 1 -> SPDR  ...
+$02DC: $E001:     $01 -> r16
+$02DD: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02DE ...
+$02DE: $B50D:     p$2D -> r16
+$02DF: $FF07:     if (r16.7=1 then SKIP
+$02E0: $CFFD:     goto $2DE (RJMP)
+$02E1: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$02E2: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P1 -> SPDR  ...
+$02E3: $E302:     $32 -> r16
+$02E4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02E5 ...
+$02E5: $B50D:     p$2D -> r16
+$02E6: $FF07:     if (r16.7=1 then SKIP
+$02E7: $CFFD:     goto $2E5 (RJMP)
+               F: 1 -> SPDR  ...
+$02E8: $E001:     $01 -> r16
+$02E9: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02EA ...
+$02EA: $B50D:     p$2D -> r16
+$02EB: $FF07:     if (r16.7=1 then SKIP
+$02EC: $CFFD:     goto $2EA (RJMP)
+$02ED: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$02EE: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P2 -> SPDR  ...
+$02EF: $E303:     $33 -> r16
+$02F0: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02F1 ...
+$02F1: $B50D:     p$2D -> r16
+$02F2: $FF07:     if (r16.7=1 then SKIP
+$02F3: $CFFD:     goto $2F1 (RJMP)
+               F: 1 -> SPDR  ...
+$02F4: $E001:     $01 -> r16
+$02F5: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02F6 ...
+$02F6: $B50D:     p$2D -> r16
+$02F7: $FF07:     if (r16.7=1 then SKIP
+$02F8: $CFFD:     goto $2F6 (RJMP)
+$02F9: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$02FA: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P3 -> SPDR  ...
+$02FB: $E304:     $34 -> r16
+$02FC: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $02FD ...
+$02FD: $B50D:     p$2D -> r16
+$02FE: $FF07:     if (r16.7=1 then SKIP
+$02FF: $CFFD:     goto $2FD (RJMP)
+               F: 1 -> SPDR  ...
+$0300: $E001:     $01 -> r16
+$0301: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0302 ...
+$0302: $B50D:     p$2D -> r16
+$0303: $FF07:     if (r16.7=1 then SKIP
+$0304: $CFFD:     goto $302 (RJMP)
+$0305: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0306: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P4 -> SPDR  ...
+$0307: $E305:     $35 -> r16
+$0308: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0309 ...
+$0309: $B50D:     p$2D -> r16
+$030A: $FF07:     if (r16.7=1 then SKIP
+$030B: $CFFD:     goto $309 (RJMP)
+               F: 1 -> SPDR  ...
+$030C: $E001:     $01 -> r16
+$030D: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $030E ...
+$030E: $B50D:     p$2D -> r16
+$030F: $FF07:     if (r16.7=1 then SKIP
+$0310: $CFFD:     goto $30E (RJMP)
+$0311: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0312: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_PW_P5 -> SPDR  ...
+$0313: $E306:     $36 -> r16
+$0314: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0315 ...
+$0315: $B50D:     p$2D -> r16
+$0316: $FF07:     if (r16.7=1 then SKIP
+$0317: $CFFD:     goto $315 (RJMP)
+               F: 1 -> SPDR  ...
+$0318: $E001:     $01 -> r16
+$0319: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $031A ...
+$031A: $B50D:     p$2D -> r16
+$031B: $FF07:     if (r16.7=1 then SKIP
+$031C: $CFFD:     goto $31A (RJMP)
+$031D: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$031E: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + DYNPD -> SPDR  ...
+$031F: $E30C:     $3C -> r16
+$0320: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0321 ...
+$0321: $B50D:     p$2D -> r16
+$0322: $FF07:     if (r16.7=1 then SKIP
+$0323: $CFFD:     goto $321 (RJMP)
+               F: #b00111111 -> SPDR  ...
+$0324: $E30F:     $3F -> r16
+$0325: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0326 ...
+$0326: $B50D:     p$2D -> r16
+$0327: $FF07:     if (r16.7=1 then SKIP
+$0328: $CFFD:     goto $326 (RJMP)
+$0329: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$032A: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + FEATURE -> SPDR  ...
+$032B: $E30D:     $3D -> r16
+$032C: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $032D ...
+$032D: $B50D:     p$2D -> r16
+$032E: $FF07:     if (r16.7=1 then SKIP
+$032F: $CFFD:     goto $32D (RJMP)
+               F: #b000000110 -> SPDR  ...
+$0330: $E006:     $06 -> r16
+$0331: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0332 ...
+$0332: $B50D:     p$2D -> r16
+$0333: $FF07:     if (r16.7=1 then SKIP
+$0334: $CFFD:     goto $332 (RJMP)
+$0335: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0336: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + CONFIG_nRF -> SPDR  ...
+$0337: $E200:     $20 -> r16
+$0338: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0339 ...
+$0339: $B50D:     p$2D -> r16
+$033A: $FF07:     if (r16.7=1 then SKIP
+$033B: $CFFD:     goto $339 (RJMP)
+               F: #b00001001 -> SPDR  ...
+$033C: $E009:     $09 -> r16
+$033D: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $033E ...
+$033E: $B50D:     p$2D -> r16
+$033F: $FF07:     if (r16.7=1 then SKIP
+$0340: $CFFD:     goto $33E (RJMP)
+$0341: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+-----          L: 
+               F: "1" -> [@TX_Buffer + 0]  ...
+$0342: $E301:     $31 -> r16
+$0343: $9300:     r16 -> [$0102]
+$0344: $0102:  
+               F: EE_ID_2 -> [@TX_Buffer + 1]  ...
+$0345: $E011:     $01 -> r17
+$0346: $BD11:     r17 -> p$21
+$0347: $E010:     $00 -> r17
+$0348: $BD12:     r17 -> p$22
+$0349: $9AF8:     1 -> p$1F.0
+$034A: $B500:     p$20 -> r16
+$034B: $9300:     r16 -> [$0103]
+$034C: $0103:  
+               F: EE_ID_1 -> [@TX_Buffer + 2]  ...
+$034D: $E010:     $00 -> r17
+$034E: $BD11:     r17 -> p$21
+$034F: $E010:     $00 -> r17
+$0350: $BD12:     r17 -> p$22
+$0351: $9AF8:     1 -> p$1F.0
+$0352: $B500:     p$20 -> r16
+$0353: $9300:     r16 -> [$0104]
+$0354: $0104:  
+$0355: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P1 -> SPDR  ...
+$0356: $E20B:     $2B -> r16
+$0357: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0358 ...
+$0358: $B50D:     p$2D -> r16
+$0359: $FF07:     if (r16.7=1 then SKIP
+$035A: $CFFD:     goto $358 (RJMP)
+               F: X ->  ...
+$035B: $93AF:     r26 ->
+$035C: $93BF:     r27 ->
+               F: 3 -> CByte  ...
+$035D: $E003:     $03 -> r16
+$035E: $9300:     r16 -> [$0142]
+$035F: $0142:  
+               F: @TX_Buffer -> X  ...
+$0360: $E0A2:     $02 -> r26
+$0361: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$0362: $910D:     [X++] -> r16
+$0363: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0364 ...
+$0364: $B50D:     p$2D -> r16
+$0365: $FF07:     if (r16.7=1 then SKIP
+$0366: $CFFD:     goto $364 (RJMP)
+               C: if (CByte --) then goto $0362 ...
+$0367: $9100:     [$0142] -> r16
+$0368: $0142:  
+$0369: $5001:     r16 - $01
+$036A: $9300:     r16 -> [$0142]
+$036B: $0142:  
+$036C: $F7A9:     if (Z=0) then goto $362
+               F: -> X  ...
+$036D: $91BF:     -> r27
+$036E: $91AF:     -> r26
+$036F: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0370: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P2 -> SPDR  ...
+$0371: $E20C:     $2C -> r16
+$0372: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0373 ...
+$0373: $B50D:     p$2D -> r16
+$0374: $FF07:     if (r16.7=1 then SKIP
+$0375: $CFFD:     goto $373 (RJMP)
+               F: "2" -> SPDR  ...
+$0376: $E302:     $32 -> r16
+$0377: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0378 ...
+$0378: $B50D:     p$2D -> r16
+$0379: $FF07:     if (r16.7=1 then SKIP
+$037A: $CFFD:     goto $378 (RJMP)
+$037B: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$037C: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P3 -> SPDR  ...
+$037D: $E20D:     $2D -> r16
+$037E: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $037F ...
+$037F: $B50D:     p$2D -> r16
+$0380: $FF07:     if (r16.7=1 then SKIP
+$0381: $CFFD:     goto $37F (RJMP)
+               F: "3" -> SPDR  ...
+$0382: $E303:     $33 -> r16
+$0383: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0384 ...
+$0384: $B50D:     p$2D -> r16
+$0385: $FF07:     if (r16.7=1 then SKIP
+$0386: $CFFD:     goto $384 (RJMP)
+$0387: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0388: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P4 -> SPDR  ...
+$0389: $E20E:     $2E -> r16
+$038A: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $038B ...
+$038B: $B50D:     p$2D -> r16
+$038C: $FF07:     if (r16.7=1 then SKIP
+$038D: $CFFD:     goto $38B (RJMP)
+               F: "4" -> SPDR  ...
+$038E: $E304:     $34 -> r16
+$038F: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0390 ...
+$0390: $B50D:     p$2D -> r16
+$0391: $FF07:     if (r16.7=1 then SKIP
+$0392: $CFFD:     goto $390 (RJMP)
+$0393: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$0394: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_REGISTER + RX_ADDR_P5 -> SPDR  ...
+$0395: $E20F:     $2F -> r16
+$0396: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $0397 ...
+$0397: $B50D:     p$2D -> r16
+$0398: $FF07:     if (r16.7=1 then SKIP
+$0399: $CFFD:     goto $397 (RJMP)
+               F: "5" -> SPDR  ...
+$039A: $E305:     $35 -> r16
+$039B: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $039C ...
+$039C: $B50D:     p$2D -> r16
+$039D: $FF07:     if (r16.7=1 then SKIP
+$039E: $CFFD:     goto $39C (RJMP)
+$039F: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$03A0: $DD29:  F: rcall $CA (Clear_STATUS)
+$03A1: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_RX -> SPDR  ...
+$03A2: $EE02:     $E2 -> r16
+$03A3: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $03A4 ...
+$03A4: $B50D:     p$2D -> r16
+$03A5: $FF07:     if (r16.7=1 then SKIP
+$03A6: $CFFD:     goto $3A4 (RJMP)
+$03A7: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$03A8: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_TX -> SPDR  ...
+$03A9: $EE01:     $E1 -> r16
+$03AA: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $03AB ...
+$03AB: $B50D:     p$2D -> r16
+$03AC: $FF07:     if (r16.7=1 then SKIP
+$03AD: $CFFD:     goto $3AB (RJMP)
+$03AE: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$03AF: $9508:  F: RET (Ret)
+-----          V: Test_Channel
+               C: if (RF_RPD.0 = 0) then goto $03D7 ...
+$03B0: $9100:     [$0209] -> r16
+$03B1: $0209:  
+$03B2: $FF00:     if (r16.0=1 then SKIP
+$03B3: $C023:     goto $3D7 (RJMP)
+               C: if (RF_Series < RF_Max_Series) then goto $03CD ...
+$03B4: $9100:     [$020D] -> r16
+$03B5: $020D:  
+$03B6: $9110:     [$020E] -> r17
+$03B7: $020E:  
+$03B8: $1701:     r16 = r17
+$03B9: $F098:     if ( < ) then goto $3CD
+               F: RF_Series -> RF_Max_Series  ...
+$03BA: $9100:     [$020D] -> r16
+$03BB: $020D:  
+$03BC: $9300:     r16 -> [$020E]
+$03BD: $020E:  
+               F: RF_RF_CH -> RF_Max_CH  ...
+$03BE: $9100:     [$0205] -> r16
+$03BF: $0205:  
+$03C0: $9300:     r16 -> [$020C]
+$03C1: $020C:  
+               F: RF_Max_CH - RF_Series  ...
+$03C2: $9100:     [$020C] -> r16
+$03C3: $020C:  
+$03C4: $9110:     [$020D] -> r17
+$03C5: $020D:  
+$03C6: $1B01:     r16 - r17
+$03C7: $9300:     r16 -> [$020C]
+$03C8: $020C:  
+               F: RF_Series -> RF_Max_Series  ...
+$03C9: $9100:     [$020D] -> r16
+$03CA: $020D:  
+$03CB: $9300:     r16 -> [$020E]
+$03CC: $020E:  
+-----          L: 
+               F: 0 -> RF_Series  ...
+$03CD: $E000:     $00 -> r16
+$03CE: $9300:     r16 -> [$020D]
+$03CF: $020D:  
+-----          L: 
+$03D0: $DD2E:  F: rcall $FF (RF_Standby)
+               F: RF_RF_CH ++  ...
+$03D1: $9100:     [$0205] -> r16
+$03D2: $0205:  
+$03D3: $9503:     r16 ++
+$03D4: $9300:     r16 -> [$0205]
+$03D5: $0205:  
+$03D6: $9508:  F: RET (Ret)
+-----          V: 
+               F: RF_Series ++  ...
+$03D7: $9100:     [$020D] -> r16
+$03D8: $020D:  
+$03D9: $9503:     r16 ++
+$03DA: $9300:     r16 -> [$020D]
+$03DB: $020D:  
+$03DC: $CFF3:  J: goto $3D0 (RJMP)
+-----          V: _End_Test
+               C: if (RF_Series < RF_Max_Series) then goto $03F2 ...
+$03DD: $9100:     [$020D] -> r16
+$03DE: $020D:  
+$03DF: $9110:     [$020E] -> r17
+$03E0: $020E:  
+$03E1: $1701:     r16 = r17
+$03E2: $F078:     if ( < ) then goto $3F2
+               F: RF_Series -> RF_Max_Series  ...
+$03E3: $9100:     [$020D] -> r16
+$03E4: $020D:  
+$03E5: $9300:     r16 -> [$020E]
+$03E6: $020E:  
+               F: RF_RF_CH -> RF_Max_CH  ...
+$03E7: $9100:     [$0205] -> r16
+$03E8: $0205:  
+$03E9: $9300:     r16 -> [$020C]
+$03EA: $020C:  
+               F: RF_Max_CH - RF_Series  ...
+$03EB: $9100:     [$020C] -> r16
+$03EC: $020C:  
+$03ED: $9110:     [$020D] -> r17
+$03EE: $020D:  
+$03EF: $1B01:     r16 - r17
+$03F0: $9300:     r16 -> [$020C]
+$03F1: $020C:  
+-----          L: 
+$03F2: $9110:  F: [$020E] -> r17 (RF_Max_Series -> r17)
+$03F3: $020E:  
+$03F4: $9516:  F: r17 >> (r17 >>)
+               F: RF_Max_CH + r17  ...
+$03F5: $9100:     [$020C] -> r16
+$03F6: $020C:  
+$03F7: $0F01:     r16 + r17
+$03F8: $9300:     r16 -> [$020C]
+$03F9: $020C:  
+               F: RF_Max_CH -> RF_RF_CH  ...
+$03FA: $9100:     [$020C] -> r16
+$03FB: $020C:  
+$03FC: $9300:     r16 -> [$0205]
+$03FD: $0205:  
+$03FE: $9508:  F: RET (Ret)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\ADC.alg    ***********
+-----          V: Init_ADC
+               F: @Tabl_ADC -> ADC_Addr  ...
+$03FF: $E00F:     $0F -> r16
+$0400: $9300:     r16 -> [$0219]
+$0401: $0219:  
+$0402: $E002:     $02 -> r16
+$0403: $9300:     r16 -> [$021A]
+$0404: $021A:  
+               F: 0 -> ADC_Count  ...
+$0405: $E000:     $00 -> r16
+$0406: $9300:     r16 -> [$021B]
+$0407: $021B:  
+$0408: $9300:  S: r16 -> [$007B] (r16->ADCSRB)
+$0409: $007B:  
+$040A: $E40E:  S: $4E -> r16 ($4E->r16)
+$040B: $9300:  S: r16 -> [$007C] (r16->ADMUX)
+$040C: $007C:  
+$040D: $E90E:  S: $9E -> r16 ($9E->r16)
+$040E: $9300:  S: r16 -> [$007A] (r16->ADCSRA)
+$040F: $007A:  
+               F: ADC_Start -> ADSC  ...
+$0410: $9100:     [$007A] -> r16
+$0411: $007A:  
+$0412: $6400:     r16 ! $40
+$0413: $9300:     r16 -> [$007A]
+$0414: $007A:  
+$0415: $9508:  F: RET (Ret)
+-----          V: ADC_Complete
+$0416: $930F:  F: r16 -> (r16 ->)
+$0417: $931F:  F: r17 -> (r17 ->)
+               F: SREG ->  ...
+$0418: $B70F:     p$3F -> r16
+$0419: $930F:     r16 ->
+               F: X ->  ...
+$041A: $93AF:     r26 ->
+$041B: $93BF:     r27 ->
+               F: ADC_Count ++  ...
+$041C: $9100:     [$021B] -> r16
+$041D: $021B:  
+$041E: $9503:     r16 ++
+$041F: $9300:     r16 -> [$021B]
+$0420: $021B:  
+               F: ADC_Addr -> X  ...
+$0421: $91A0:     [$0219] -> r26
+$0422: $0219:  
+$0423: $91B0:     [$021A] -> r27
+$0424: $021A:  
+               F: ADC -> ADC_T  ...
+$0425: $9100:     [$0078] -> r16
+$0426: $0078:  
+$0427: $9300:     r16 -> [$0217]
+$0428: $0217:  
+$0429: $9100:     [$0079] -> r16
+$042A: $0079:  
+$042B: $9300:     r16 -> [$0218]
+$042C: $0218:  
+               F: << ADC_T  ...
+$042D: $9100:     [$0217] -> r16
+$042E: $0217:  
+$042F: $0F00:     << r16
+$0430: $9300:     r16 -> [$0217]
+$0431: $0217:  
+$0432: $9100:     [$0218] -> r16
+$0433: $0218:  
+$0434: $1F00:     << r16 <
+$0435: $9300:     r16 -> [$0218]
+$0436: $0218:  
+               F: << ADC_T  ...
+$0437: $9100:     [$0217] -> r16
+$0438: $0217:  
+$0439: $0F00:     << r16
+$043A: $9300:     r16 -> [$0217]
+$043B: $0217:  
+$043C: $9100:     [$0218] -> r16
+$043D: $0218:  
+$043E: $1F00:     << r16 <
+$043F: $9300:     r16 -> [$0218]
+$0440: $0218:  
+               F: ADC_T -> [X++]:Word  ...
+$0441: $9100:     [$0217] -> r16
+$0442: $0217:  
+$0443: $930D:     r16 -> [X++]
+$0444: $9100:     [$0218] -> r16
+$0445: $0218:  
+$0446: $930D:     r16 -> [X++]
+               F: X -> ADC_Addr  ...
+$0447: $93A0:     r26 -> [$0219]
+$0448: $0219:  
+$0449: $93B0:     r27 -> [$021A]
+$044A: $021A:  
+               C: if (ADC_Count < 4) then goto $05C8 ...
+$044B: $9100:     [$021B] -> r16
+$044C: $021B:  
+$044D: $3004:     r16 = $04
+$044E: $F408:     if ( >= ) then goto $450
+$044F: $C178:     goto $5C8 (RJMP)
+               F: @Tabl_ADC -> X  ...
+$0450: $E0AF:     $0F -> r26
+$0451: $E0B2:     $02 -> r27
+               F: [X++]:Word -> ADC_T  ...
+$0452: $910D:     [X++] -> r16
+$0453: $9300:     r16 -> [$0217]
+$0454: $0217:  
+$0455: $910D:     [X++] -> r16
+$0456: $9300:     r16 -> [$0218]
+$0457: $0218:  
+               F: ADC_T + [X++]:Word  ...
+$0458: $9100:     [$0217] -> r16
+$0459: $0217:  
+$045A: $911D:     [X++] -> r17
+$045B: $0F01:     r16 + r17
+$045C: $9300:     r16 -> [$0217]
+$045D: $0217:  
+$045E: $9100:     [$0218] -> r16
+$045F: $0218:  
+$0460: $911D:     [X++] -> r17
+$0461: $1F01:     r16 + r17 +
+$0462: $9300:     r16 -> [$0218]
+$0463: $0218:  
+               F: ADC_T + [X++]:Word  ...
+$0464: $9100:     [$0217] -> r16
+$0465: $0217:  
+$0466: $911D:     [X++] -> r17
+$0467: $0F01:     r16 + r17
+$0468: $9300:     r16 -> [$0217]
+$0469: $0217:  
+$046A: $9100:     [$0218] -> r16
+$046B: $0218:  
+$046C: $911D:     [X++] -> r17
+$046D: $1F01:     r16 + r17 +
+$046E: $9300:     r16 -> [$0218]
+$046F: $0218:  
+               F: ADC_T + [X++]:Word  ...
+$0470: $9100:     [$0217] -> r16
+$0471: $0217:  
+$0472: $911D:     [X++] -> r17
+$0473: $0F01:     r16 + r17
+$0474: $9300:     r16 -> [$0217]
+$0475: $0217:  
+$0476: $9100:     [$0218] -> r16
+$0477: $0218:  
+$0478: $911D:     [X++] -> r17
+$0479: $1F01:     r16 + r17 +
+$047A: $9300:     r16 -> [$0218]
+$047B: $0218:  
+               F: ADC_T >>  ...
+$047C: $9100:     [$0218] -> r16
+$047D: $0218:  
+$047E: $9506:     r16 >>
+$047F: $9300:     r16 -> [$0218]
+$0480: $0218:  
+$0481: $9100:     [$0217] -> r16
+$0482: $0217:  
+$0483: $9507:     > r16 >>
+$0484: $9300:     r16 -> [$0217]
+$0485: $0217:  
+               F: ADC_T >>  ...
+$0486: $9100:     [$0218] -> r16
+$0487: $0218:  
+$0488: $9506:     r16 >>
+$0489: $9300:     r16 -> [$0218]
+$048A: $0218:  
+$048B: $9100:     [$0217] -> r16
+$048C: $0217:  
+$048D: $9507:     > r16 >>
+$048E: $9300:     r16 -> [$0217]
+$048F: $0217:  
+-----          L: 
+-----          L: 
+$0490: $932F:  F: r18 -> (r18 ->)
+               F: k_ADC -> Val1  ...
+$0491: $ED04:     $D4 -> r16
+$0492: $9300:     r16 -> [$0222]
+$0493: $0222:  
+$0494: $EA0F:     $AF -> r16
+$0495: $9300:     r16 -> [$0223]
+$0496: $0223:  
+               F: ADC_T -> Val2  ...
+$0497: $9100:     [$0217] -> r16
+$0498: $0217:  
+$0499: $9300:     r16 -> [$0224]
+$049A: $0224:  
+$049B: $9100:     [$0218] -> r16
+$049C: $0218:  
+$049D: $9300:     r16 -> [$0225]
+$049E: $0225:  
+               F: 0 -> Val0  ...
+$049F: $E000:     $00 -> r16
+$04A0: $9300:     r16 -> [$0220]
+$04A1: $0220:  
+$04A2: $9300:     r16 -> [$0221]
+$04A3: $0221:  
+$04A4: $9488:  F: 0 -> .C (0 -> C)
+$04A5: $E120:  F: $10 -> r18 (16 -> r18)
+               F: << Val1 <  ...
+$04A6: $9100:     [$0222] -> r16
+$04A7: $0222:  
+$04A8: $1F00:     << r16 <
+$04A9: $9300:     r16 -> [$0222]
+$04AA: $0222:  
+$04AB: $9100:     [$0223] -> r16
+$04AC: $0223:  
+$04AD: $1F00:     << r16 <
+$04AE: $9300:     r16 -> [$0223]
+$04AF: $0223:  
+-----          L: 
+               F: << Val0 <  ...
+$04B0: $9100:     [$0220] -> r16
+$04B1: $0220:  
+$04B2: $1F00:     << r16 <
+$04B3: $9300:     r16 -> [$0220]
+$04B4: $0220:  
+$04B5: $9100:     [$0221] -> r16
+$04B6: $0221:  
+$04B7: $1F00:     << r16 <
+$04B8: $9300:     r16 -> [$0221]
+$04B9: $0221:  
+               F: Val0 - Val2  ...
+$04BA: $9100:     [$0220] -> r16
+$04BB: $0220:  
+$04BC: $9110:     [$0224] -> r17
+$04BD: $0224:  
+$04BE: $1B01:     r16 - r17
+$04BF: $9300:     r16 -> [$0220]
+$04C0: $0220:  
+$04C1: $9100:     [$0221] -> r16
+$04C2: $0221:  
+$04C3: $9110:     [$0225] -> r17
+$04C4: $0225:  
+$04C5: $0B01:     r16 - r17 -
+$04C6: $9300:     r16 -> [$0221]
+$04C7: $0221:  
+$04C8: $F480:  C: if (C=0) then goto $4D9 (C = 0)
+               F: Val0 + Val2  ...
+$04C9: $9100:     [$0220] -> r16
+$04CA: $0220:  
+$04CB: $9110:     [$0224] -> r17
+$04CC: $0224:  
+$04CD: $0F01:     r16 + r17
+$04CE: $9300:     r16 -> [$0220]
+$04CF: $0220:  
+$04D0: $9100:     [$0221] -> r16
+$04D1: $0221:  
+$04D2: $9110:     [$0225] -> r17
+$04D3: $0225:  
+$04D4: $1F01:     r16 + r17 +
+$04D5: $9300:     r16 -> [$0221]
+$04D6: $0221:  
+$04D7: $9488:  F: 0 -> .C (0 -> C)
+$04D8: $C001:  J: goto $4DA (RJMP)
+-----          L: 
+$04D9: $9408:  F: 1 -> .C (1 -> C)
+-----          L: 
+               F: << Val1 <  ...
+$04DA: $9100:     [$0222] -> r16
+$04DB: $0222:  
+$04DC: $1F00:     << r16 <
+$04DD: $9300:     r16 -> [$0222]
+$04DE: $0222:  
+$04DF: $9100:     [$0223] -> r16
+$04E0: $0223:  
+$04E1: $1F00:     << r16 <
+$04E2: $9300:     r16 -> [$0223]
+$04E3: $0223:  
+               C: if (r18 --) then goto $04B0 ...
+$04E4: $952A:     r18 --
+$04E5: $F651:     if (Z=0) then goto $4B0
+               F: Val1 -> MRes  ...
+$04E6: $9100:     [$0222] -> r16
+$04E7: $0222:  
+$04E8: $9300:     r16 -> [$0226]
+$04E9: $0226:  
+$04EA: $9100:     [$0223] -> r16
+$04EB: $0223:  
+$04EC: $9300:     r16 -> [$0227]
+$04ED: $0227:  
+$04EE: $E000:     $00 -> r16
+$04EF: $9300:     r16 -> [$0228]
+$04F0: $0228:  
+$04F1: $9300:     r16 -> [$0229]
+$04F2: $0229:  
+$04F3: $912F:  F: -> r18 (-> r18)
+               F: MRes -> LevBat  ...
+$04F4: $9100:     [$0226] -> r16
+$04F5: $0226:  
+$04F6: $9300:     r16 -> [$021C]
+$04F7: $021C:  
+$04F8: $9100:     [$0227] -> r16
+$04F9: $0227:  
+$04FA: $9300:     r16 -> [$021D]
+$04FB: $021D:  
+-----          L: 
+               F: LevBat -> Val1  ...
+$04FC: $9100:     [$021C] -> r16
+$04FD: $021C:  
+$04FE: $9300:     r16 -> [$0222]
+$04FF: $0222:  
+$0500: $9100:     [$021D] -> r16
+$0501: $021D:  
+$0502: $9300:     r16 -> [$0223]
+$0503: $0223:  
+               F: 100 -> Val2  ...
+$0504: $E604:     $64 -> r16
+$0505: $9300:     r16 -> [$0224]
+$0506: $0224:  
+$0507: $E000:     $00 -> r16
+$0508: $9300:     r16 -> [$0225]
+$0509: $0225:  
+               F: 0 -> MRes  ...
+$050A: $9300:     r16 -> [$0226]
+$050B: $0226:  
+$050C: $9300:     r16 -> [$0227]
+$050D: $0227:  
+$050E: $9300:     r16 -> [$0228]
+$050F: $0228:  
+$0510: $9300:     r16 -> [$0229]
+$0511: $0229:  
+               F: 16 -> MCount  ...
+$0512: $E100:     $10 -> r16
+$0513: $9300:     r16 -> [$022A]
+$0514: $022A:  
+-----          L: 
+               F: << MRes  ...
+$0515: $9100:     [$0226] -> r16
+$0516: $0226:  
+$0517: $0F00:     << r16
+$0518: $9300:     r16 -> [$0226]
+$0519: $0226:  
+$051A: $9100:     [$0227] -> r16
+$051B: $0227:  
+$051C: $1F00:     << r16 <
+$051D: $9300:     r16 -> [$0227]
+$051E: $0227:  
+$051F: $9100:     [$0228] -> r16
+$0520: $0228:  
+$0521: $1F00:     << r16 <
+$0522: $9300:     r16 -> [$0228]
+$0523: $0228:  
+$0524: $9100:     [$0229] -> r16
+$0525: $0229:  
+$0526: $1F00:     << r16 <
+$0527: $9300:     r16 -> [$0229]
+$0528: $0229:  
+               F: << Val2  ...
+$0529: $9100:     [$0224] -> r16
+$052A: $0224:  
+$052B: $0F00:     << r16
+$052C: $9300:     r16 -> [$0224]
+$052D: $0224:  
+$052E: $9100:     [$0225] -> r16
+$052F: $0225:  
+$0530: $1F00:     << r16 <
+$0531: $9300:     r16 -> [$0225]
+$0532: $0225:  
+$0533: $F4C8:  C: if (C=0) then goto $54D (C = 1)
+               F: MRes + Val1  ...
+$0534: $9100:     [$0226] -> r16
+$0535: $0226:  
+$0536: $9110:     [$0222] -> r17
+$0537: $0222:  
+$0538: $0F01:     r16 + r17
+$0539: $9300:     r16 -> [$0226]
+$053A: $0226:  
+$053B: $9100:     [$0227] -> r16
+$053C: $0227:  
+$053D: $9110:     [$0223] -> r17
+$053E: $0223:  
+$053F: $1F01:     r16 + r17 +
+$0540: $9300:     r16 -> [$0227]
+$0541: $0227:  
+$0542: $E010:     $00 -> r17
+$0543: $9100:     [$0228] -> r16
+$0544: $0228:  
+$0545: $1F01:     r16 + r17 +
+$0546: $9300:     r16 -> [$0228]
+$0547: $0228:  
+$0548: $9100:     [$0229] -> r16
+$0549: $0229:  
+$054A: $1F01:     r16 + r17 +
+$054B: $9300:     r16 -> [$0229]
+$054C: $0229:  
+               C: if (MCount --) then goto $0515 ...
+$054D: $9100:     [$022A] -> r16
+$054E: $022A:  
+$054F: $5001:     r16 - $01
+$0550: $9300:     r16 -> [$022A]
+$0551: $022A:  
+$0552: $F611:     if (Z=0) then goto $515
+-----          L: 
+$0553: $932F:  F: r18 -> (r18 ->)
+               F: MRes -> Val1  ...
+$0554: $9100:     [$0226] -> r16
+$0555: $0226:  
+$0556: $9300:     r16 -> [$0222]
+$0557: $0222:  
+$0558: $9100:     [$0227] -> r16
+$0559: $0227:  
+$055A: $9300:     r16 -> [$0223]
+$055B: $0223:  
+               F: 32 -> Val2  ...
+$055C: $E200:     $20 -> r16
+$055D: $9300:     r16 -> [$0224]
+$055E: $0224:  
+$055F: $E000:     $00 -> r16
+$0560: $9300:     r16 -> [$0225]
+$0561: $0225:  
+               F: 0 -> Val0  ...
+$0562: $9300:     r16 -> [$0220]
+$0563: $0220:  
+$0564: $9300:     r16 -> [$0221]
+$0565: $0221:  
+$0566: $9488:  F: 0 -> .C (0 -> C)
+$0567: $E120:  F: $10 -> r18 (16 -> r18)
+               F: << Val1 <  ...
+$0568: $9100:     [$0222] -> r16
+$0569: $0222:  
+$056A: $1F00:     << r16 <
+$056B: $9300:     r16 -> [$0222]
+$056C: $0222:  
+$056D: $9100:     [$0223] -> r16
+$056E: $0223:  
+$056F: $1F00:     << r16 <
+$0570: $9300:     r16 -> [$0223]
+$0571: $0223:  
+-----          L: 
+               F: << Val0 <  ...
+$0572: $9100:     [$0220] -> r16
+$0573: $0220:  
+$0574: $1F00:     << r16 <
+$0575: $9300:     r16 -> [$0220]
+$0576: $0220:  
+$0577: $9100:     [$0221] -> r16
+$0578: $0221:  
+$0579: $1F00:     << r16 <
+$057A: $9300:     r16 -> [$0221]
+$057B: $0221:  
+               F: Val0 - Val2  ...
+$057C: $9100:     [$0220] -> r16
+$057D: $0220:  
+$057E: $9110:     [$0224] -> r17
+$057F: $0224:  
+$0580: $1B01:     r16 - r17
+$0581: $9300:     r16 -> [$0220]
+$0582: $0220:  
+$0583: $9100:     [$0221] -> r16
+$0584: $0221:  
+$0585: $9110:     [$0225] -> r17
+$0586: $0225:  
+$0587: $0B01:     r16 - r17 -
+$0588: $9300:     r16 -> [$0221]
+$0589: $0221:  
+$058A: $F480:  C: if (C=0) then goto $59B (C = 0)
+               F: Val0 + Val2  ...
+$058B: $9100:     [$0220] -> r16
+$058C: $0220:  
+$058D: $9110:     [$0224] -> r17
+$058E: $0224:  
+$058F: $0F01:     r16 + r17
+$0590: $9300:     r16 -> [$0220]
+$0591: $0220:  
+$0592: $9100:     [$0221] -> r16
+$0593: $0221:  
+$0594: $9110:     [$0225] -> r17
+$0595: $0225:  
+$0596: $1F01:     r16 + r17 +
+$0597: $9300:     r16 -> [$0221]
+$0598: $0221:  
+$0599: $9488:  F: 0 -> .C (0 -> C)
+$059A: $C001:  J: goto $59C (RJMP)
+-----          L: 
+$059B: $9408:  F: 1 -> .C (1 -> C)
+-----          L: 
+               F: << Val1 <  ...
+$059C: $9100:     [$0222] -> r16
+$059D: $0222:  
+$059E: $1F00:     << r16 <
+$059F: $9300:     r16 -> [$0222]
+$05A0: $0222:  
+$05A1: $9100:     [$0223] -> r16
+$05A2: $0223:  
+$05A3: $1F00:     << r16 <
+$05A4: $9300:     r16 -> [$0223]
+$05A5: $0223:  
+               C: if (r18 --) then goto $0572 ...
+$05A6: $952A:     r18 --
+$05A7: $F651:     if (Z=0) then goto $572
+               F: Val1 -> MRes  ...
+$05A8: $9100:     [$0222] -> r16
+$05A9: $0222:  
+$05AA: $9300:     r16 -> [$0226]
+$05AB: $0226:  
+$05AC: $9100:     [$0223] -> r16
+$05AD: $0223:  
+$05AE: $9300:     r16 -> [$0227]
+$05AF: $0227:  
+$05B0: $E000:     $00 -> r16
+$05B1: $9300:     r16 -> [$0228]
+$05B2: $0228:  
+$05B3: $9300:     r16 -> [$0229]
+$05B4: $0229:  
+$05B5: $912F:  F: -> r18 (-> r18)
+               F: MRes -> LevBat_Perc  ...
+$05B6: $9100:     [$0226] -> r16
+$05B7: $0226:  
+$05B8: $9300:     r16 -> [$021E]
+$05B9: $021E:  
+-----          L: 
+               F: 0 -> ADC_Count  ...
+$05BA: $E000:     $00 -> r16
+$05BB: $9300:     r16 -> [$021B]
+$05BC: $021B:  
+               F: 1 -> ADC_Ready  ...
+$05BD: $9100:     [$021F] -> r16
+$05BE: $021F:  
+$05BF: $6001:     r16 ! $01
+$05C0: $9300:     r16 -> [$021F]
+$05C1: $021F:  
+               F: ADC_Stop -> ADSC  ...
+$05C2: $9100:     [$007A] -> r16
+$05C3: $007A:  
+$05C4: $7B0F:     r16 & $BF
+$05C5: $9300:     r16 -> [$007A]
+$05C6: $007A:  
+$05C7: $C005:  J: goto $5CD (RJMP)
+-----          L: 
+               F: ADC_Start -> ADSC  ...
+$05C8: $9100:     [$007A] -> r16
+$05C9: $007A:  
+$05CA: $6400:     r16 ! $40
+$05CB: $9300:     r16 -> [$007A]
+$05CC: $007A:  
+-----          L: 
+               F: -> X  ...
+$05CD: $91BF:     -> r27
+$05CE: $91AF:     -> r26
+               F: -> SREG  ...
+$05CF: $910F:     -> r16
+$05D0: $BF0F:     r16 -> p$3F
+$05D1: $911F:  F: -> r17 (-> r17)
+$05D2: $910F:  F: -> r16 (-> r16)
+$05D3: $9518:  F: RETI (RetI)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\SSD1306_I2C.alg    ***********
+-----          V: Calc_Col/
+$05D4: $D5CE:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$05D5: $E708:     $78 -> r16
+$05D6: $9300:     r16 -> [$00BB]
+$05D7: $00BB:  
+$05D8: $D5BC:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$05D9: $E000:     $00 -> r16
+$05DA: $9300:     r16 -> [$00BB]
+$05DB: $00BB:  
+$05DC: $D5B8:  F: rcall $B95 (Send_Byte)
+               F: $20 -> TWDR  ...
+$05DD: $E200:     $20 -> r16
+$05DE: $9300:     r16 -> [$00BB]
+$05DF: $00BB:  
+$05E0: $D5B4:  F: rcall $B95 (Send_Byte)
+$05E1: $D4FB:  F: rcall $ADD (Stop_I2C)
+$05E2: $D5C0:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$05E3: $E708:     $78 -> r16
+$05E4: $9300:     r16 -> [$00BB]
+$05E5: $00BB:  
+$05E6: $D5AE:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$05E7: $E000:     $00 -> r16
+$05E8: $9300:     r16 -> [$00BB]
+$05E9: $00BB:  
+$05EA: $D5AA:  F: rcall $B95 (Send_Byte)
+               F: $02 -> TWDR  ...
+$05EB: $E002:     $02 -> r16
+$05EC: $9300:     r16 -> [$00BB]
+$05ED: $00BB:  
+$05EE: $D5A6:  F: rcall $B95 (Send_Byte)
+$05EF: $D4ED:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 1) then goto $0602 ...
+$05F0: $9100:     [$0230] -> r16
+$05F1: $0230:  
+$05F2: $3001:     r16 = $01
+$05F3: $F471:     if (Z=0) then goto $602
+$05F4: $D5AE:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$05F5: $E708:     $78 -> r16
+$05F6: $9300:     r16 -> [$00BB]
+$05F7: $00BB:  
+$05F8: $D59C:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$05F9: $E000:     $00 -> r16
+$05FA: $9300:     r16 -> [$00BB]
+$05FB: $00BB:  
+$05FC: $D598:  F: rcall $B95 (Send_Byte)
+               F: $B0 -> TWDR  ...
+$05FD: $EB00:     $B0 -> r16
+$05FE: $9300:     r16 -> [$00BB]
+$05FF: $00BB:  
+$0600: $D594:  F: rcall $B95 (Send_Byte)
+$0601: $D4DB:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 2) then goto $0614 ...
+$0602: $9100:     [$0230] -> r16
+$0603: $0230:  
+$0604: $3002:     r16 = $02
+$0605: $F471:     if (Z=0) then goto $614
+$0606: $D59C:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0607: $E708:     $78 -> r16
+$0608: $9300:     r16 -> [$00BB]
+$0609: $00BB:  
+$060A: $D58A:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$060B: $E000:     $00 -> r16
+$060C: $9300:     r16 -> [$00BB]
+$060D: $00BB:  
+$060E: $D586:  F: rcall $B95 (Send_Byte)
+               F: $B1 -> TWDR  ...
+$060F: $EB01:     $B1 -> r16
+$0610: $9300:     r16 -> [$00BB]
+$0611: $00BB:  
+$0612: $D582:  F: rcall $B95 (Send_Byte)
+$0613: $D4C9:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 3) then goto $0626 ...
+$0614: $9100:     [$0230] -> r16
+$0615: $0230:  
+$0616: $3003:     r16 = $03
+$0617: $F471:     if (Z=0) then goto $626
+$0618: $D58A:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0619: $E708:     $78 -> r16
+$061A: $9300:     r16 -> [$00BB]
+$061B: $00BB:  
+$061C: $D578:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$061D: $E000:     $00 -> r16
+$061E: $9300:     r16 -> [$00BB]
+$061F: $00BB:  
+$0620: $D574:  F: rcall $B95 (Send_Byte)
+               F: $B2 -> TWDR  ...
+$0621: $EB02:     $B2 -> r16
+$0622: $9300:     r16 -> [$00BB]
+$0623: $00BB:  
+$0624: $D570:  F: rcall $B95 (Send_Byte)
+$0625: $D4B7:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 4) then goto $0638 ...
+$0626: $9100:     [$0230] -> r16
+$0627: $0230:  
+$0628: $3004:     r16 = $04
+$0629: $F471:     if (Z=0) then goto $638
+$062A: $D578:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$062B: $E708:     $78 -> r16
+$062C: $9300:     r16 -> [$00BB]
+$062D: $00BB:  
+$062E: $D566:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$062F: $E000:     $00 -> r16
+$0630: $9300:     r16 -> [$00BB]
+$0631: $00BB:  
+$0632: $D562:  F: rcall $B95 (Send_Byte)
+               F: $B3 -> TWDR  ...
+$0633: $EB03:     $B3 -> r16
+$0634: $9300:     r16 -> [$00BB]
+$0635: $00BB:  
+$0636: $D55E:  F: rcall $B95 (Send_Byte)
+$0637: $D4A5:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 5) then goto $064A ...
+$0638: $9100:     [$0230] -> r16
+$0639: $0230:  
+$063A: $3005:     r16 = $05
+$063B: $F471:     if (Z=0) then goto $64A
+$063C: $D566:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$063D: $E708:     $78 -> r16
+$063E: $9300:     r16 -> [$00BB]
+$063F: $00BB:  
+$0640: $D554:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0641: $E000:     $00 -> r16
+$0642: $9300:     r16 -> [$00BB]
+$0643: $00BB:  
+$0644: $D550:  F: rcall $B95 (Send_Byte)
+               F: $B4 -> TWDR  ...
+$0645: $EB04:     $B4 -> r16
+$0646: $9300:     r16 -> [$00BB]
+$0647: $00BB:  
+$0648: $D54C:  F: rcall $B95 (Send_Byte)
+$0649: $D493:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 6) then goto $065C ...
+$064A: $9100:     [$0230] -> r16
+$064B: $0230:  
+$064C: $3006:     r16 = $06
+$064D: $F471:     if (Z=0) then goto $65C
+$064E: $D554:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$064F: $E708:     $78 -> r16
+$0650: $9300:     r16 -> [$00BB]
+$0651: $00BB:  
+$0652: $D542:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0653: $E000:     $00 -> r16
+$0654: $9300:     r16 -> [$00BB]
+$0655: $00BB:  
+$0656: $D53E:  F: rcall $B95 (Send_Byte)
+               F: $B5 -> TWDR  ...
+$0657: $EB05:     $B5 -> r16
+$0658: $9300:     r16 -> [$00BB]
+$0659: $00BB:  
+$065A: $D53A:  F: rcall $B95 (Send_Byte)
+$065B: $D481:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 7) then goto $066E ...
+$065C: $9100:     [$0230] -> r16
+$065D: $0230:  
+$065E: $3007:     r16 = $07
+$065F: $F471:     if (Z=0) then goto $66E
+$0660: $D542:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0661: $E708:     $78 -> r16
+$0662: $9300:     r16 -> [$00BB]
+$0663: $00BB:  
+$0664: $D530:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0665: $E000:     $00 -> r16
+$0666: $9300:     r16 -> [$00BB]
+$0667: $00BB:  
+$0668: $D52C:  F: rcall $B95 (Send_Byte)
+               F: $B6 -> TWDR  ...
+$0669: $EB06:     $B6 -> r16
+$066A: $9300:     r16 -> [$00BB]
+$066B: $00BB:  
+$066C: $D528:  F: rcall $B95 (Send_Byte)
+$066D: $D46F:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 8) then goto $0680 ...
+$066E: $9100:     [$0230] -> r16
+$066F: $0230:  
+$0670: $3008:     r16 = $08
+$0671: $F471:     if (Z=0) then goto $680
+$0672: $D530:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0673: $E708:     $78 -> r16
+$0674: $9300:     r16 -> [$00BB]
+$0675: $00BB:  
+$0676: $D51E:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0677: $E000:     $00 -> r16
+$0678: $9300:     r16 -> [$00BB]
+$0679: $00BB:  
+$067A: $D51A:  F: rcall $B95 (Send_Byte)
+               F: $B7 -> TWDR  ...
+$067B: $EB07:     $B7 -> r16
+$067C: $9300:     r16 -> [$00BB]
+$067D: $00BB:  
+$067E: $D516:  F: rcall $B95 (Send_Byte)
+$067F: $D45D:  F: rcall $ADD (Stop_I2C)
+$0680: $920F:  F: r0 -> (r0 ->)
+$0681: $921F:  F: r1 -> (r1 ->)
+$0682: $9000:  F: [$022F] -> r0 (Col -> r0)
+$0683: $022F:  
+               C: if (r0 = 0) then goto $0689 ...
+$0684: $E010:     $00 -> r17
+$0685: $1601:     r0 = r17
+$0686: $F011:     if (Z=1) then goto $689
+               F: r0 - 1  ...
+$0687: $E011:     $01 -> r17
+$0688: $1A01:     r0 - r17
+-----          L: 
+$0689: $9010:  F: [$023E] -> r1 (Size_Col -> r1)
+$068A: $023E:  
+$068B: $9C01:  F: r0 * r1 (r0 * r1)
+$068C: $920F:  F: r0 -> (r0 ->)
+               F: r0 & #b00001111  ...
+$068D: $E01F:     $0F -> r17
+$068E: $2201:     r0 & r17
+$068F: $9200:  F: r0 -> [$0240] (r0 -> LCol)
+$0690: $0240:  
+$0691: $900F:  F: -> r0 (-> r0)
+$0692: $9402:  F: >> r0 << (>> r0 <<)
+               F: r0 & #b00001111  ...
+$0693: $2201:     r0 & r17
+$0694: $9200:  F: r0 -> [$0241] (r0 -> HCol)
+$0695: $0241:  
+               F: HCol + $10  ...
+$0696: $9100:     [$0241] -> r16
+$0697: $0241:  
+$0698: $5F00:     r16 - $F0
+$0699: $9300:     r16 -> [$0241]
+$069A: $0241:  
+$069B: $D507:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$069C: $E708:     $78 -> r16
+$069D: $9300:     r16 -> [$00BB]
+$069E: $00BB:  
+$069F: $D4F5:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$06A0: $E000:     $00 -> r16
+$06A1: $9300:     r16 -> [$00BB]
+$06A2: $00BB:  
+$06A3: $D4F1:  F: rcall $B95 (Send_Byte)
+               F: LCol -> TWDR  ...
+$06A4: $9100:     [$0240] -> r16
+$06A5: $0240:  
+$06A6: $9300:     r16 -> [$00BB]
+$06A7: $00BB:  
+$06A8: $D4EC:  F: rcall $B95 (Send_Byte)
+$06A9: $D433:  F: rcall $ADD (Stop_I2C)
+$06AA: $D4F8:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$06AB: $E708:     $78 -> r16
+$06AC: $9300:     r16 -> [$00BB]
+$06AD: $00BB:  
+$06AE: $D4E6:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$06AF: $E000:     $00 -> r16
+$06B0: $9300:     r16 -> [$00BB]
+$06B1: $00BB:  
+$06B2: $D4E2:  F: rcall $B95 (Send_Byte)
+               F: HCol -> TWDR  ...
+$06B3: $9100:     [$0241] -> r16
+$06B4: $0241:  
+$06B5: $9300:     r16 -> [$00BB]
+$06B6: $00BB:  
+$06B7: $D4DD:  F: rcall $B95 (Send_Byte)
+$06B8: $D424:  F: rcall $ADD (Stop_I2C)
+$06B9: $901F:  F: -> r1 (-> r1)
+$06BA: $900F:  F: -> r0 (-> r0)
+$06BB: $9508:  F: RET (Ret)
+-----          V: _Print_Row_Hex/
+-----          L: 
+$06BC: $903D:  F: [X++] -> r3 ([X++] -> VHex)
+               F: Line -> Line  ...
+$06BD: $9100:     [$0230] -> r16
+$06BE: $0230:  
+$06BF: $9300:     r16 -> [$0230]
+$06C0: $0230:  
+               F: Col -> Col  ...
+$06C1: $9100:     [$022F] -> r16
+$06C2: $022F:  
+$06C3: $9300:     r16 -> [$022F]
+$06C4: $022F:  
+$06C5: $940E:  F: CALL $BB1 (_Print_Hex/)
+$06C6: $0BB1:  
+-----          L: 
+               F: Col + 2  ...
+$06C7: $9100:     [$022F] -> r16
+$06C8: $022F:  
+$06C9: $5F0E:     r16 - $FE
+$06CA: $9300:     r16 -> [$022F]
+$06CB: $022F:  
+               C: if (Rank --) then goto $06BC ...
+$06CC: $9100:     [$022D] -> r16
+$06CD: $022D:  
+$06CE: $5001:     r16 - $01
+$06CF: $9300:     r16 -> [$022D]
+$06D0: $022D:  
+$06D1: $F751:     if (Z=0) then goto $6BC
+$06D2: $9508:  F: RET (Ret)
+-----          V: Col_1_Big
+$06D3: $D4CF:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$06D4: $E708:     $78 -> r16
+$06D5: $9300:     r16 -> [$00BB]
+$06D6: $00BB:  
+$06D7: $D4BD:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$06D8: $E000:     $00 -> r16
+$06D9: $9300:     r16 -> [$00BB]
+$06DA: $00BB:  
+$06DB: $D4B9:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$06DC: $E000:     $00 -> r16
+$06DD: $9300:     r16 -> [$00BB]
+$06DE: $00BB:  
+$06DF: $D4B5:  F: rcall $B95 (Send_Byte)
+$06E0: $D3FC:  F: rcall $ADD (Stop_I2C)
+$06E1: $D4C1:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$06E2: $E708:     $78 -> r16
+$06E3: $9300:     r16 -> [$00BB]
+$06E4: $00BB:  
+$06E5: $D4AF:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$06E6: $E000:     $00 -> r16
+$06E7: $9300:     r16 -> [$00BB]
+$06E8: $00BB:  
+$06E9: $D4AB:  F: rcall $B95 (Send_Byte)
+               F: $0C -> TWDR  ...
+$06EA: $E00C:     $0C -> r16
+$06EB: $9300:     r16 -> [$00BB]
+$06EC: $00BB:  
+$06ED: $D4A7:  F: rcall $B95 (Send_Byte)
+$06EE: $D3EE:  F: rcall $ADD (Stop_I2C)
+$06EF: $9508:  F: RET (Ret)
+-----          V: Col_6_Big
+$06F0: $D4B2:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$06F1: $E708:     $78 -> r16
+$06F2: $9300:     r16 -> [$00BB]
+$06F3: $00BB:  
+$06F4: $D4A0:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$06F5: $E000:     $00 -> r16
+$06F6: $9300:     r16 -> [$00BB]
+$06F7: $00BB:  
+$06F8: $D49C:  F: rcall $B95 (Send_Byte)
+               F: $3D -> TWDR  ...
+$06F9: $E30D:     $3D -> r16
+$06FA: $9300:     r16 -> [$00BB]
+$06FB: $00BB:  
+$06FC: $D498:  F: rcall $B95 (Send_Byte)
+$06FD: $D3DF:  F: rcall $ADD (Stop_I2C)
+$06FE: $D4A4:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$06FF: $E708:     $78 -> r16
+$0700: $9300:     r16 -> [$00BB]
+$0701: $00BB:  
+$0702: $D492:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0703: $E000:     $00 -> r16
+$0704: $9300:     r16 -> [$00BB]
+$0705: $00BB:  
+$0706: $D48E:  F: rcall $B95 (Send_Byte)
+               F: $48 -> TWDR  ...
+$0707: $E408:     $48 -> r16
+$0708: $9300:     r16 -> [$00BB]
+$0709: $00BB:  
+$070A: $D48A:  F: rcall $B95 (Send_Byte)
+$070B: $D3D1:  F: rcall $ADD (Stop_I2C)
+$070C: $9508:  F: RET (Ret)
+-----          V: Line_1_Big
+$070D: $D495:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$070E: $E708:     $78 -> r16
+$070F: $9300:     r16 -> [$00BB]
+$0710: $00BB:  
+$0711: $D483:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0712: $E000:     $00 -> r16
+$0713: $9300:     r16 -> [$00BB]
+$0714: $00BB:  
+$0715: $D47F:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0716: $E000:     $00 -> r16
+$0717: $9300:     r16 -> [$00BB]
+$0718: $00BB:  
+$0719: $D47B:  F: rcall $B95 (Send_Byte)
+$071A: $D3C2:  F: rcall $ADD (Stop_I2C)
+$071B: $D487:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$071C: $E708:     $78 -> r16
+$071D: $9300:     r16 -> [$00BB]
+$071E: $00BB:  
+$071F: $D475:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0720: $E000:     $00 -> r16
+$0721: $9300:     r16 -> [$00BB]
+$0722: $00BB:  
+$0723: $D471:  F: rcall $B95 (Send_Byte)
+               F: $01 -> TWDR  ...
+$0724: $E001:     $01 -> r16
+$0725: $9300:     r16 -> [$00BB]
+$0726: $00BB:  
+$0727: $D46D:  F: rcall $B95 (Send_Byte)
+$0728: $D3B4:  F: rcall $ADD (Stop_I2C)
+$0729: $9508:  F: RET (Ret)
+-----          V: Line_2_Big
+$072A: $D478:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$072B: $E708:     $78 -> r16
+$072C: $9300:     r16 -> [$00BB]
+$072D: $00BB:  
+$072E: $D466:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$072F: $E000:     $00 -> r16
+$0730: $9300:     r16 -> [$00BB]
+$0731: $00BB:  
+$0732: $D462:  F: rcall $B95 (Send_Byte)
+               F: $02 -> TWDR  ...
+$0733: $E002:     $02 -> r16
+$0734: $9300:     r16 -> [$00BB]
+$0735: $00BB:  
+$0736: $D45E:  F: rcall $B95 (Send_Byte)
+$0737: $D3A5:  F: rcall $ADD (Stop_I2C)
+$0738: $D46A:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0739: $E708:     $78 -> r16
+$073A: $9300:     r16 -> [$00BB]
+$073B: $00BB:  
+$073C: $D458:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$073D: $E000:     $00 -> r16
+$073E: $9300:     r16 -> [$00BB]
+$073F: $00BB:  
+$0740: $D454:  F: rcall $B95 (Send_Byte)
+               F: $03 -> TWDR  ...
+$0741: $E003:     $03 -> r16
+$0742: $9300:     r16 -> [$00BB]
+$0743: $00BB:  
+$0744: $D450:  F: rcall $B95 (Send_Byte)
+$0745: $D397:  F: rcall $ADD (Stop_I2C)
+$0746: $9508:  F: RET (Ret)
+-----          V: Col_7_Big
+$0747: $D45B:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0748: $E708:     $78 -> r16
+$0749: $9300:     r16 -> [$00BB]
+$074A: $00BB:  
+$074B: $D449:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$074C: $E000:     $00 -> r16
+$074D: $9300:     r16 -> [$00BB]
+$074E: $00BB:  
+$074F: $D445:  F: rcall $B95 (Send_Byte)
+               F: $49 -> TWDR  ...
+$0750: $E409:     $49 -> r16
+$0751: $9300:     r16 -> [$00BB]
+$0752: $00BB:  
+$0753: $D441:  F: rcall $B95 (Send_Byte)
+$0754: $D388:  F: rcall $ADD (Stop_I2C)
+$0755: $D44D:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0756: $E708:     $78 -> r16
+$0757: $9300:     r16 -> [$00BB]
+$0758: $00BB:  
+$0759: $D43B:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$075A: $E000:     $00 -> r16
+$075B: $9300:     r16 -> [$00BB]
+$075C: $00BB:  
+$075D: $D437:  F: rcall $B95 (Send_Byte)
+               F: $54 -> TWDR  ...
+$075E: $E504:     $54 -> r16
+$075F: $9300:     r16 -> [$00BB]
+$0760: $00BB:  
+$0761: $D433:  F: rcall $B95 (Send_Byte)
+$0762: $D37A:  F: rcall $ADD (Stop_I2C)
+$0763: $9508:  F: RET (Ret)
+-----          V: Col_2_Big
+$0764: $D43E:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0765: $E708:     $78 -> r16
+$0766: $9300:     r16 -> [$00BB]
+$0767: $00BB:  
+$0768: $D42C:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0769: $E000:     $00 -> r16
+$076A: $9300:     r16 -> [$00BB]
+$076B: $00BB:  
+$076C: $D428:  F: rcall $B95 (Send_Byte)
+               F: $0D -> TWDR  ...
+$076D: $E00D:     $0D -> r16
+$076E: $9300:     r16 -> [$00BB]
+$076F: $00BB:  
+$0770: $D424:  F: rcall $B95 (Send_Byte)
+$0771: $D36B:  F: rcall $ADD (Stop_I2C)
+$0772: $D430:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0773: $E708:     $78 -> r16
+$0774: $9300:     r16 -> [$00BB]
+$0775: $00BB:  
+$0776: $D41E:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0777: $E000:     $00 -> r16
+$0778: $9300:     r16 -> [$00BB]
+$0779: $00BB:  
+$077A: $D41A:  F: rcall $B95 (Send_Byte)
+               F: $18 -> TWDR  ...
+$077B: $E108:     $18 -> r16
+$077C: $9300:     r16 -> [$00BB]
+$077D: $00BB:  
+$077E: $D416:  F: rcall $B95 (Send_Byte)
+$077F: $D35D:  F: rcall $ADD (Stop_I2C)
+$0780: $9508:  F: RET (Ret)
+-----          V: Col_3_Big
+$0781: $D421:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0782: $E708:     $78 -> r16
+$0783: $9300:     r16 -> [$00BB]
+$0784: $00BB:  
+$0785: $D40F:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0786: $E000:     $00 -> r16
+$0787: $9300:     r16 -> [$00BB]
+$0788: $00BB:  
+$0789: $D40B:  F: rcall $B95 (Send_Byte)
+               F: $19 -> TWDR  ...
+$078A: $E109:     $19 -> r16
+$078B: $9300:     r16 -> [$00BB]
+$078C: $00BB:  
+$078D: $D407:  F: rcall $B95 (Send_Byte)
+$078E: $D34E:  F: rcall $ADD (Stop_I2C)
+$078F: $D413:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0790: $E708:     $78 -> r16
+$0791: $9300:     r16 -> [$00BB]
+$0792: $00BB:  
+$0793: $D401:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0794: $E000:     $00 -> r16
+$0795: $9300:     r16 -> [$00BB]
+$0796: $00BB:  
+$0797: $D3FD:  F: rcall $B95 (Send_Byte)
+               F: $24 -> TWDR  ...
+$0798: $E204:     $24 -> r16
+$0799: $9300:     r16 -> [$00BB]
+$079A: $00BB:  
+$079B: $D3F9:  F: rcall $B95 (Send_Byte)
+$079C: $D340:  F: rcall $ADD (Stop_I2C)
+$079D: $9508:  F: RET (Ret)
+-----          V: Col_8_Big
+$079E: $D404:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$079F: $E708:     $78 -> r16
+$07A0: $9300:     r16 -> [$00BB]
+$07A1: $00BB:  
+$07A2: $D3F2:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$07A3: $E000:     $00 -> r16
+$07A4: $9300:     r16 -> [$00BB]
+$07A5: $00BB:  
+$07A6: $D3EE:  F: rcall $B95 (Send_Byte)
+               F: $55 -> TWDR  ...
+$07A7: $E505:     $55 -> r16
+$07A8: $9300:     r16 -> [$00BB]
+$07A9: $00BB:  
+$07AA: $D3EA:  F: rcall $B95 (Send_Byte)
+$07AB: $D331:  F: rcall $ADD (Stop_I2C)
+$07AC: $D3F6:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$07AD: $E708:     $78 -> r16
+$07AE: $9300:     r16 -> [$00BB]
+$07AF: $00BB:  
+$07B0: $D3E4:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$07B1: $E000:     $00 -> r16
+$07B2: $9300:     r16 -> [$00BB]
+$07B3: $00BB:  
+$07B4: $D3E0:  F: rcall $B95 (Send_Byte)
+               F: $60 -> TWDR  ...
+$07B5: $E600:     $60 -> r16
+$07B6: $9300:     r16 -> [$00BB]
+$07B7: $00BB:  
+$07B8: $D3DC:  F: rcall $B95 (Send_Byte)
+$07B9: $D323:  F: rcall $ADD (Stop_I2C)
+$07BA: $9508:  F: RET (Ret)
+-----          V: Line_3_Big
+$07BB: $D3E7:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$07BC: $E708:     $78 -> r16
+$07BD: $9300:     r16 -> [$00BB]
+$07BE: $00BB:  
+$07BF: $D3D5:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$07C0: $E000:     $00 -> r16
+$07C1: $9300:     r16 -> [$00BB]
+$07C2: $00BB:  
+$07C3: $D3D1:  F: rcall $B95 (Send_Byte)
+               F: $04 -> TWDR  ...
+$07C4: $E004:     $04 -> r16
+$07C5: $9300:     r16 -> [$00BB]
+$07C6: $00BB:  
+$07C7: $D3CD:  F: rcall $B95 (Send_Byte)
+$07C8: $D314:  F: rcall $ADD (Stop_I2C)
+$07C9: $D3D9:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$07CA: $E708:     $78 -> r16
+$07CB: $9300:     r16 -> [$00BB]
+$07CC: $00BB:  
+$07CD: $D3C7:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$07CE: $E000:     $00 -> r16
+$07CF: $9300:     r16 -> [$00BB]
+$07D0: $00BB:  
+$07D1: $D3C3:  F: rcall $B95 (Send_Byte)
+               F: $05 -> TWDR  ...
+$07D2: $E005:     $05 -> r16
+$07D3: $9300:     r16 -> [$00BB]
+$07D4: $00BB:  
+$07D5: $D3BF:  F: rcall $B95 (Send_Byte)
+$07D6: $D306:  F: rcall $ADD (Stop_I2C)
+$07D7: $9508:  F: RET (Ret)
+-----          V: Line_4_Big
+$07D8: $D3CA:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$07D9: $E708:     $78 -> r16
+$07DA: $9300:     r16 -> [$00BB]
+$07DB: $00BB:  
+$07DC: $D3B8:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$07DD: $E000:     $00 -> r16
+$07DE: $9300:     r16 -> [$00BB]
+$07DF: $00BB:  
+$07E0: $D3B4:  F: rcall $B95 (Send_Byte)
+               F: $06 -> TWDR  ...
+$07E1: $E006:     $06 -> r16
+$07E2: $9300:     r16 -> [$00BB]
+$07E3: $00BB:  
+$07E4: $D3B0:  F: rcall $B95 (Send_Byte)
+$07E5: $D2F7:  F: rcall $ADD (Stop_I2C)
+$07E6: $D3BC:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$07E7: $E708:     $78 -> r16
+$07E8: $9300:     r16 -> [$00BB]
+$07E9: $00BB:  
+$07EA: $D3AA:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$07EB: $E000:     $00 -> r16
+$07EC: $9300:     r16 -> [$00BB]
+$07ED: $00BB:  
+$07EE: $D3A6:  F: rcall $B95 (Send_Byte)
+               F: $07 -> TWDR  ...
+$07EF: $E007:     $07 -> r16
+$07F0: $9300:     r16 -> [$00BB]
+$07F1: $00BB:  
+$07F2: $D3A2:  F: rcall $B95 (Send_Byte)
+$07F3: $D2E9:  F: rcall $ADD (Stop_I2C)
+$07F4: $9508:  F: RET (Ret)
+-----          V: Col_9_Big
+$07F5: $D3AD:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$07F6: $E708:     $78 -> r16
+$07F7: $9300:     r16 -> [$00BB]
+$07F8: $00BB:  
+$07F9: $D39B:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$07FA: $E000:     $00 -> r16
+$07FB: $9300:     r16 -> [$00BB]
+$07FC: $00BB:  
+$07FD: $D397:  F: rcall $B95 (Send_Byte)
+               F: $61 -> TWDR  ...
+$07FE: $E601:     $61 -> r16
+$07FF: $9300:     r16 -> [$00BB]
+$0800: $00BB:  
+$0801: $D393:  F: rcall $B95 (Send_Byte)
+$0802: $D2DA:  F: rcall $ADD (Stop_I2C)
+$0803: $D39F:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0804: $E708:     $78 -> r16
+$0805: $9300:     r16 -> [$00BB]
+$0806: $00BB:  
+$0807: $D38D:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0808: $E000:     $00 -> r16
+$0809: $9300:     r16 -> [$00BB]
+$080A: $00BB:  
+$080B: $D389:  F: rcall $B95 (Send_Byte)
+               F: $6C -> TWDR  ...
+$080C: $E60C:     $6C -> r16
+$080D: $9300:     r16 -> [$00BB]
+$080E: $00BB:  
+$080F: $D385:  F: rcall $B95 (Send_Byte)
+$0810: $D2CC:  F: rcall $ADD (Stop_I2C)
+$0811: $9508:  F: RET (Ret)
+-----          V: Col_4_Big
+$0812: $D390:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0813: $E708:     $78 -> r16
+$0814: $9300:     r16 -> [$00BB]
+$0815: $00BB:  
+$0816: $D37E:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0817: $E000:     $00 -> r16
+$0818: $9300:     r16 -> [$00BB]
+$0819: $00BB:  
+$081A: $D37A:  F: rcall $B95 (Send_Byte)
+               F: $25 -> TWDR  ...
+$081B: $E205:     $25 -> r16
+$081C: $9300:     r16 -> [$00BB]
+$081D: $00BB:  
+$081E: $D376:  F: rcall $B95 (Send_Byte)
+$081F: $D2BD:  F: rcall $ADD (Stop_I2C)
+$0820: $D382:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0821: $E708:     $78 -> r16
+$0822: $9300:     r16 -> [$00BB]
+$0823: $00BB:  
+$0824: $D370:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0825: $E000:     $00 -> r16
+$0826: $9300:     r16 -> [$00BB]
+$0827: $00BB:  
+$0828: $D36C:  F: rcall $B95 (Send_Byte)
+               F: $30 -> TWDR  ...
+$0829: $E300:     $30 -> r16
+$082A: $9300:     r16 -> [$00BB]
+$082B: $00BB:  
+$082C: $D368:  F: rcall $B95 (Send_Byte)
+$082D: $D2AF:  F: rcall $ADD (Stop_I2C)
+$082E: $9508:  F: RET (Ret)
+-----          V: Col_5_Big
+$082F: $D373:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0830: $E708:     $78 -> r16
+$0831: $9300:     r16 -> [$00BB]
+$0832: $00BB:  
+$0833: $D361:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0834: $E000:     $00 -> r16
+$0835: $9300:     r16 -> [$00BB]
+$0836: $00BB:  
+$0837: $D35D:  F: rcall $B95 (Send_Byte)
+               F: $31 -> TWDR  ...
+$0838: $E301:     $31 -> r16
+$0839: $9300:     r16 -> [$00BB]
+$083A: $00BB:  
+$083B: $D359:  F: rcall $B95 (Send_Byte)
+$083C: $D2A0:  F: rcall $ADD (Stop_I2C)
+$083D: $D365:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$083E: $E708:     $78 -> r16
+$083F: $9300:     r16 -> [$00BB]
+$0840: $00BB:  
+$0841: $D353:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0842: $E000:     $00 -> r16
+$0843: $9300:     r16 -> [$00BB]
+$0844: $00BB:  
+$0845: $D34F:  F: rcall $B95 (Send_Byte)
+               F: $3C -> TWDR  ...
+$0846: $E30C:     $3C -> r16
+$0847: $9300:     r16 -> [$00BB]
+$0848: $00BB:  
+$0849: $D34B:  F: rcall $B95 (Send_Byte)
+$084A: $D292:  F: rcall $ADD (Stop_I2C)
+$084B: $9508:  F: RET (Ret)
+-----          V: Col_10_Big
+$084C: $D356:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$084D: $E708:     $78 -> r16
+$084E: $9300:     r16 -> [$00BB]
+$084F: $00BB:  
+$0850: $D344:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0851: $E000:     $00 -> r16
+$0852: $9300:     r16 -> [$00BB]
+$0853: $00BB:  
+$0854: $D340:  F: rcall $B95 (Send_Byte)
+               F: $6D -> TWDR  ...
+$0855: $E60D:     $6D -> r16
+$0856: $9300:     r16 -> [$00BB]
+$0857: $00BB:  
+$0858: $D33C:  F: rcall $B95 (Send_Byte)
+$0859: $D283:  F: rcall $ADD (Stop_I2C)
+$085A: $D348:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$085B: $E708:     $78 -> r16
+$085C: $9300:     r16 -> [$00BB]
+$085D: $00BB:  
+$085E: $D336:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$085F: $E000:     $00 -> r16
+$0860: $9300:     r16 -> [$00BB]
+$0861: $00BB:  
+$0862: $D332:  F: rcall $B95 (Send_Byte)
+               F: $78 -> TWDR  ...
+$0863: $E708:     $78 -> r16
+$0864: $9300:     r16 -> [$00BB]
+$0865: $00BB:  
+$0866: $D32E:  F: rcall $B95 (Send_Byte)
+$0867: $D275:  F: rcall $ADD (Stop_I2C)
+$0868: $9508:  F: RET (Ret)
+-----          V: _Set_Pos_Big
+$0869: $D339:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$086A: $E708:     $78 -> r16
+$086B: $9300:     r16 -> [$00BB]
+$086C: $00BB:  
+$086D: $D327:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$086E: $E000:     $00 -> r16
+$086F: $9300:     r16 -> [$00BB]
+$0870: $00BB:  
+$0871: $D323:  F: rcall $B95 (Send_Byte)
+               F: $20 -> TWDR  ...
+$0872: $E200:     $20 -> r16
+$0873: $9300:     r16 -> [$00BB]
+$0874: $00BB:  
+$0875: $D31F:  F: rcall $B95 (Send_Byte)
+$0876: $D266:  F: rcall $ADD (Stop_I2C)
+$0877: $D32B:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0878: $E708:     $78 -> r16
+$0879: $9300:     r16 -> [$00BB]
+$087A: $00BB:  
+$087B: $D319:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$087C: $E000:     $00 -> r16
+$087D: $9300:     r16 -> [$00BB]
+$087E: $00BB:  
+$087F: $D315:  F: rcall $B95 (Send_Byte)
+               F: $01 -> TWDR  ...
+$0880: $E001:     $01 -> r16
+$0881: $9300:     r16 -> [$00BB]
+$0882: $00BB:  
+$0883: $D311:  F: rcall $B95 (Send_Byte)
+$0884: $D258:  F: rcall $ADD (Stop_I2C)
+$0885: $D31D:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0886: $E708:     $78 -> r16
+$0887: $9300:     r16 -> [$00BB]
+$0888: $00BB:  
+$0889: $D30B:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$088A: $E000:     $00 -> r16
+$088B: $9300:     r16 -> [$00BB]
+$088C: $00BB:  
+$088D: $D307:  F: rcall $B95 (Send_Byte)
+               F: $21 -> TWDR  ...
+$088E: $E201:     $21 -> r16
+$088F: $9300:     r16 -> [$00BB]
+$0890: $00BB:  
+$0891: $D303:  F: rcall $B95 (Send_Byte)
+$0892: $D24A:  F: rcall $ADD (Stop_I2C)
+               C: if (Col = 1) then goto $0898 ...
+$0893: $9100:     [$022F] -> r16
+$0894: $022F:  
+$0895: $3001:     r16 = $01
+$0896: $F409:     if (Z=0) then goto $898
+$0897: $DE3B:  F: rcall $6D3 (Col_1_Big)
+               C: if (Col = 2) then goto $089D ...
+$0898: $9100:     [$022F] -> r16
+$0899: $022F:  
+$089A: $3002:     r16 = $02
+$089B: $F409:     if (Z=0) then goto $89D
+$089C: $DEC7:  F: rcall $764 (Col_2_Big)
+               C: if (Col = 3) then goto $08A2 ...
+$089D: $9100:     [$022F] -> r16
+$089E: $022F:  
+$089F: $3003:     r16 = $03
+$08A0: $F409:     if (Z=0) then goto $8A2
+$08A1: $DEDF:  F: rcall $781 (Col_3_Big)
+               C: if (Col = 4) then goto $08A7 ...
+$08A2: $9100:     [$022F] -> r16
+$08A3: $022F:  
+$08A4: $3004:     r16 = $04
+$08A5: $F409:     if (Z=0) then goto $8A7
+$08A6: $DF6B:  F: rcall $812 (Col_4_Big)
+               C: if (Col = 5) then goto $08AC ...
+$08A7: $9100:     [$022F] -> r16
+$08A8: $022F:  
+$08A9: $3005:     r16 = $05
+$08AA: $F409:     if (Z=0) then goto $8AC
+$08AB: $DF83:  F: rcall $82F (Col_5_Big)
+               C: if (Col = 6) then goto $08B1 ...
+$08AC: $9100:     [$022F] -> r16
+$08AD: $022F:  
+$08AE: $3006:     r16 = $06
+$08AF: $F409:     if (Z=0) then goto $8B1
+$08B0: $DE3F:  F: rcall $6F0 (Col_6_Big)
+               C: if (Col = 7) then goto $08B6 ...
+$08B1: $9100:     [$022F] -> r16
+$08B2: $022F:  
+$08B3: $3007:     r16 = $07
+$08B4: $F409:     if (Z=0) then goto $8B6
+$08B5: $DE91:  F: rcall $747 (Col_7_Big)
+               C: if (Col = 8) then goto $08BB ...
+$08B6: $9100:     [$022F] -> r16
+$08B7: $022F:  
+$08B8: $3008:     r16 = $08
+$08B9: $F409:     if (Z=0) then goto $8BB
+$08BA: $DEE3:  F: rcall $79E (Col_8_Big)
+               C: if (Col = 9) then goto $08C0 ...
+$08BB: $9100:     [$022F] -> r16
+$08BC: $022F:  
+$08BD: $3009:     r16 = $09
+$08BE: $F409:     if (Z=0) then goto $8C0
+$08BF: $DF35:  F: rcall $7F5 (Col_9_Big)
+               C: if (Col = 10) then goto $08C5 ...
+$08C0: $9100:     [$022F] -> r16
+$08C1: $022F:  
+$08C2: $300A:     r16 = $0A
+$08C3: $F409:     if (Z=0) then goto $8C5
+$08C4: $DF87:  F: rcall $84C (Col_10_Big)
+$08C5: $D2DD:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$08C6: $E708:     $78 -> r16
+$08C7: $9300:     r16 -> [$00BB]
+$08C8: $00BB:  
+$08C9: $D2CB:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$08CA: $E000:     $00 -> r16
+$08CB: $9300:     r16 -> [$00BB]
+$08CC: $00BB:  
+$08CD: $D2C7:  F: rcall $B95 (Send_Byte)
+               F: $22 -> TWDR  ...
+$08CE: $E202:     $22 -> r16
+$08CF: $9300:     r16 -> [$00BB]
+$08D0: $00BB:  
+$08D1: $D2C3:  F: rcall $B95 (Send_Byte)
+$08D2: $D20A:  F: rcall $ADD (Stop_I2C)
+               C: if (Line = 1) then goto $08D8 ...
+$08D3: $9100:     [$0230] -> r16
+$08D4: $0230:  
+$08D5: $3001:     r16 = $01
+$08D6: $F409:     if (Z=0) then goto $8D8
+$08D7: $DE35:  F: rcall $70D (Line_1_Big)
+               C: if (Line = 2) then goto $08DD ...
+$08D8: $9100:     [$0230] -> r16
+$08D9: $0230:  
+$08DA: $3002:     r16 = $02
+$08DB: $F409:     if (Z=0) then goto $8DD
+$08DC: $DE4D:  F: rcall $72A (Line_2_Big)
+               C: if (Line = 3) then goto $08E2 ...
+$08DD: $9100:     [$0230] -> r16
+$08DE: $0230:  
+$08DF: $3003:     r16 = $03
+$08E0: $F409:     if (Z=0) then goto $8E2
+$08E1: $DED9:  F: rcall $7BB (Line_3_Big)
+               C: if (Line = 4) then goto $08E7 ...
+$08E2: $9100:     [$0230] -> r16
+$08E3: $0230:  
+$08E4: $3004:     r16 = $04
+$08E5: $F409:     if (Z=0) then goto $8E7
+$08E6: $DEF1:  F: rcall $7D8 (Line_4_Big)
+$08E7: $9508:  F: RET (Ret)
+-----          V: Init_SSD1306_I2C
+$08E8: $D2BA:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$08E9: $E708:     $78 -> r16
+$08EA: $9300:     r16 -> [$00BB]
+$08EB: $00BB:  
+$08EC: $D2A8:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$08ED: $E000:     $00 -> r16
+$08EE: $9300:     r16 -> [$00BB]
+$08EF: $00BB:  
+$08F0: $D2A4:  F: rcall $B95 (Send_Byte)
+               F: $AE -> TWDR  ...
+$08F1: $EA0E:     $AE -> r16
+$08F2: $9300:     r16 -> [$00BB]
+$08F3: $00BB:  
+$08F4: $D2A0:  F: rcall $B95 (Send_Byte)
+$08F5: $D1E7:  F: rcall $ADD (Stop_I2C)
+$08F6: $D2AC:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$08F7: $E708:     $78 -> r16
+$08F8: $9300:     r16 -> [$00BB]
+$08F9: $00BB:  
+$08FA: $D29A:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$08FB: $E000:     $00 -> r16
+$08FC: $9300:     r16 -> [$00BB]
+$08FD: $00BB:  
+$08FE: $D296:  F: rcall $B95 (Send_Byte)
+               F: $D5 -> TWDR  ...
+$08FF: $ED05:     $D5 -> r16
+$0900: $9300:     r16 -> [$00BB]
+$0901: $00BB:  
+$0902: $D292:  F: rcall $B95 (Send_Byte)
+$0903: $D1D9:  F: rcall $ADD (Stop_I2C)
+$0904: $D29E:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0905: $E708:     $78 -> r16
+$0906: $9300:     r16 -> [$00BB]
+$0907: $00BB:  
+$0908: $D28C:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0909: $E000:     $00 -> r16
+$090A: $9300:     r16 -> [$00BB]
+$090B: $00BB:  
+$090C: $D288:  F: rcall $B95 (Send_Byte)
+               F: $F0 -> TWDR  ...
+$090D: $EF00:     $F0 -> r16
+$090E: $9300:     r16 -> [$00BB]
+$090F: $00BB:  
+$0910: $D284:  F: rcall $B95 (Send_Byte)
+$0911: $D1CB:  F: rcall $ADD (Stop_I2C)
+$0912: $D290:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0913: $E708:     $78 -> r16
+$0914: $9300:     r16 -> [$00BB]
+$0915: $00BB:  
+$0916: $D27E:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0917: $E000:     $00 -> r16
+$0918: $9300:     r16 -> [$00BB]
+$0919: $00BB:  
+$091A: $D27A:  F: rcall $B95 (Send_Byte)
+               F: $A8 -> TWDR  ...
+$091B: $EA08:     $A8 -> r16
+$091C: $9300:     r16 -> [$00BB]
+$091D: $00BB:  
+$091E: $D276:  F: rcall $B95 (Send_Byte)
+$091F: $D1BD:  F: rcall $ADD (Stop_I2C)
+$0920: $D282:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0921: $E708:     $78 -> r16
+$0922: $9300:     r16 -> [$00BB]
+$0923: $00BB:  
+$0924: $D270:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0925: $E000:     $00 -> r16
+$0926: $9300:     r16 -> [$00BB]
+$0927: $00BB:  
+$0928: $D26C:  F: rcall $B95 (Send_Byte)
+               F: $3F -> TWDR  ...
+$0929: $E30F:     $3F -> r16
+$092A: $9300:     r16 -> [$00BB]
+$092B: $00BB:  
+$092C: $D268:  F: rcall $B95 (Send_Byte)
+$092D: $D1AF:  F: rcall $ADD (Stop_I2C)
+$092E: $D274:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$092F: $E708:     $78 -> r16
+$0930: $9300:     r16 -> [$00BB]
+$0931: $00BB:  
+$0932: $D262:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0933: $E000:     $00 -> r16
+$0934: $9300:     r16 -> [$00BB]
+$0935: $00BB:  
+$0936: $D25E:  F: rcall $B95 (Send_Byte)
+               F: $D3 -> TWDR  ...
+$0937: $ED03:     $D3 -> r16
+$0938: $9300:     r16 -> [$00BB]
+$0939: $00BB:  
+$093A: $D25A:  F: rcall $B95 (Send_Byte)
+$093B: $D1A1:  F: rcall $ADD (Stop_I2C)
+$093C: $D266:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$093D: $E708:     $78 -> r16
+$093E: $9300:     r16 -> [$00BB]
+$093F: $00BB:  
+$0940: $D254:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0941: $E000:     $00 -> r16
+$0942: $9300:     r16 -> [$00BB]
+$0943: $00BB:  
+$0944: $D250:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0945: $E000:     $00 -> r16
+$0946: $9300:     r16 -> [$00BB]
+$0947: $00BB:  
+$0948: $D24C:  F: rcall $B95 (Send_Byte)
+$0949: $D193:  F: rcall $ADD (Stop_I2C)
+$094A: $D258:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$094B: $E708:     $78 -> r16
+$094C: $9300:     r16 -> [$00BB]
+$094D: $00BB:  
+$094E: $D246:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$094F: $E000:     $00 -> r16
+$0950: $9300:     r16 -> [$00BB]
+$0951: $00BB:  
+$0952: $D242:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0953: $E400:     $40 -> r16
+$0954: $9300:     r16 -> [$00BB]
+$0955: $00BB:  
+$0956: $D23E:  F: rcall $B95 (Send_Byte)
+$0957: $D185:  F: rcall $ADD (Stop_I2C)
+$0958: $D24A:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0959: $E708:     $78 -> r16
+$095A: $9300:     r16 -> [$00BB]
+$095B: $00BB:  
+$095C: $D238:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$095D: $E000:     $00 -> r16
+$095E: $9300:     r16 -> [$00BB]
+$095F: $00BB:  
+$0960: $D234:  F: rcall $B95 (Send_Byte)
+               F: $8D -> TWDR  ...
+$0961: $E80D:     $8D -> r16
+$0962: $9300:     r16 -> [$00BB]
+$0963: $00BB:  
+$0964: $D230:  F: rcall $B95 (Send_Byte)
+$0965: $D177:  F: rcall $ADD (Stop_I2C)
+$0966: $D23C:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0967: $E708:     $78 -> r16
+$0968: $9300:     r16 -> [$00BB]
+$0969: $00BB:  
+$096A: $D22A:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$096B: $E000:     $00 -> r16
+$096C: $9300:     r16 -> [$00BB]
+$096D: $00BB:  
+$096E: $D226:  F: rcall $B95 (Send_Byte)
+               F: $14 -> TWDR  ...
+$096F: $E104:     $14 -> r16
+$0970: $9300:     r16 -> [$00BB]
+$0971: $00BB:  
+$0972: $D222:  F: rcall $B95 (Send_Byte)
+$0973: $D169:  F: rcall $ADD (Stop_I2C)
+$0974: $D22E:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0975: $E708:     $78 -> r16
+$0976: $9300:     r16 -> [$00BB]
+$0977: $00BB:  
+$0978: $D21C:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0979: $E000:     $00 -> r16
+$097A: $9300:     r16 -> [$00BB]
+$097B: $00BB:  
+$097C: $D218:  F: rcall $B95 (Send_Byte)
+               F: $20 -> TWDR  ...
+$097D: $E200:     $20 -> r16
+$097E: $9300:     r16 -> [$00BB]
+$097F: $00BB:  
+$0980: $D214:  F: rcall $B95 (Send_Byte)
+$0981: $D15B:  F: rcall $ADD (Stop_I2C)
+$0982: $D220:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0983: $E708:     $78 -> r16
+$0984: $9300:     r16 -> [$00BB]
+$0985: $00BB:  
+$0986: $D20E:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0987: $E000:     $00 -> r16
+$0988: $9300:     r16 -> [$00BB]
+$0989: $00BB:  
+$098A: $D20A:  F: rcall $B95 (Send_Byte)
+               F: $02 -> TWDR  ...
+$098B: $E002:     $02 -> r16
+$098C: $9300:     r16 -> [$00BB]
+$098D: $00BB:  
+$098E: $D206:  F: rcall $B95 (Send_Byte)
+$098F: $D14D:  F: rcall $ADD (Stop_I2C)
+$0990: $D212:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0991: $E708:     $78 -> r16
+$0992: $9300:     r16 -> [$00BB]
+$0993: $00BB:  
+$0994: $D200:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0995: $E000:     $00 -> r16
+$0996: $9300:     r16 -> [$00BB]
+$0997: $00BB:  
+$0998: $D1FC:  F: rcall $B95 (Send_Byte)
+               F: $A1 -> TWDR  ...
+$0999: $EA01:     $A1 -> r16
+$099A: $9300:     r16 -> [$00BB]
+$099B: $00BB:  
+$099C: $D1F8:  F: rcall $B95 (Send_Byte)
+$099D: $D13F:  F: rcall $ADD (Stop_I2C)
+$099E: $D204:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$099F: $E708:     $78 -> r16
+$09A0: $9300:     r16 -> [$00BB]
+$09A1: $00BB:  
+$09A2: $D1F2:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$09A3: $E000:     $00 -> r16
+$09A4: $9300:     r16 -> [$00BB]
+$09A5: $00BB:  
+$09A6: $D1EE:  F: rcall $B95 (Send_Byte)
+               F: $C8 -> TWDR  ...
+$09A7: $EC08:     $C8 -> r16
+$09A8: $9300:     r16 -> [$00BB]
+$09A9: $00BB:  
+$09AA: $D1EA:  F: rcall $B95 (Send_Byte)
+$09AB: $D131:  F: rcall $ADD (Stop_I2C)
+$09AC: $D1F6:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$09AD: $E708:     $78 -> r16
+$09AE: $9300:     r16 -> [$00BB]
+$09AF: $00BB:  
+$09B0: $D1E4:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$09B1: $E000:     $00 -> r16
+$09B2: $9300:     r16 -> [$00BB]
+$09B3: $00BB:  
+$09B4: $D1E0:  F: rcall $B95 (Send_Byte)
+               F: $DA -> TWDR  ...
+$09B5: $ED0A:     $DA -> r16
+$09B6: $9300:     r16 -> [$00BB]
+$09B7: $00BB:  
+$09B8: $D1DC:  F: rcall $B95 (Send_Byte)
+$09B9: $D123:  F: rcall $ADD (Stop_I2C)
+$09BA: $D1E8:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$09BB: $E708:     $78 -> r16
+$09BC: $9300:     r16 -> [$00BB]
+$09BD: $00BB:  
+$09BE: $D1D6:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$09BF: $E000:     $00 -> r16
+$09C0: $9300:     r16 -> [$00BB]
+$09C1: $00BB:  
+$09C2: $D1D2:  F: rcall $B95 (Send_Byte)
+               F: $12 -> TWDR  ...
+$09C3: $E102:     $12 -> r16
+$09C4: $9300:     r16 -> [$00BB]
+$09C5: $00BB:  
+$09C6: $D1CE:  F: rcall $B95 (Send_Byte)
+$09C7: $D115:  F: rcall $ADD (Stop_I2C)
+$09C8: $D1DA:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$09C9: $E708:     $78 -> r16
+$09CA: $9300:     r16 -> [$00BB]
+$09CB: $00BB:  
+$09CC: $D1C8:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$09CD: $E000:     $00 -> r16
+$09CE: $9300:     r16 -> [$00BB]
+$09CF: $00BB:  
+$09D0: $D1C4:  F: rcall $B95 (Send_Byte)
+               F: $81 -> TWDR  ...
+$09D1: $E801:     $81 -> r16
+$09D2: $9300:     r16 -> [$00BB]
+$09D3: $00BB:  
+$09D4: $D1C0:  F: rcall $B95 (Send_Byte)
+$09D5: $D107:  F: rcall $ADD (Stop_I2C)
+$09D6: $D1CC:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$09D7: $E708:     $78 -> r16
+$09D8: $9300:     r16 -> [$00BB]
+$09D9: $00BB:  
+$09DA: $D1BA:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$09DB: $E000:     $00 -> r16
+$09DC: $9300:     r16 -> [$00BB]
+$09DD: $00BB:  
+$09DE: $D1B6:  F: rcall $B95 (Send_Byte)
+               F: $CF -> TWDR  ...
+$09DF: $EC0F:     $CF -> r16
+$09E0: $9300:     r16 -> [$00BB]
+$09E1: $00BB:  
+$09E2: $D1B2:  F: rcall $B95 (Send_Byte)
+$09E3: $D0F9:  F: rcall $ADD (Stop_I2C)
+$09E4: $D1BE:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$09E5: $E708:     $78 -> r16
+$09E6: $9300:     r16 -> [$00BB]
+$09E7: $00BB:  
+$09E8: $D1AC:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$09E9: $E000:     $00 -> r16
+$09EA: $9300:     r16 -> [$00BB]
+$09EB: $00BB:  
+$09EC: $D1A8:  F: rcall $B95 (Send_Byte)
+               F: $D9 -> TWDR  ...
+$09ED: $ED09:     $D9 -> r16
+$09EE: $9300:     r16 -> [$00BB]
+$09EF: $00BB:  
+$09F0: $D1A4:  F: rcall $B95 (Send_Byte)
+$09F1: $D0EB:  F: rcall $ADD (Stop_I2C)
+$09F2: $D1B0:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$09F3: $E708:     $78 -> r16
+$09F4: $9300:     r16 -> [$00BB]
+$09F5: $00BB:  
+$09F6: $D19E:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$09F7: $E000:     $00 -> r16
+$09F8: $9300:     r16 -> [$00BB]
+$09F9: $00BB:  
+$09FA: $D19A:  F: rcall $B95 (Send_Byte)
+               F: $F1 -> TWDR  ...
+$09FB: $EF01:     $F1 -> r16
+$09FC: $9300:     r16 -> [$00BB]
+$09FD: $00BB:  
+$09FE: $D196:  F: rcall $B95 (Send_Byte)
+$09FF: $D0DD:  F: rcall $ADD (Stop_I2C)
+$0A00: $D1A2:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0A01: $E708:     $78 -> r16
+$0A02: $9300:     r16 -> [$00BB]
+$0A03: $00BB:  
+$0A04: $D190:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0A05: $E000:     $00 -> r16
+$0A06: $9300:     r16 -> [$00BB]
+$0A07: $00BB:  
+$0A08: $D18C:  F: rcall $B95 (Send_Byte)
+               F: $DB -> TWDR  ...
+$0A09: $ED0B:     $DB -> r16
+$0A0A: $9300:     r16 -> [$00BB]
+$0A0B: $00BB:  
+$0A0C: $D188:  F: rcall $B95 (Send_Byte)
+$0A0D: $D0CF:  F: rcall $ADD (Stop_I2C)
+$0A0E: $D194:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0A0F: $E708:     $78 -> r16
+$0A10: $9300:     r16 -> [$00BB]
+$0A11: $00BB:  
+$0A12: $D182:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0A13: $E000:     $00 -> r16
+$0A14: $9300:     r16 -> [$00BB]
+$0A15: $00BB:  
+$0A16: $D17E:  F: rcall $B95 (Send_Byte)
+               F: $30 -> TWDR  ...
+$0A17: $E300:     $30 -> r16
+$0A18: $9300:     r16 -> [$00BB]
+$0A19: $00BB:  
+$0A1A: $D17A:  F: rcall $B95 (Send_Byte)
+$0A1B: $D0C1:  F: rcall $ADD (Stop_I2C)
+$0A1C: $D186:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0A1D: $E708:     $78 -> r16
+$0A1E: $9300:     r16 -> [$00BB]
+$0A1F: $00BB:  
+$0A20: $D174:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0A21: $E000:     $00 -> r16
+$0A22: $9300:     r16 -> [$00BB]
+$0A23: $00BB:  
+$0A24: $D170:  F: rcall $B95 (Send_Byte)
+               F: $A4 -> TWDR  ...
+$0A25: $EA04:     $A4 -> r16
+$0A26: $9300:     r16 -> [$00BB]
+$0A27: $00BB:  
+$0A28: $D16C:  F: rcall $B95 (Send_Byte)
+$0A29: $D0B3:  F: rcall $ADD (Stop_I2C)
+$0A2A: $D178:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0A2B: $E708:     $78 -> r16
+$0A2C: $9300:     r16 -> [$00BB]
+$0A2D: $00BB:  
+$0A2E: $D166:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0A2F: $E000:     $00 -> r16
+$0A30: $9300:     r16 -> [$00BB]
+$0A31: $00BB:  
+$0A32: $D162:  F: rcall $B95 (Send_Byte)
+               F: $A6 -> TWDR  ...
+$0A33: $EA06:     $A6 -> r16
+$0A34: $9300:     r16 -> [$00BB]
+$0A35: $00BB:  
+$0A36: $D15E:  F: rcall $B95 (Send_Byte)
+$0A37: $D0A5:  F: rcall $ADD (Stop_I2C)
+$0A38: $D16A:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0A39: $E708:     $78 -> r16
+$0A3A: $9300:     r16 -> [$00BB]
+$0A3B: $00BB:  
+$0A3C: $D158:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0A3D: $E000:     $00 -> r16
+$0A3E: $9300:     r16 -> [$00BB]
+$0A3F: $00BB:  
+$0A40: $D154:  F: rcall $B95 (Send_Byte)
+               F: $AF -> TWDR  ...
+$0A41: $EA0F:     $AF -> r16
+$0A42: $9300:     r16 -> [$00BB]
+$0A43: $00BB:  
+$0A44: $D150:  F: rcall $B95 (Send_Byte)
+$0A45: $D097:  F: rcall $ADD (Stop_I2C)
+               F: 1 -> Col  ...
+$0A46: $E001:     $01 -> r16
+$0A47: $9300:     r16 -> [$022F]
+$0A48: $022F:  
+               F: 0 -> Line  ...
+$0A49: $E000:     $00 -> r16
+$0A4A: $9300:     r16 -> [$0230]
+$0A4B: $0230:  
+$0A4C: $D001:  F: rcall $A4E (_Clear_Display)
+-----          L: 
+-----          L: 
+$0A4D: $9508:  F: RET (Ret)
+-----          V: _Clear_Display
+               C: if (Line -= 0) then goto $0A83 ...
+$0A4E: $9100:     [$0230] -> r16
+$0A4F: $0230:  
+$0A50: $3000:     r16 = $00
+$0A51: $F589:     if (Z=0) then goto $A83
+               F: 8 -> Line  ...
+$0A52: $E008:     $08 -> r16
+$0A53: $9300:     r16 -> [$0230]
+$0A54: $0230:  
+-----          L: 
+               F: 6 -> Size_Col  ...
+$0A55: $E006:     $06 -> r16
+$0A56: $9300:     r16 -> [$023E]
+$0A57: $023E:  
+$0A58: $940E:  F: CALL $5D4 (Calc_Col/)
+$0A59: $05D4:  
+$0A5A: $D007:  F: rcall $A62 (_Clear_Line)
+               C: if (Line --) then goto $0A55 ...
+$0A5B: $9100:     [$0230] -> r16
+$0A5C: $0230:  
+$0A5D: $5001:     r16 - $01
+$0A5E: $9300:     r16 -> [$0230]
+$0A5F: $0230:  
+$0A60: $F7A1:     if (Z=0) then goto $A55
+-----          L: 
+$0A61: $9508:  F: RET (Ret)
+-----          V: _Clear_Line
+               F: 8 -> Pack  ...
+$0A62: $E008:     $08 -> r16
+$0A63: $9300:     r16 -> [$022C]
+$0A64: $022C:  
+-----          L: 
+               F: 16 -> nByte  ...
+$0A65: $E100:     $10 -> r16
+$0A66: $9300:     r16 -> [$022B]
+$0A67: $022B:  
+-----          L: 
+$0A68: $D13A:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0A69: $E708:     $78 -> r16
+$0A6A: $9300:     r16 -> [$00BB]
+$0A6B: $00BB:  
+$0A6C: $D128:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0A6D: $E400:     $40 -> r16
+$0A6E: $9300:     r16 -> [$00BB]
+$0A6F: $00BB:  
+$0A70: $D124:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0A71: $E000:     $00 -> r16
+$0A72: $9300:     r16 -> [$00BB]
+$0A73: $00BB:  
+$0A74: $D120:  F: rcall $B95 (Send_Byte)
+$0A75: $D067:  F: rcall $ADD (Stop_I2C)
+               C: if (nByte --) then goto $0A68 ...
+$0A76: $9100:     [$022B] -> r16
+$0A77: $022B:  
+$0A78: $5001:     r16 - $01
+$0A79: $9300:     r16 -> [$022B]
+$0A7A: $022B:  
+$0A7B: $F761:     if (Z=0) then goto $A68
+               C: if (Pack --) then goto $0A65 ...
+$0A7C: $9100:     [$022C] -> r16
+$0A7D: $022C:  
+$0A7E: $5001:     r16 - $01
+$0A7F: $9300:     r16 -> [$022C]
+$0A80: $022C:  
+$0A81: $F719:     if (Z=0) then goto $A65
+$0A82: $9508:  F: RET (Ret)
+-----          V: 
+               F: 6 -> Size_Col  ...
+$0A83: $E006:     $06 -> r16
+$0A84: $9300:     r16 -> [$023E]
+$0A85: $023E:  
+$0A86: $940E:  F: CALL $5D4 (Calc_Col/)
+$0A87: $05D4:  
+$0A88: $DFD9:  F: rcall $A62 (_Clear_Line)
+$0A89: $CFD7:  J: goto $A61 (RJMP)
+-----          V: _Print_Text/
+               F: 6 -> Size_Col  ...
+$0A8A: $E006:     $06 -> r16
+$0A8B: $9300:     r16 -> [$023E]
+$0A8C: $023E:  
+$0A8D: $940E:  F: CALL $5D4 (Calc_Col/)
+$0A8E: $05D4:  
+               F: -> AET  ...
+$0A8F: $910F:     -> r16
+$0A90: $9300:     r16 -> [$023D]
+$0A91: $023D:  
+$0A92: $910F:     -> r16
+$0A93: $9300:     r16 -> [$023C]
+$0A94: $023C:  
+               F: -> ABT  ...
+$0A95: $910F:     -> r16
+$0A96: $9300:     r16 -> [$023B]
+$0A97: $023B:  
+$0A98: $910F:     -> r16
+$0A99: $9300:     r16 -> [$023A]
+$0A9A: $023A:  
+               F: AET ->  ...
+$0A9B: $9100:     [$023C] -> r16
+$0A9C: $023C:  
+$0A9D: $930F:     r16 ->
+$0A9E: $9100:     [$023D] -> r16
+$0A9F: $023D:  
+$0AA0: $930F:     r16 ->
+               F: AET - 2  ...
+$0AA1: $9100:     [$023C] -> r16
+$0AA2: $023C:  
+$0AA3: $5002:     r16 - $02
+$0AA4: $9300:     r16 -> [$023C]
+$0AA5: $023C:  
+$0AA6: $9100:     [$023D] -> r16
+$0AA7: $023D:  
+$0AA8: $4000:     r16 - $00 -
+$0AA9: $9300:     r16 -> [$023D]
+$0AAA: $023D:  
+               F: << AET  ...
+$0AAB: $9100:     [$023C] -> r16
+$0AAC: $023C:  
+$0AAD: $0F00:     << r16
+$0AAE: $9300:     r16 -> [$023C]
+$0AAF: $023C:  
+$0AB0: $9100:     [$023D] -> r16
+$0AB1: $023D:  
+$0AB2: $1F00:     << r16 <
+$0AB3: $9300:     r16 -> [$023D]
+$0AB4: $023D:  
+               F: << ABT  ...
+$0AB5: $9100:     [$023A] -> r16
+$0AB6: $023A:  
+$0AB7: $0F00:     << r16
+$0AB8: $9300:     r16 -> [$023A]
+$0AB9: $023A:  
+$0ABA: $9100:     [$023B] -> r16
+$0ABB: $023B:  
+$0ABC: $1F00:     << r16 <
+$0ABD: $9300:     r16 -> [$023B]
+$0ABE: $023B:  
+               F: Z ->  ...
+$0ABF: $93EF:     r30 ->
+$0AC0: $93FF:     r31 ->
+               F: ABT -> Z  ...
+$0AC1: $91E0:     [$023A] -> r30
+$0AC2: $023A:  
+$0AC3: $91F0:     [$023B] -> r31
+$0AC4: $023B:  
+-----          L: 
+               F: LPM[Z++] -> DChar  ...
+$0AC5: $9105:     LPM[Z++] -> r16
+$0AC6: $9300:     r16 -> [$0234]
+$0AC7: $0234:  
+$0AC8: $E000:     $00 -> r16
+$0AC9: $9300:     r16 -> [$0235]
+$0ACA: $0235:  
+               C: if (DChar = $FF) then goto $0AD3 ...
+$0ACB: $9100:     [$0234] -> r16
+$0ACC: $0234:  
+$0ACD: $3F0F:     r16 = $FF
+$0ACE: $9100:     [$0235] -> r16
+$0ACF: $0235:  
+$0AD0: $4000:     r16 - $00 -
+$0AD1: $F009:     if (Z=1) then goto $AD3
+$0AD2: $D4A6:  F: rcall $F79 (_Print_Sym)
+-----          L: 
+               C: if (Z < AET) then goto $0AC5 ...
+$0AD3: $9110:     [$023C] -> r17
+$0AD4: $023C:  
+$0AD5: $17E1:     r30 = r17
+$0AD6: $9110:     [$023D] -> r17
+$0AD7: $023D:  
+$0AD8: $07F1:     r31 = r17=
+$0AD9: $F358:     if ( < ) then goto $AC5
+               F: -> Z  ...
+$0ADA: $91FF:     -> r31
+$0ADB: $91EF:     -> r30
+$0ADC: $9508:  F: RET (Ret)
+-----          V: Stop_I2C
+$0ADD: $E000:  S: $00 -> r16 ($00->r16)
+$0ADE: $9300:  S: r16 -> [$00B9] (r16->TWSR)
+$0ADF: $00B9:  
+$0AE0: $E00C:  S: $0C -> r16 ($0C->r16)
+$0AE1: $9300:  S: r16 -> [$00B8] (r16->TWBR)
+$0AE2: $00B8:  
+$0AE3: $E904:  S: $94 -> r16 ($94->r16)
+$0AE4: $9300:  S: r16 -> [$00BC] (r16->TWCR)
+$0AE5: $00BC:  
+$0AE6: $0000:  F: NOP (NOP)
+$0AE7: $0000:  F: NOP (NOP)
+$0AE8: $0000:  F: NOP (NOP)
+$0AE9: $0000:  F: NOP (NOP)
+$0AEA: $9508:  F: RET (Ret)
+-----          V: _Print_Symbol/
+               F: 6 -> Size_Col  ...
+$0AEB: $E006:     $06 -> r16
+$0AEC: $9300:     r16 -> [$023E]
+$0AED: $023E:  
+$0AEE: $940E:  F: CALL $5D4 (Calc_Col/)
+$0AEF: $05D4:  
+$0AF0: $D488:  F: rcall $F79 (_Print_Sym)
+$0AF1: $9508:  F: RET (Ret)
+-----          V: _Print_Bin/
+               F: 6 -> Size_Col  ...
+$0AF2: $E006:     $06 -> r16
+$0AF3: $9300:     r16 -> [$023E]
+$0AF4: $023E:  
+$0AF5: $940E:  F: CALL $5D4 (Calc_Col/)
+$0AF6: $05D4:  
+               F: 8 -> RANK  ...
+$0AF7: $E008:     $08 -> r16
+$0AF8: $9300:     r16 -> [$022D]
+$0AF9: $022D:  
+-----          L: 
+               F: << VBin  ...
+$0AFA: $9100:     [$0233] -> r16
+$0AFB: $0233:  
+$0AFC: $0F00:     << r16
+$0AFD: $9300:     r16 -> [$0233]
+$0AFE: $0233:  
+$0AFF: $F408:  C: if (C=0) then goto $B01 (C = 1)
+$0B00: $C199:  C: goto $C9A (RJMP) (C = 1)
+               F: $10 -> DChar  ...
+$0B01: $E100:     $10 -> r16
+$0B02: $9300:     r16 -> [$0234]
+$0B03: $0234:  
+$0B04: $E000:     $00 -> r16
+$0B05: $9300:     r16 -> [$0235]
+$0B06: $0235:  
+-----          L: 
+$0B07: $D471:  F: rcall $F79 (_Print_Sym)
+               C: if (RANK --) then goto $0AFA ...
+$0B08: $9100:     [$022D] -> r16
+$0B09: $022D:  
+$0B0A: $5001:     r16 - $01
+$0B0B: $9300:     r16 -> [$022D]
+$0B0C: $022D:  
+$0B0D: $F761:     if (Z=0) then goto $AFA
+$0B0E: $9508:  F: RET (Ret)
+-----          V: _Calc_Dec
+               C: if (Rank = 1) then goto $0B19 ...
+$0B0F: $9100:     [$022D] -> r16
+$0B10: $022D:  
+$0B11: $3001:     r16 = $01
+$0B12: $F431:     if (Z=0) then goto $B19
+               F: 1 -> Cn  ...
+$0B13: $E001:     $01 -> r16
+$0B14: $9300:     r16 -> [$0238]
+$0B15: $0238:  
+$0B16: $E000:     $00 -> r16
+$0B17: $9300:     r16 -> [$0239]
+$0B18: $0239:  
+               C: if (Rank = 2) then goto $0B23 ...
+$0B19: $9100:     [$022D] -> r16
+$0B1A: $022D:  
+$0B1B: $3002:     r16 = $02
+$0B1C: $F431:     if (Z=0) then goto $B23
+               F: 10 -> Cn  ...
+$0B1D: $E00A:     $0A -> r16
+$0B1E: $9300:     r16 -> [$0238]
+$0B1F: $0238:  
+$0B20: $E000:     $00 -> r16
+$0B21: $9300:     r16 -> [$0239]
+$0B22: $0239:  
+               C: if (Rank = 3) then goto $0B2D ...
+$0B23: $9100:     [$022D] -> r16
+$0B24: $022D:  
+$0B25: $3003:     r16 = $03
+$0B26: $F431:     if (Z=0) then goto $B2D
+               F: 100 -> Cn  ...
+$0B27: $E604:     $64 -> r16
+$0B28: $9300:     r16 -> [$0238]
+$0B29: $0238:  
+$0B2A: $E000:     $00 -> r16
+$0B2B: $9300:     r16 -> [$0239]
+$0B2C: $0239:  
+               C: if (Rank = 4) then goto $0B37 ...
+$0B2D: $9100:     [$022D] -> r16
+$0B2E: $022D:  
+$0B2F: $3004:     r16 = $04
+$0B30: $F431:     if (Z=0) then goto $B37
+               F: 1000 -> Cn  ...
+$0B31: $EE08:     $E8 -> r16
+$0B32: $9300:     r16 -> [$0238]
+$0B33: $0238:  
+$0B34: $E003:     $03 -> r16
+$0B35: $9300:     r16 -> [$0239]
+$0B36: $0239:  
+               C: if (Rank = 5) then goto $0B41 ...
+$0B37: $9100:     [$022D] -> r16
+$0B38: $022D:  
+$0B39: $3005:     r16 = $05
+$0B3A: $F431:     if (Z=0) then goto $B41
+               F: 10000 -> Cn  ...
+$0B3B: $E100:     $10 -> r16
+$0B3C: $9300:     r16 -> [$0238]
+$0B3D: $0238:  
+$0B3E: $E207:     $27 -> r16
+$0B3F: $9300:     r16 -> [$0239]
+$0B40: $0239:  
+               F: ^ Digit  ...
+$0B41: $E000:     $00 -> r16
+$0B42: $9300:     r16 -> [$022E]
+$0B43: $022E:  
+-----          L: Dec_Rank
+               C: if (VDec < Cn) then goto $0B63 ...
+$0B44: $9100:     [$0231] -> r16
+$0B45: $0231:  
+$0B46: $9110:     [$0238] -> r17
+$0B47: $0238:  
+$0B48: $1701:     r16 = r17
+$0B49: $9100:     [$0232] -> r16
+$0B4A: $0232:  
+$0B4B: $9110:     [$0239] -> r17
+$0B4C: $0239:  
+$0B4D: $0701:     r16 = r17=
+$0B4E: $F0A0:     if ( < ) then goto $B63
+               F: VDec - Cn  ...
+$0B4F: $9100:     [$0231] -> r16
+$0B50: $0231:  
+$0B51: $9110:     [$0238] -> r17
+$0B52: $0238:  
+$0B53: $1B01:     r16 - r17
+$0B54: $9300:     r16 -> [$0231]
+$0B55: $0231:  
+$0B56: $9100:     [$0232] -> r16
+$0B57: $0232:  
+$0B58: $9110:     [$0239] -> r17
+$0B59: $0239:  
+$0B5A: $0B01:     r16 - r17 -
+$0B5B: $9300:     r16 -> [$0232]
+$0B5C: $0232:  
+               F: Digit ++  ...
+$0B5D: $9100:     [$022E] -> r16
+$0B5E: $022E:  
+$0B5F: $9503:     r16 ++
+$0B60: $9300:     r16 -> [$022E]
+$0B61: $022E:  
+$0B62: $DFE1:  F: rcall $B44 (Dec_Rank)
+-----          L: 
+               F: Digit -> DChar  ...
+$0B63: $9100:     [$022E] -> r16
+$0B64: $022E:  
+$0B65: $9300:     r16 -> [$0234]
+$0B66: $0234:  
+$0B67: $E000:     $00 -> r16
+$0B68: $9300:     r16 -> [$0235]
+$0B69: $0235:  
+$0B6A: $9508:  F: RET (Ret)
+-----          V: _Print_Dec_Big/
+-----          L: 
+$0B6B: $DCFD:  F: rcall $869 (_Set_Pos_Big)
+$0B6C: $DFA2:  F: rcall $B0F (_Calc_Dec)
+$0B6D: $D092:  F: rcall $C00 (_Print_Sym_24)
+               F: Col + 1  ...
+$0B6E: $9100:     [$022F] -> r16
+$0B6F: $022F:  
+$0B70: $5F0F:     r16 - $FF
+$0B71: $9300:     r16 -> [$022F]
+$0B72: $022F:  
+               C: if (Rank --) then goto $0B6B ...
+$0B73: $9100:     [$022D] -> r16
+$0B74: $022D:  
+$0B75: $5001:     r16 - $01
+$0B76: $9300:     r16 -> [$022D]
+$0B77: $022D:  
+$0B78: $F791:     if (Z=0) then goto $B6B
+$0B79: $9508:  F: RET (Ret)
+-----          V: _Print_Symbol_Big/
+$0B7A: $DCEE:  F: rcall $869 (_Set_Pos_Big)
+$0B7B: $D084:  F: rcall $C00 (_Print_Sym_24)
+$0B7C: $9508:  F: RET (Ret)
+-----          V: _Print_Dec/
+               F: 6 -> Size_Col  ...
+$0B7D: $E006:     $06 -> r16
+$0B7E: $9300:     r16 -> [$023E]
+$0B7F: $023E:  
+$0B80: $940E:  F: CALL $5D4 (Calc_Col/)
+$0B81: $05D4:  
+-----          L: 
+$0B82: $DF8C:  F: rcall $B0F (_Calc_Dec)
+               F: DChar + $10  ...
+$0B83: $9100:     [$0234] -> r16
+$0B84: $0234:  
+$0B85: $5F00:     r16 - $F0
+$0B86: $9300:     r16 -> [$0234]
+$0B87: $0234:  
+$0B88: $9100:     [$0235] -> r16
+$0B89: $0235:  
+$0B8A: $4F0F:     r16 - $FF -
+$0B8B: $9300:     r16 -> [$0235]
+$0B8C: $0235:  
+$0B8D: $D3EB:  F: rcall $F79 (_Print_Sym)
+               C: if (Rank --) then goto $0B82 ...
+$0B8E: $9100:     [$022D] -> r16
+$0B8F: $022D:  
+$0B90: $5001:     r16 - $01
+$0B91: $9300:     r16 -> [$022D]
+$0B92: $022D:  
+$0B93: $F771:     if (Z=0) then goto $B82
+$0B94: $9508:  F: RET (Ret)
+-----          V: Send_Byte
+$0B95: $E000:  S: $00 -> r16 ($00->r16)
+$0B96: $9300:  S: r16 -> [$00B9] (r16->TWSR)
+$0B97: $00B9:  
+$0B98: $E00C:  S: $0C -> r16 ($0C->r16)
+$0B99: $9300:  S: r16 -> [$00B8] (r16->TWBR)
+$0B9A: $00B8:  
+$0B9B: $E804:  S: $84 -> r16 ($84->r16)
+$0B9C: $9300:  S: r16 -> [$00BC] (r16->TWCR)
+$0B9D: $00BC:  
+-----          L: 
+               C: if (TWINT = 0) then goto $0B9E ...
+$0B9E: $9100:     [$00BC] -> r16
+$0B9F: $00BC:  
+$0BA0: $FF07:     if (r16.7=1 then SKIP
+$0BA1: $CFFC:     goto $B9E (RJMP)
+$0BA2: $9508:  F: RET (Ret)
+-----          V: Start_I2C
+$0BA3: $E000:  S: $00 -> r16 ($00->r16)
+$0BA4: $9300:  S: r16 -> [$00B9] (r16->TWSR)
+$0BA5: $00B9:  
+$0BA6: $E00C:  S: $0C -> r16 ($0C->r16)
+$0BA7: $9300:  S: r16 -> [$00B8] (r16->TWBR)
+$0BA8: $00B8:  
+$0BA9: $EA04:  S: $A4 -> r16 ($A4->r16)
+$0BAA: $9300:  S: r16 -> [$00BC] (r16->TWCR)
+$0BAB: $00BC:  
+-----          L: 
+               C: if (TWINT = 0) then goto $0BAC ...
+$0BAC: $9100:     [$00BC] -> r16
+$0BAD: $00BC:  
+$0BAE: $FF07:     if (r16.7=1 then SKIP
+$0BAF: $CFFC:     goto $BAC (RJMP)
+$0BB0: $9508:  F: RET (Ret)
+-----          V: _Print_Hex/
+               F: 6 -> Size_Col  ...
+$0BB1: $E006:     $06 -> r16
+$0BB2: $9300:     r16 -> [$023E]
+$0BB3: $023E:  
+$0BB4: $940E:  F: CALL $5D4 (Calc_Col/)
+$0BB5: $05D4:  
+$0BB6: $923F:  F: r3 -> (VHex ->)
+$0BB7: $9432:  F: >> r3 << (>> VHex <<)
+               F: VHex & $0F  ...
+$0BB8: $E01F:     $0F -> r17
+$0BB9: $2231:     r3 & r17
+               F: VHex -> DChar  ...
+$0BBA: $9230:     r3 -> [$0234]
+$0BBB: $0234:  
+$0BBC: $E000:     $00 -> r16
+$0BBD: $9300:     r16 -> [$0235]
+$0BBE: $0235:  
+               C: if (DChar >= 10) then goto $0BD0 ...
+$0BBF: $9100:     [$0234] -> r16
+$0BC0: $0234:  
+$0BC1: $300A:     r16 = $0A
+$0BC2: $9100:     [$0235] -> r16
+$0BC3: $0235:  
+$0BC4: $4000:     r16 - $00 -
+$0BC5: $F050:     if ( < ) then goto $BD0
+               F: DChar + 7  ...
+$0BC6: $9100:     [$0234] -> r16
+$0BC7: $0234:  
+$0BC8: $5F09:     r16 - $F9
+$0BC9: $9300:     r16 -> [$0234]
+$0BCA: $0234:  
+$0BCB: $9100:     [$0235] -> r16
+$0BCC: $0235:  
+$0BCD: $4F0F:     r16 - $FF -
+$0BCE: $9300:     r16 -> [$0235]
+$0BCF: $0235:  
+               F: DChar + 16  ...
+$0BD0: $9100:     [$0234] -> r16
+$0BD1: $0234:  
+$0BD2: $5F00:     r16 - $F0
+$0BD3: $9300:     r16 -> [$0234]
+$0BD4: $0234:  
+$0BD5: $9100:     [$0235] -> r16
+$0BD6: $0235:  
+$0BD7: $4F0F:     r16 - $FF -
+$0BD8: $9300:     r16 -> [$0235]
+$0BD9: $0235:  
+$0BDA: $D39E:  F: rcall $F79 (_Print_Sym)
+$0BDB: $903F:  F: -> r3 (-> VHex)
+               F: VHex & $0F  ...
+$0BDC: $E01F:     $0F -> r17
+$0BDD: $2231:     r3 & r17
+               F: VHex -> DChar  ...
+$0BDE: $9230:     r3 -> [$0234]
+$0BDF: $0234:  
+$0BE0: $E000:     $00 -> r16
+$0BE1: $9300:     r16 -> [$0235]
+$0BE2: $0235:  
+               C: if (DChar >= 10) then goto $0BF4 ...
+$0BE3: $9100:     [$0234] -> r16
+$0BE4: $0234:  
+$0BE5: $300A:     r16 = $0A
+$0BE6: $9100:     [$0235] -> r16
+$0BE7: $0235:  
+$0BE8: $4000:     r16 - $00 -
+$0BE9: $F050:     if ( < ) then goto $BF4
+               F: DChar + 7  ...
+$0BEA: $9100:     [$0234] -> r16
+$0BEB: $0234:  
+$0BEC: $5F09:     r16 - $F9
+$0BED: $9300:     r16 -> [$0234]
+$0BEE: $0234:  
+$0BEF: $9100:     [$0235] -> r16
+$0BF0: $0235:  
+$0BF1: $4F0F:     r16 - $FF -
+$0BF2: $9300:     r16 -> [$0235]
+$0BF3: $0235:  
+               F: DChar + 16  ...
+$0BF4: $9100:     [$0234] -> r16
+$0BF5: $0234:  
+$0BF6: $5F00:     r16 - $F0
+$0BF7: $9300:     r16 -> [$0234]
+$0BF8: $0234:  
+$0BF9: $9100:     [$0235] -> r16
+$0BFA: $0235:  
+$0BFB: $4F0F:     r16 - $FF -
+$0BFC: $9300:     r16 -> [$0235]
+$0BFD: $0235:  
+$0BFE: $D37A:  F: rcall $F79 (_Print_Sym)
+$0BFF: $9508:  F: RET (Ret)
+-----          V: _Print_Sym_24
+               F: Z ->  ...
+$0C00: $93EF:     r30 ->
+$0C01: $93FF:     r31 ->
+               F: 20 -> nByte  ...
+$0C02: $E104:     $14 -> r16
+$0C03: $9300:     r16 -> [$022B]
+$0C04: $022B:  
+               F: _Sym_Big * 2 -> Z  ...
+$0C05: $EDEA:     $DA -> r30
+$0C06: $E1FD:     $1D -> r31
+               F: << DChar  ...
+$0C07: $9100:     [$0234] -> r16
+$0C08: $0234:  
+$0C09: $0F00:     << r16
+$0C0A: $9300:     r16 -> [$0234]
+$0C0B: $0234:  
+$0C0C: $9100:     [$0235] -> r16
+$0C0D: $0235:  
+$0C0E: $1F00:     << r16 <
+$0C0F: $9300:     r16 -> [$0235]
+$0C10: $0235:  
+               F: << DChar  ...
+$0C11: $9100:     [$0234] -> r16
+$0C12: $0234:  
+$0C13: $0F00:     << r16
+$0C14: $9300:     r16 -> [$0234]
+$0C15: $0234:  
+$0C16: $9100:     [$0235] -> r16
+$0C17: $0235:  
+$0C18: $1F00:     << r16 <
+$0C19: $9300:     r16 -> [$0235]
+$0C1A: $0235:  
+               F: DChar -> DCharT  ...
+$0C1B: $9100:     [$0234] -> r16
+$0C1C: $0234:  
+$0C1D: $9300:     r16 -> [$0236]
+$0C1E: $0236:  
+$0C1F: $9100:     [$0235] -> r16
+$0C20: $0235:  
+$0C21: $9300:     r16 -> [$0237]
+$0C22: $0237:  
+               F: << DChar  ...
+$0C23: $9100:     [$0234] -> r16
+$0C24: $0234:  
+$0C25: $0F00:     << r16
+$0C26: $9300:     r16 -> [$0234]
+$0C27: $0234:  
+$0C28: $9100:     [$0235] -> r16
+$0C29: $0235:  
+$0C2A: $1F00:     << r16 <
+$0C2B: $9300:     r16 -> [$0235]
+$0C2C: $0235:  
+               F: << DChar  ...
+$0C2D: $9100:     [$0234] -> r16
+$0C2E: $0234:  
+$0C2F: $0F00:     << r16
+$0C30: $9300:     r16 -> [$0234]
+$0C31: $0234:  
+$0C32: $9100:     [$0235] -> r16
+$0C33: $0235:  
+$0C34: $1F00:     << r16 <
+$0C35: $9300:     r16 -> [$0235]
+$0C36: $0235:  
+               F: DChar + DCharT  ...
+$0C37: $9100:     [$0234] -> r16
+$0C38: $0234:  
+$0C39: $9110:     [$0236] -> r17
+$0C3A: $0236:  
+$0C3B: $0F01:     r16 + r17
+$0C3C: $9300:     r16 -> [$0234]
+$0C3D: $0234:  
+$0C3E: $9100:     [$0235] -> r16
+$0C3F: $0235:  
+$0C40: $9110:     [$0237] -> r17
+$0C41: $0237:  
+$0C42: $1F01:     r16 + r17 +
+$0C43: $9300:     r16 -> [$0235]
+$0C44: $0235:  
+               F: Z + DChar  ...
+$0C45: $9110:     [$0234] -> r17
+$0C46: $0234:  
+$0C47: $0FE1:     r30 + r17
+$0C48: $9110:     [$0235] -> r17
+$0C49: $0235:  
+$0C4A: $1FF1:     r31 + r17 +
+$0C4B: $DF57:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0C4C: $E708:     $78 -> r16
+$0C4D: $9300:     r16 -> [$00BB]
+$0C4E: $00BB:  
+$0C4F: $DF45:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0C50: $E400:     $40 -> r16
+$0C51: $9300:     r16 -> [$00BB]
+$0C52: $00BB:  
+$0C53: $DF41:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0C54: $E000:     $00 -> r16
+$0C55: $9300:     r16 -> [$00BB]
+$0C56: $00BB:  
+$0C57: $DF3D:  F: rcall $B95 (Send_Byte)
+$0C58: $DE84:  F: rcall $ADD (Stop_I2C)
+$0C59: $DF49:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0C5A: $E708:     $78 -> r16
+$0C5B: $9300:     r16 -> [$00BB]
+$0C5C: $00BB:  
+$0C5D: $DF37:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0C5E: $E400:     $40 -> r16
+$0C5F: $9300:     r16 -> [$00BB]
+$0C60: $00BB:  
+$0C61: $DF33:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0C62: $E000:     $00 -> r16
+$0C63: $9300:     r16 -> [$00BB]
+$0C64: $00BB:  
+$0C65: $DF2F:  F: rcall $B95 (Send_Byte)
+$0C66: $DE76:  F: rcall $ADD (Stop_I2C)
+-----          L: 
+$0C67: $DF3B:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0C68: $E708:     $78 -> r16
+$0C69: $9300:     r16 -> [$00BB]
+$0C6A: $00BB:  
+$0C6B: $DF29:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0C6C: $E400:     $40 -> r16
+$0C6D: $9300:     r16 -> [$00BB]
+$0C6E: $00BB:  
+$0C6F: $DF25:  F: rcall $B95 (Send_Byte)
+               F: LPM[Z++] -> TWDR  ...
+$0C70: $9105:     LPM[Z++] -> r16
+$0C71: $9300:     r16 -> [$00BB]
+$0C72: $00BB:  
+$0C73: $DF21:  F: rcall $B95 (Send_Byte)
+$0C74: $DE68:  F: rcall $ADD (Stop_I2C)
+               C: if (nByte --) then goto $0C67 ...
+$0C75: $9100:     [$022B] -> r16
+$0C76: $022B:  
+$0C77: $5001:     r16 - $01
+$0C78: $9300:     r16 -> [$022B]
+$0C79: $022B:  
+$0C7A: $F761:     if (Z=0) then goto $C67
+$0C7B: $DF27:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0C7C: $E708:     $78 -> r16
+$0C7D: $9300:     r16 -> [$00BB]
+$0C7E: $00BB:  
+$0C7F: $DF15:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0C80: $E400:     $40 -> r16
+$0C81: $9300:     r16 -> [$00BB]
+$0C82: $00BB:  
+$0C83: $DF11:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0C84: $E000:     $00 -> r16
+$0C85: $9300:     r16 -> [$00BB]
+$0C86: $00BB:  
+$0C87: $DF0D:  F: rcall $B95 (Send_Byte)
+$0C88: $DE54:  F: rcall $ADD (Stop_I2C)
+$0C89: $DF19:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0C8A: $E708:     $78 -> r16
+$0C8B: $9300:     r16 -> [$00BB]
+$0C8C: $00BB:  
+$0C8D: $DF07:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0C8E: $E400:     $40 -> r16
+$0C8F: $9300:     r16 -> [$00BB]
+$0C90: $00BB:  
+$0C91: $DF03:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0C92: $E000:     $00 -> r16
+$0C93: $9300:     r16 -> [$00BB]
+$0C94: $00BB:  
+$0C95: $DEFF:  F: rcall $B95 (Send_Byte)
+$0C96: $DE46:  F: rcall $ADD (Stop_I2C)
+               F: -> Z  ...
+$0C97: $91FF:     -> r31
+$0C98: $91EF:     -> r30
+$0C99: $9508:  F: RET (Ret)
+-----          V: 
+               F: $11 -> DChar  ...
+$0C9A: $E101:     $11 -> r16
+$0C9B: $9300:     r16 -> [$0234]
+$0C9C: $0234:  
+$0C9D: $E000:     $00 -> r16
+$0C9E: $9300:     r16 -> [$0235]
+$0C9F: $0235:  
+$0CA0: $CE66:  J: goto $B07 (RJMP)
+-----          V: _Sym
+$0CA1: $00 $00 $00 $00 $00 $FF
+$0CA4: $00 $5F $00 $00
+$0CA6: $00 $07 $00 $07 $00 $FF
+$0CA9: $7F $14 $7F $14
+$0CAB: $24 $2A $7F $2A $12 $FF
+$0CAE: $13 $08 $64 $62
+$0CB0: $36 $49 $55 $22 $50 $FF
+$0CB3: $05 $03 $00 $00
+$0CB5: $00 $1C $22 $41 $00 $FF
+$0CB8: $41 $22 $1C $00
+$0CBA: $08 $2A $1C $2A $08 $FF
+$0CBD: $08 $3E $08 $08
+$0CBF: $00 $50 $30 $00 $00 $FF
+$0CC2: $08 $08 $08 $08
+$0CC4: $00 $00 $60 $60 $00 $FF
+$0CC7: $10 $08 $04 $02
+$0CC9: $3E $51 $49 $45 $3E $FF
+$0CCC: $42 $7F $40 $00
+$0CCE: $42 $61 $51 $49 $46 $FF
+$0CD1: $41 $45 $4B $31
+$0CD3: $18 $14 $12 $7F $10 $FF
+$0CD6: $45 $45 $45 $39
+$0CD8: $3C $4A $49 $49 $30 $FF
+$0CDB: $71 $09 $05 $03
+$0CDD: $36 $49 $49 $49 $36 $FF
+$0CE0: $49 $49 $29 $1E
+$0CE2: $00 $36 $36 $00 $00 $FF
+$0CE5: $56 $36 $00 $00
+$0CE7: $00 $08 $14 $22 $41 $FF
+$0CEA: $14 $14 $14 $14
+$0CEC: $41 $22 $14 $08 $00 $FF
+$0CEF: $01 $51 $09 $06
+$0CF1: $32 $49 $79 $41 $3E $FF
+$0CF4: $11 $11 $11 $7E
+$0CF6: $7F $49 $49 $49 $36 $FF
+$0CF9: $41 $41 $41 $22
+$0CFB: $7F $41 $41 $22 $1C $FF
+$0CFE: $49 $49 $49 $41
+$0D00: $7F $09 $09 $01 $01 $FF
+$0D03: $41 $41 $51 $32
+$0D05: $7F $08 $08 $08 $7F $FF
+$0D08: $41 $7F $41 $00
+$0D0A: $20 $40 $41 $3F $01 $FF
+$0D0D: $08 $14 $22 $41
+$0D0F: $7F $40 $40 $40 $40 $FF
+$0D12: $02 $04 $02 $7F
+$0D14: $7F $04 $08 $10 $7F $FF
+$0D17: $41 $41 $41 $3E
+$0D19: $7F $09 $09 $09 $06 $FF
+$0D1C: $41 $51 $21 $5E
+$0D1E: $7F $09 $19 $29 $46 $FF
+$0D21: $49 $49 $49 $31
+$0D23: $01 $01 $7F $01 $01 $FF
+$0D26: $40 $40 $40 $3F
+$0D28: $1F $20 $40 $20 $1F $FF
+$0D2B: $20 $18 $20 $7F
+$0D2D: $63 $14 $08 $14 $63 $FF
+$0D30: $04 $78 $04 $03
+$0D32: $61 $51 $49 $45 $43 $FF
+$0D35: $00 $7F $41 $41
+$0D37: $02 $04 $08 $10 $20 $FF
+$0D3A: $41 $7F $00 $00
+$0D3C: $04 $02 $01 $02 $04 $FF
+$0D3F: $40 $40 $40 $40
+$0D41: $00 $01 $02 $04 $00 $FF
+$0D44: $54 $54 $54 $78
+$0D46: $7F $48 $44 $44 $38 $FF
+$0D49: $44 $44 $44 $20
+$0D4B: $38 $44 $44 $48 $7F $FF
+$0D4E: $54 $54 $54 $18
+$0D50: $08 $7E $09 $01 $02 $FF
+$0D53: $14 $54 $54 $3C
+$0D55: $7F $08 $04 $04 $78 $FF
+$0D58: $44 $7D $40 $00
+$0D5A: $20 $40 $44 $3D $00 $FF
+$0D5D: $7F $10 $28 $44
+$0D5F: $00 $41 $7F $40 $00 $FF
+$0D62: $04 $18 $04 $78
+$0D64: $7C $08 $04 $04 $78 $FF
+$0D67: $44 $44 $44 $38
+$0D69: $7C $14 $14 $14 $08 $FF
+$0D6C: $14 $14 $18 $7C
+$0D6E: $7C $08 $04 $04 $08 $FF
+$0D71: $54 $54 $54 $20
+$0D73: $04 $3F $44 $40 $20 $FF
+$0D76: $40 $40 $20 $7C
+$0D78: $1C $20 $40 $20 $1C $FF
+$0D7B: $40 $30 $40 $3C
+$0D7D: $44 $28 $10 $28 $44 $FF
+$0D80: $50 $50 $50 $3C
+$0D82: $44 $64 $54 $4C $44 $FF
+$0D85: $08 $36 $41 $00
+$0D87: $00 $00 $FF $00 $00 $FF
+$0D8A: $41 $36 $08 $00
+$0D8C: $02 $01 $02 $04 $02 $FF
+$0D8F: $1C $2A $08 $08
+$0D91: $7E $11 $11 $11 $7E $FF
+$0D94: $49 $49 $49 $33
+$0D96: $7F $49 $49 $49 $36 $FF
+$0D99: $01 $01 $01 $03
+$0D9B: $E0 $51 $4F $41 $FF $FF
+$0D9E: $49 $49 $49 $49
+$0DA0: $77 $08 $7F $08 $77 $FF
+$0DA3: $49 $49 $49 $36
+$0DA5: $7F $10 $08 $04 $7F $FF
+$0DA8: $21 $12 $09 $7C
+$0DAA: $7F $08 $14 $22 $41 $FF
+$0DAD: $41 $3F $01 $7F
+$0DAF: $7F $02 $0C $02 $7F $FF
+$0DB2: $08 $08 $08 $7F
+$0DB4: $3E $41 $41 $41 $3E $FF
+$0DB7: $01 $01 $01 $7F
+$0DB9: $7F $09 $09 $09 $06 $FF
+$0DBC: $41 $41 $41 $22
+$0DBE: $01 $01 $7F $01 $01 $FF
+$0DC1: $48 $48 $48 $3F
+$0DC3: $1C $22 $7F $22 $1C $FF
+$0DC6: $14 $08 $14 $63
+$0DC8: $7F $40 $40 $40 $FF $FF
+$0DCB: $08 $08 $08 $7F
+$0DCD: $7F $40 $7F $40 $7F $FF
+$0DD0: $40 $7F $40 $FF
+$0DD2: $01 $7F $48 $48 $30 $FF
+$0DD5: $48 $30 $00 $7F
+$0DD7: $7F $48 $48 $30 $00 $FF
+$0DDA: $41 $49 $49 $3E
+$0DDC: $7F $08 $3E $41 $3E $FF
+$0DDF: $29 $19 $09 $7F
+$0DE1: $20 $54 $54 $54 $78 $FF
+$0DE4: $4A $4A $49 $31
+$0DE6: $7C $54 $54 $28 $00 $FF
+$0DE9: $04 $04 $04 $0C
+$0DEB: $E0 $54 $4C $44 $FC $FF
+$0DEE: $54 $54 $54 $08
+$0DF0: $6C $10 $7C $10 $6C $FF
+$0DF3: $44 $54 $54 $28
+$0DF5: $7C $20 $10 $08 $7C $FF
+$0DF8: $42 $24 $12 $78
+$0DFA: $7C $10 $28 $44 $00 $FF
+$0DFD: $44 $3C $04 $7C
+$0DFF: $7C $08 $10 $08 $7C $FF
+$0E02: $10 $10 $10 $7C
+$0E04: $38 $44 $44 $44 $38 $FF
+$0E07: $04 $04 $04 $7C
+$0E09: $7C $14 $14 $14 $08 $FF
+$0E0C: $44 $44 $44 $44
+$0E0E: $04 $04 $7C $04 $04 $FF
+$0E11: $50 $50 $50 $3C
+$0E13: $18 $24 $7E $24 $18 $FF
+$0E16: $28 $10 $28 $44
+$0E18: $7C $40 $40 $40 $FC $FF
+$0E1B: $10 $10 $10 $7C
+$0E1D: $7C $40 $7C $40 $7C $FF
+$0E20: $40 $7C $40 $FC
+$0E22: $04 $7C $50 $50 $20 $FF
+$0E25: $50 $20 $00 $7C
+$0E27: $7C $50 $50 $20 $00 $FF
+$0E2A: $44 $54 $54 $38
+$0E2C: $7C $10 $38 $44 $38 $FF
+$0E2F: $54 $34 $14 $7C
+-----          V: _Print_SlideBar/
+-----          L: 
+               F: 5 -> Size_Col  ...
+$0E31: $E005:     $05 -> r16
+$0E32: $9300:     r16 -> [$023E]
+$0E33: $023E:  
+$0E34: $940E:  F: CALL $5D4 (Calc_Col/)
+$0E35: $05D4:  
+$0E36: $D00C:  F: rcall $E43 (_Print_Bar)
+               F: Col ++  ...
+$0E37: $9100:     [$022F] -> r16
+$0E38: $022F:  
+$0E39: $9503:     r16 ++
+$0E3A: $9300:     r16 -> [$022F]
+$0E3B: $022F:  
+               C: if (Rank --) then goto $0E31 ...
+$0E3C: $9100:     [$022D] -> r16
+$0E3D: $022D:  
+$0E3E: $5001:     r16 - $01
+$0E3F: $9300:     r16 -> [$022D]
+$0E40: $022D:  
+$0E41: $F779:     if (Z=0) then goto $E31
+$0E42: $9508:  F: RET (Ret)
+-----          V: _Print_Bar
+               F: Z ->  ...
+$0E43: $93EF:     r30 ->
+$0E44: $93FF:     r31 ->
+               F: [X++] -> DChar  ...
+$0E45: $910D:     [X++] -> r16
+$0E46: $9300:     r16 -> [$0234]
+$0E47: $0234:  
+$0E48: $E000:     $00 -> r16
+$0E49: $9300:     r16 -> [$0235]
+$0E4A: $0235:  
+               F: DChar >>  ...
+$0E4B: $9100:     [$0235] -> r16
+$0E4C: $0235:  
+$0E4D: $9506:     r16 >>
+$0E4E: $9300:     r16 -> [$0235]
+$0E4F: $0235:  
+$0E50: $9100:     [$0234] -> r16
+$0E51: $0234:  
+$0E52: $9507:     > r16 >>
+$0E53: $9300:     r16 -> [$0234]
+$0E54: $0234:  
+               F: DChar >>  ...
+$0E55: $9100:     [$0235] -> r16
+$0E56: $0235:  
+$0E57: $9506:     r16 >>
+$0E58: $9300:     r16 -> [$0235]
+$0E59: $0235:  
+$0E5A: $9100:     [$0234] -> r16
+$0E5B: $0234:  
+$0E5C: $9507:     > r16 >>
+$0E5D: $9300:     r16 -> [$0234]
+$0E5E: $0234:  
+               F: DChar >>  ...
+$0E5F: $9100:     [$0235] -> r16
+$0E60: $0235:  
+$0E61: $9506:     r16 >>
+$0E62: $9300:     r16 -> [$0235]
+$0E63: $0235:  
+$0E64: $9100:     [$0234] -> r16
+$0E65: $0234:  
+$0E66: $9507:     > r16 >>
+$0E67: $9300:     r16 -> [$0234]
+$0E68: $0234:  
+               F: 4 -> nByte  ...
+$0E69: $E004:     $04 -> r16
+$0E6A: $9300:     r16 -> [$022B]
+$0E6B: $022B:  
+               F: << DChar  ...
+$0E6C: $9100:     [$0234] -> r16
+$0E6D: $0234:  
+$0E6E: $0F00:     << r16
+$0E6F: $9300:     r16 -> [$0234]
+$0E70: $0234:  
+$0E71: $9100:     [$0235] -> r16
+$0E72: $0235:  
+$0E73: $1F00:     << r16 <
+$0E74: $9300:     r16 -> [$0235]
+$0E75: $0235:  
+               F: << DChar  ...
+$0E76: $9100:     [$0234] -> r16
+$0E77: $0234:  
+$0E78: $0F00:     << r16
+$0E79: $9300:     r16 -> [$0234]
+$0E7A: $0234:  
+$0E7B: $9100:     [$0235] -> r16
+$0E7C: $0235:  
+$0E7D: $1F00:     << r16 <
+$0E7E: $9300:     r16 -> [$0235]
+$0E7F: $0235:  
+               F: _Graf * 2 -> Z  ...
+$0E80: $E5EA:     $5A -> r30
+$0E81: $E1FD:     $1D -> r31
+               F: Z + DChar  ...
+$0E82: $9110:     [$0234] -> r17
+$0E83: $0234:  
+$0E84: $0FE1:     r30 + r17
+$0E85: $9110:     [$0235] -> r17
+$0E86: $0235:  
+$0E87: $1FF1:     r31 + r17 +
+-----          L: 
+$0E88: $DD1A:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0E89: $E708:     $78 -> r16
+$0E8A: $9300:     r16 -> [$00BB]
+$0E8B: $00BB:  
+$0E8C: $DD08:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0E8D: $E400:     $40 -> r16
+$0E8E: $9300:     r16 -> [$00BB]
+$0E8F: $00BB:  
+$0E90: $DD04:  F: rcall $B95 (Send_Byte)
+               F: LPM[Z++] -> TWDR  ...
+$0E91: $9105:     LPM[Z++] -> r16
+$0E92: $9300:     r16 -> [$00BB]
+$0E93: $00BB:  
+$0E94: $DD00:  F: rcall $B95 (Send_Byte)
+$0E95: $DC47:  F: rcall $ADD (Stop_I2C)
+               C: if (nByte --) then goto $0E88 ...
+$0E96: $9100:     [$022B] -> r16
+$0E97: $022B:  
+$0E98: $5001:     r16 - $01
+$0E99: $9300:     r16 -> [$022B]
+$0E9A: $022B:  
+$0E9B: $F761:     if (Z=0) then goto $E88
+$0E9C: $DD06:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0E9D: $E708:     $78 -> r16
+$0E9E: $9300:     r16 -> [$00BB]
+$0E9F: $00BB:  
+$0EA0: $DCF4:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0EA1: $E400:     $40 -> r16
+$0EA2: $9300:     r16 -> [$00BB]
+$0EA3: $00BB:  
+$0EA4: $DCF0:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0EA5: $E000:     $00 -> r16
+$0EA6: $9300:     r16 -> [$00BB]
+$0EA7: $00BB:  
+$0EA8: $DCEC:  F: rcall $B95 (Send_Byte)
+$0EA9: $DC33:  F: rcall $ADD (Stop_I2C)
+               F: -> Z  ...
+$0EAA: $91FF:     -> r31
+$0EAB: $91EF:     -> r30
+$0EAC: $9508:  F: RET (Ret)
+-----          V: _Graf
+$0EAD: $00 $40 $00 $00
+$0EAF: $00 $40 $40 $00
+$0EB1: $40 $40 $40 $00
+$0EB3: $40 $40 $40 $40
+$0EB5: $40 $60 $40 $40
+$0EB7: $40 $60 $60 $40
+$0EB9: $60 $60 $60 $40
+$0EBB: $60 $60 $60 $60
+$0EBD: $60 $70 $60 $60
+$0EBF: $60 $70 $70 $60
+$0EC1: $70 $70 $70 $60
+$0EC3: $70 $70 $70 $70
+$0EC5: $70 $78 $70 $70
+$0EC7: $70 $78 $78 $70
+$0EC9: $78 $78 $78 $70
+$0ECB: $78 $78 $78 $78
+$0ECD: $78 $7C $78 $78
+$0ECF: $78 $7C $7C $78
+$0ED1: $7C $7C $7C $78
+$0ED3: $7C $7C $7C $7C
+$0ED5: $7C $7E $7C $7C
+$0ED7: $7C $7E $7E $7C
+$0ED9: $7E $7E $7E $7C
+$0EDB: $7E $7E $7E $7E
+$0EDD: $7E $7F $7E $7E
+$0EDF: $7E $7F $7F $7E
+$0EE1: $7F $7F $7F $7E
+$0EE3: $7F $7F $7F $7F
+$0EE5: $7F $7F $7F $7F
+$0EE7: $7F $7F $7F $7F
+$0EE9: $7F $7F $7F $7F
+$0EEB: $7F $7F $7F $7F
+-----          V: _Sym_Big
+$0EED: $F8 $0F $FC $1F $06 $36 $06 $33 $86 $31 $C6 $30 $66 $30 $36 $30
+$0EF5: $FC $1F $F8 $0F
+$0EF7: $00 $00 $00 $00 $00 $00 $18 $30 $18 $30 $FE $3F $FE $3F $00 $30
+$0EFF: $00 $30 $00 $00
+$0F01: $18 $30 $1C $38 $06 $3C $06 $3E $06 $37 $86 $33 $C6 $31 $E6 $30
+$0F09: $7C $30 $38 $30
+$0F0B: $06 $0C $06 $1C $06 $30 $06 $30 $26 $30 $76 $30 $FE $30 $DE $31
+$0F13: $8E $1F $06 $0F
+$0F15: $C0 $03 $E0 $03 $70 $03 $38 $03 $1C $03 $FE $3F $FE $3F $00 $03
+$0F1D: $00 $00 $00 $00
+$0F1F: $7E $0C $7E $1C $66 $38 $66 $30 $66 $30 $66 $30 $66 $30 $E6 $38
+$0F27: $C6 $1F $86 $0F
+$0F29: $F8 $0F $FC $1F $EE $38 $66 $30 $66 $30 $66 $30 $66 $30 $E6 $38
+$0F31: $CE $1F $8C $0F
+$0F33: $06 $00 $06 $00 $06 $00 $86 $3F $C6 $3F $66 $00 $36 $00 $1E $00
+$0F3B: $0E $00 $00 $00
+$0F3D: $38 $0F $FC $1F $C6 $30 $C6 $30 $C6 $30 $C6 $30 $C6 $30 $C6 $30
+$0F45: $FC $1F $38 $0F
+$0F47: $38 $08 $7C $18 $C6 $30 $C6 $30 $C6 $30 $C6 $30 $C6 $30 $C6 $30
+$0F4F: $FC $1F $F8 $0F
+$0F51: $00 $00 $00 $30 $00 $30 $00 $30 $00 $30 $00 $30 $00 $30 $00 $30
+$0F59: $00 $30 $00 $00
+$0F5B: $80 $01 $80 $01 $FC $3F $F8 $1F $F0 $0F $E0 $07 $C0 $03 $80 $01
+$0F63: $FC $3F $FC $3F
+$0F65: $FC $3F $FC $3F $80 $01 $C0 $03 $E0 $07 $F0 $0F $F8 $1F $FC $3F
+$0F6D: $80 $01 $80 $01
+$0F6F: $FE $7F $FE $7F $98 $19 $98 $19 $98 $19 $98 $19 $98 $19 $98 $19
+$0F77: $FE $7F $FE $7F
+-----          V: _Print_Sym
+               F: Z ->  ...
+$0F79: $93EF:     r30 ->
+$0F7A: $93FF:     r31 ->
+               F: 5 -> nByte  ...
+$0F7B: $E005:     $05 -> r16
+$0F7C: $9300:     r16 -> [$022B]
+$0F7D: $022B:  
+               F: DChar -> DCharT  ...
+$0F7E: $9100:     [$0234] -> r16
+$0F7F: $0234:  
+$0F80: $9300:     r16 -> [$0236]
+$0F81: $0236:  
+$0F82: $9100:     [$0235] -> r16
+$0F83: $0235:  
+$0F84: $9300:     r16 -> [$0237]
+$0F85: $0237:  
+               F: << DChar  ...
+$0F86: $9100:     [$0234] -> r16
+$0F87: $0234:  
+$0F88: $0F00:     << r16
+$0F89: $9300:     r16 -> [$0234]
+$0F8A: $0234:  
+$0F8B: $9100:     [$0235] -> r16
+$0F8C: $0235:  
+$0F8D: $1F00:     << r16 <
+$0F8E: $9300:     r16 -> [$0235]
+$0F8F: $0235:  
+               F: << DChar  ...
+$0F90: $9100:     [$0234] -> r16
+$0F91: $0234:  
+$0F92: $0F00:     << r16
+$0F93: $9300:     r16 -> [$0234]
+$0F94: $0234:  
+$0F95: $9100:     [$0235] -> r16
+$0F96: $0235:  
+$0F97: $1F00:     << r16 <
+$0F98: $9300:     r16 -> [$0235]
+$0F99: $0235:  
+               F: DChar + DCharT  ...
+$0F9A: $9100:     [$0234] -> r16
+$0F9B: $0234:  
+$0F9C: $9110:     [$0236] -> r17
+$0F9D: $0236:  
+$0F9E: $0F01:     r16 + r17
+$0F9F: $9300:     r16 -> [$0234]
+$0FA0: $0234:  
+$0FA1: $9100:     [$0235] -> r16
+$0FA2: $0235:  
+$0FA3: $9110:     [$0237] -> r17
+$0FA4: $0237:  
+$0FA5: $1F01:     r16 + r17 +
+$0FA6: $9300:     r16 -> [$0235]
+$0FA7: $0235:  
+               F: _Sym * 2 -> Z  ...
+$0FA8: $E4E2:     $42 -> r30
+$0FA9: $E1F9:     $19 -> r31
+               F: Z + DChar  ...
+$0FAA: $9110:     [$0234] -> r17
+$0FAB: $0234:  
+$0FAC: $0FE1:     r30 + r17
+$0FAD: $9110:     [$0235] -> r17
+$0FAE: $0235:  
+$0FAF: $1FF1:     r31 + r17 +
+-----          L: 
+$0FB0: $DBF2:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0FB1: $E708:     $78 -> r16
+$0FB2: $9300:     r16 -> [$00BB]
+$0FB3: $00BB:  
+$0FB4: $DBE0:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0FB5: $E400:     $40 -> r16
+$0FB6: $9300:     r16 -> [$00BB]
+$0FB7: $00BB:  
+$0FB8: $DBDC:  F: rcall $B95 (Send_Byte)
+               F: LPM[Z++] -> TWDR  ...
+$0FB9: $9105:     LPM[Z++] -> r16
+$0FBA: $9300:     r16 -> [$00BB]
+$0FBB: $00BB:  
+$0FBC: $DBD8:  F: rcall $B95 (Send_Byte)
+$0FBD: $DB1F:  F: rcall $ADD (Stop_I2C)
+               C: if (nByte --) then goto $0FB0 ...
+$0FBE: $9100:     [$022B] -> r16
+$0FBF: $022B:  
+$0FC0: $5001:     r16 - $01
+$0FC1: $9300:     r16 -> [$022B]
+$0FC2: $022B:  
+$0FC3: $F761:     if (Z=0) then goto $FB0
+$0FC4: $DBDE:  F: rcall $BA3 (Start_I2C)
+               F: OLED_ADDR -> TWDR  ...
+$0FC5: $E708:     $78 -> r16
+$0FC6: $9300:     r16 -> [$00BB]
+$0FC7: $00BB:  
+$0FC8: $DBCC:  F: rcall $B95 (Send_Byte)
+               F: $40 -> TWDR  ...
+$0FC9: $E400:     $40 -> r16
+$0FCA: $9300:     r16 -> [$00BB]
+$0FCB: $00BB:  
+$0FCC: $DBC8:  F: rcall $B95 (Send_Byte)
+               F: $00 -> TWDR  ...
+$0FCD: $E000:     $00 -> r16
+$0FCE: $9300:     r16 -> [$00BB]
+$0FCF: $00BB:  
+$0FD0: $DBC4:  F: rcall $B95 (Send_Byte)
+$0FD1: $DB0B:  F: rcall $ADD (Stop_I2C)
+               F: -> Z  ...
+$0FD2: $91FF:     -> r31
+$0FD3: $91EF:     -> r30
+$0FD4: $9508:  F: RET (Ret)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          V: Setup_Mode
+-----          L: 
+$0FD5: $9A5F:  F: 1 -> p$0B.7 (On -> Led)
+               C: if (nSens > "0") then goto $101A ...
+$0FD6: $E300:     $30 -> r16
+$0FD7: $9110:     [$0101] -> r17
+$0FD8: $0101:  
+$0FD9: $1701:     r16 = r17
+$0FDA: $F1F8:     if ( < ) then goto $101A
+-----          L: 
+$0FDB: $9A5F:  F: 1 -> p$0B.7 (On -> Led)
+               F: 20-1 -> r16:Word  ...
+$0FDC: $E103:     $13 -> r16
+$0FDD: $E010:     $00 -> r17
+$0FDE: $940E:  F: CALL $34 (_Wait_ms_)
+$0FDF: $0034:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+               F: 2 -> CByte  ...
+$0FE0: $E002:     $02 -> r16
+$0FE1: $9300:     r16 -> [$0142]
+$0FE2: $0142:  
+               F: X ->  ...
+$0FE3: $93AF:     r26 ->
+$0FE4: $93BF:     r27 ->
+               F: @TX_Buffer -> X  ...
+$0FE5: $E0A2:     $02 -> r26
+$0FE6: $E0B1:     $01 -> r27
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+$0FE7: $D0CF:  F: rcall $10B7 (_Next_Rand)
+               F: Rnd -> [X++]  ...
+$0FE8: $9100:     [$0100] -> r16
+$0FE9: $0100:  
+$0FEA: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $0FE7 ...
+$0FEB: $9100:     [$0142] -> r16
+$0FEC: $0142:  
+$0FED: $5001:     r16 - $01
+$0FEE: $9300:     r16 -> [$0142]
+$0FEF: $0142:  
+$0FF0: $F7B1:     if (Z=0) then goto $FE7
+               F: -> X  ...
+$0FF1: $91BF:     -> r27
+$0FF2: $91AF:     -> r26
+$0FF3: $985F:  F: 0 -> p$0B.7 (Off -> Led)
+               F: 20-1 -> r16:Word  ...
+$0FF4: $E103:     $13 -> r16
+$0FF5: $E010:     $00 -> r17
+$0FF6: $940E:  F: CALL $34 (_Wait_ms_)
+$0FF7: $0034:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+$0FF8: $9B48:  C: if (p$09.0=1 then SKIP (PinD.0 = 0)
+$0FF9: $CFE1:  C: goto $FDB (RJMP) (PinD.0 = 0)
+               F: TX_1 -> EE_ID_1  ...
+$0FFA: $9100:     [$0102] -> r16
+$0FFB: $0102:  
+$0FFC: $E010:     $00 -> r17
+$0FFD: $BD11:     r17 -> p$21
+$0FFE: $E010:     $00 -> r17
+$0FFF: $BD12:     r17 -> p$22
+$1000: $BD00:     r16 -> p$20
+$1001: $94F8:     0 -> I
+$1002: $9AFA:     1 -> p$1F.2
+$1003: $9AF9:     1 -> p$1F.1
+$1004: $9478:     1 -> I
+$1005: $99F9:     if (p$1F.1=0 then SKIP
+$1006: $CFFE:     goto $1005 (RJMP)
+               F: TX_2 -> EE_ID_2  ...
+$1007: $9100:     [$0103] -> r16
+$1008: $0103:  
+$1009: $E011:     $01 -> r17
+$100A: $BD11:     r17 -> p$21
+$100B: $E010:     $00 -> r17
+$100C: $BD12:     r17 -> p$22
+$100D: $BD00:     r16 -> p$20
+$100E: $94F8:     0 -> I
+$100F: $9AFA:     1 -> p$1F.2
+$1010: $9AF9:     1 -> p$1F.1
+$1011: $9478:     1 -> I
+$1012: $99F9:     if (p$1F.1=0 then SKIP
+$1013: $CFFE:     goto $1012 (RJMP)
+$1014: $940E:  F: CALL $223 (Scan_Air)
+$1015: $0223:  
+               F: 500-1 -> r16:Word  ...
+$1016: $EF03:     $F3 -> r16
+$1017: $E011:     $01 -> r17
+$1018: $940E:  F: CALL $34 (_Wait_ms_)
+$1019: $0034:  
+-----          L: 
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+               F: nSens ++  ...
+$101A: $9100:     [$0101] -> r16
+$101B: $0101:  
+$101C: $9503:     r16 ++
+$101D: $9300:     r16 -> [$0101]
+$101E: $0101:  
+               F: EE_ID_1 -> VHex  ...
+$101F: $E010:     $00 -> r17
+$1020: $BD11:     r17 -> p$21
+$1021: $E010:     $00 -> r17
+$1022: $BD12:     r17 -> p$22
+$1023: $9AF8:     1 -> p$1F.0
+$1024: $B430:     p$20 -> r3
+               F: 2 -> Line  ...
+$1025: $E002:     $02 -> r16
+$1026: $9300:     r16 -> [$0230]
+$1027: $0230:  
+               F: 1 -> Col  ...
+$1028: $E001:     $01 -> r16
+$1029: $9300:     r16 -> [$022F]
+$102A: $022F:  
+$102B: $940E:  F: CALL $BB1 (_Print_Hex/)
+$102C: $0BB1:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\SSD1306_I2C.alg    ***********
+-----          L: 
+               F: EE_ID_2 -> VHex  ...
+$102D: $E011:     $01 -> r17
+$102E: $BD11:     r17 -> p$21
+$102F: $E010:     $00 -> r17
+$1030: $BD12:     r17 -> p$22
+$1031: $9AF8:     1 -> p$1F.0
+$1032: $B430:     p$20 -> r3
+               F: 2 -> Line  ...
+$1033: $E002:     $02 -> r16
+$1034: $9300:     r16 -> [$0230]
+$1035: $0230:  
+               F: 4 -> Col  ...
+$1036: $E004:     $04 -> r16
+$1037: $9300:     r16 -> [$022F]
+$1038: $022F:  
+$1039: $940E:  F: CALL $BB1 (_Print_Hex/)
+$103A: $0BB1:  
+-----          L: 
+$103B: $9030:  F: [$0101] -> r3 (nSens -> VHex)
+$103C: $0101:  
+               F: 2 -> Line  ...
+$103D: $E002:     $02 -> r16
+$103E: $9300:     r16 -> [$0230]
+$103F: $0230:  
+               F: 7 -> Col  ...
+$1040: $E007:     $07 -> r16
+$1041: $9300:     r16 -> [$022F]
+$1042: $022F:  
+$1043: $940E:  F: CALL $BB1 (_Print_Hex/)
+$1044: $0BB1:  
+-----          L: 
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+$1045: $940E:  F: CALL $127 (Init_Base_Def)
+$1046: $0127:  
+               F: nSens -> TX_1  ...
+$1047: $9100:     [$0101] -> r16
+$1048: $0101:  
+$1049: $9300:     r16 -> [$0102]
+$104A: $0102:  
+               F: EE_ID_2 -> TX_2  ...
+$104B: $E011:     $01 -> r17
+$104C: $BD11:     r17 -> p$21
+$104D: $E010:     $00 -> r17
+$104E: $BD12:     r17 -> p$22
+$104F: $9AF8:     1 -> p$1F.0
+$1050: $B500:     p$20 -> r16
+$1051: $9300:     r16 -> [$0103]
+$1052: $0103:  
+               F: EE_ID_1 -> TX_3  ...
+$1053: $E010:     $00 -> r17
+$1054: $BD11:     r17 -> p$21
+$1055: $E010:     $00 -> r17
+$1056: $BD12:     r17 -> p$22
+$1057: $9AF8:     1 -> p$1F.0
+$1058: $B500:     p$20 -> r16
+$1059: $9300:     r16 -> [$0104]
+$105A: $0104:  
+               F: EE_RF_CH -> TX_4  ...
+$105B: $E012:     $02 -> r17
+$105C: $BD11:     r17 -> p$21
+$105D: $E010:     $00 -> r17
+$105E: $BD12:     r17 -> p$22
+$105F: $9AF8:     1 -> p$1F.0
+$1060: $B500:     p$20 -> r16
+$1061: $9300:     r16 -> [$0105]
+$1062: $0105:  
+$1063: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: W_TX_PAYLOAD -> SPDR  ...
+$1064: $EA00:     $A0 -> r16
+$1065: $BD0E:     r16 -> p$2E
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $1066 ...
+$1066: $B50D:     p$2D -> r16
+$1067: $FF07:     if (r16.7=1 then SKIP
+$1068: $CFFD:     goto $1066 (RJMP)
+               F: X ->  ...
+$1069: $93AF:     r26 ->
+$106A: $93BF:     r27 ->
+               F: 4 -> CByte  ...
+$106B: $E004:     $04 -> r16
+$106C: $9300:     r16 -> [$0142]
+$106D: $0142:  
+               F: @TX_Buffer -> X  ...
+$106E: $E0A2:     $02 -> r26
+$106F: $E0B1:     $01 -> r27
+-----          L: 
+               F: [X++] -> SPDR  ...
+$1070: $910D:     [X++] -> r16
+$1071: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $1072 ...
+$1072: $B50D:     p$2D -> r16
+$1073: $FF07:     if (r16.7=1 then SKIP
+$1074: $CFFD:     goto $1072 (RJMP)
+               C: if (CByte --) then goto $1070 ...
+$1075: $9100:     [$0142] -> r16
+$1076: $0142:  
+$1077: $5001:     r16 - $01
+$1078: $9300:     r16 -> [$0142]
+$1079: $0142:  
+$107A: $F7A9:     if (Z=0) then goto $1070
+               F: -> X  ...
+$107B: $91BF:     -> r27
+$107C: $91AF:     -> r26
+$107D: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+-----          L: 
+               F: 500-1 -> r16:Word  ...
+$107E: $EF03:     $F3 -> r16
+$107F: $E011:     $01 -> r17
+$1080: $940E:  F: CALL $34 (_Wait_ms_)
+$1081: $0034:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+$1082: $940E:  F: CALL $5D (RF_PWR_On)
+$1083: $005D:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+$1084: $940E:  F: CALL $101 (Start_TX)
+$1085: $0101:  
+$1086: $9A5F:  F: 1 -> p$0B.7 (On -> Led)
+-----          L: 
+$1087: $9918:  C: if (p$03.0=0 then SKIP (nRF_IRQ = 1)
+$1088: $CFFE:  C: goto $1087 (RJMP) (nRF_IRQ = 1)
+$1089: $940E:  F: CALL $FF (RF_Standby)
+$108A: $00FF:  
+$108B: $940E:  F: CALL $CA (Clear_STATUS)
+$108C: $00CA:  
+               C: if (RF_STATUS.4 = 0) then goto $1099 ...
+$108D: $9100:     [$0207] -> r16
+$108E: $0207:  
+$108F: $FF04:     if (r16.4=1 then SKIP
+$1090: $C008:     goto $1099 (RJMP)
+$1091: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: REUSE_TX_PL -> SPDR  ...
+$1092: $EE03:     $E3 -> r16
+$1093: $BD0E:     r16 -> p$2E
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $1094 ...
+$1094: $B50D:     p$2D -> r16
+$1095: $FF07:     if (r16.7=1 then SKIP
+$1096: $CFFD:     goto $1094 (RJMP)
+$1097: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$1098: $CFEB:  J: goto $1084 (RJMP)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+$1099: $940E:  F: CALL $95 (RF_PWR_Down)
+$109A: $0095:  
+$109B: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_RX -> SPDR  ...
+$109C: $EE02:     $E2 -> r16
+$109D: $BD0E:     r16 -> p$2E
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $109E ...
+$109E: $B50D:     p$2D -> r16
+$109F: $FF07:     if (r16.7=1 then SKIP
+$10A0: $CFFD:     goto $109E (RJMP)
+$10A1: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$10A2: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_TX -> SPDR  ...
+$10A3: $EE01:     $E1 -> r16
+$10A4: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $10A5 ...
+$10A5: $B50D:     p$2D -> r16
+$10A6: $FF07:     if (r16.7=1 then SKIP
+$10A7: $CFFD:     goto $10A5 (RJMP)
+$10A8: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               C: if (nSens < "3") then goto $0FD5 ...
+$10A9: $9100:     [$0101] -> r16
+$10AA: $0101:  
+$10AB: $3303:     r16 = $33
+$10AC: $F408:     if ( >= ) then goto $10AE
+$10AD: $CF27:     goto $FD5 (RJMP)
+               F: "0" -> nSens  ...
+$10AE: $E300:     $30 -> r16
+$10AF: $9300:     r16 -> [$0101]
+$10B0: $0101:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+               F: 500-1 -> r16:Word  ...
+$10B1: $EF03:     $F3 -> r16
+$10B2: $E011:     $01 -> r17
+$10B3: $940E:  F: CALL $34 (_Wait_ms_)
+$10B4: $0034:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+$10B5: $985F:  F: 0 -> p$0B.7 (Off -> Led)
+$10B6: $9508:  F: RET (Ret)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          V: _Next_Rand
+               F: << Rnd  ...
+$10B7: $9100:     [$0100] -> r16
+$10B8: $0100:  
+$10B9: $0F00:     << r16
+$10BA: $9300:     r16 -> [$0100]
+$10BB: $0100:  
+$10BC: $F03B:  C: if (V=1) then goto $10C4 (V=1)
+$10BD: $F02D:  C: if (H=1) then goto $10C3 (H=1)
+-----          L: 
+               F: Rnd ++  ...
+$10BE: $9100:     [$0100] -> r16
+$10BF: $0100:  
+$10C0: $9503:     r16 ++
+$10C1: $9300:     r16 -> [$0100]
+$10C2: $0100:  
+-----          L: 
+$10C3: $9508:  F: RET (Ret)
+-----          V: 
+$10C4: $F3CD:  C: if (H=1) then goto $10BE (H=1)
+$10C5: $CFFD:  J: goto $10C3 (RJMP)
+-----          V: Reset
+$10C6: $EF0F:  S: $FF -> r16 ($FF->r16)
+$10C7: $BF0D:  S: r16 -> p$3D (r16->p61)
+$10C8: $E008:  S: $08 -> r16 ($08->r16)
+$10C9: $BF0E:  S: r16 -> p$3E (r16->p62)
+               F: SRAM_Org -> Z  ...
+$10CA: $E0E0:     $00 -> r30
+$10CB: $E0F1:     $01 -> r31
+-----          L: 
+               F: 0 -> [Z++]  ...
+$10CC: $E000:     $00 -> r16
+$10CD: $9301:     r16 -> [Z++]
+               C: if (Z -= SRAM_Size) then goto $10CC ...
+$10CE: $30E0:     r30 = $00
+$10CF: $E019:     $09 -> r17
+$10D0: $07F1:     r31 = r17=
+$10D1: $F7D1:     if (Z=0) then goto $10CC
+$10D2: $E1EE:  F: $1E -> r30 (30 -> ZL)
+$10D3: $27FF:  F: ^ r31 (^ZH)
+-----          L: 
+$10D4: $95EA:  F: r30 -- (ZL --)
+               F: 0 -> [Z]  ...
+$10D5: $E000:     $00 -> r16
+$10D6: $8300:     r16 -> [Z+$00]
+$10D7: $F7E1:  C: if (Z=0) then goto $10D4 (-=)
+$10D8: $940E:  F: CALL $50 (Init_SPI_nRF)
+$10D9: $0050:  
+               F: #b10111110 -> DDRD  ...
+$10DA: $EB0E:     $BE -> r16
+$10DB: $B90A:     r16 -> p$0A
+$10DC: $9A58:  F: 1 -> p$0B.0 (1 -> PortD.0)
+               F: "0" -> nSens  ...
+$10DD: $E300:     $30 -> r16
+$10DE: $9300:     r16 -> [$0101]
+$10DF: $0101:  
+$10E0: $D807:  F: rcall $8E8 (Init_SSD1306_I2C)
+$10E1: $9478:  F: 1 -> I (1 -> I)
+-----          L: 
+$10E2: $940E:  F: CALL $287 (Init_Base)
+$10E3: $0287:  
+-----          L: 
+$10E4: $940E:  F: CALL $3FF (Init_ADC)
+$10E5: $03FF:  
+-----          L: 
+               C: if (ADC_Ready = 0) then goto $10E6 ...
+$10E6: $9100:     [$021F] -> r16
+$10E7: $021F:  
+$10E8: $FF00:     if (r16.0=1 then SKIP
+$10E9: $CFFC:     goto $10E6 (RJMP)
+               F: 0 -> ADC_Ready  ...
+$10EA: $9100:     [$021F] -> r16
+$10EB: $021F:  
+$10EC: $7F0E:     r16 & $FE
+$10ED: $9300:     r16 -> [$021F]
+$10EE: $021F:  
+$10EF: $9100:  S: [$007B] -> r16 (ADCSRB->r16)
+$10F0: $007B:  
+$10F1: $7F08:  S: r16 & $F8 (r16 &| $07)
+$10F2: $9300:  S: r16 -> [$007B] (r16->ADCSRB)
+$10F3: $007B:  
+$10F4: $E00E:  S: $0E -> r16 ($0E->r16)
+$10F5: $9300:  S: r16 -> [$007C] (r16->ADMUX)
+$10F6: $007C:  
+$10F7: $E006:  S: $06 -> r16 ($06->r16)
+$10F8: $9300:  S: r16 -> [$007A] (r16->ADCSRA)
+$10F9: $007A:  
+-----          L: 
+-----          L: 
+$10FA: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_RX -> SPDR  ...
+$10FB: $EE02:     $E2 -> r16
+$10FC: $BD0E:     r16 -> p$2E
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $10FD ...
+$10FD: $B50D:     p$2D -> r16
+$10FE: $FF07:     if (r16.7=1 then SKIP
+$10FF: $CFFD:     goto $10FD (RJMP)
+$1100: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$1101: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_TX -> SPDR  ...
+$1102: $EE01:     $E1 -> r16
+$1103: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $1104 ...
+$1104: $B50D:     p$2D -> r16
+$1105: $FF07:     if (r16.7=1 then SKIP
+$1106: $CFFD:     goto $1104 (RJMP)
+$1107: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$1108: $940E:  F: CALL $5D (RF_PWR_On)
+$1109: $005D:  
+$110A: $940E:  F: CALL $11D (Start_RX)
+$110B: $011D:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+$110C: $9B48:  C: if (p$09.0=1 then SKIP (PinD.0 = 0)
+$110D: $C190:  C: goto $129E (RJMP) (PinD.0 = 0)
+-----          L: 
+-----          L: 
+-----          L: 
+-----          L: 
+$110E: $9918:  C: if (p$03.0=0 then SKIP (nRF_IRQ = 1)
+$110F: $CFFC:  C: goto $110C (RJMP) (nRF_IRQ = 1)
+$1110: $9A5F:  F: 1 -> p$0B.7 (On -> Led)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+               F: (250*CPU_Clock_Frequency/1000000-2)/4 -> r16:Word  ...
+$1111: $EF03:     $F3 -> r16
+$1112: $E011:     $01 -> r17
+-----          L: 
+               C: if (r16:Word --) then goto $1113 ...
+$1113: $5001:     r16 - $01
+$1114: $4010:     r17 - $00 -
+$1115: $F7E9:     if (Z=0) then goto $1113
+$1116: $0000:  F: NOP (NOP)
+-----          L: 
+-----          L: 
+-----          L: 
+$1117: $0000:  F: NOP (NOP)
+-----          L: 
+$1118: $0000:  F: NOP (NOP)
+-----          L: 
+$1119: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: STATUS -> SPDR  ...
+$111A: $E007:     $07 -> r16
+$111B: $BD0E:     r16 -> p$2E
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $111C ...
+$111C: $B50D:     p$2D -> r16
+$111D: $FF07:     if (r16.7=1 then SKIP
+$111E: $CFFD:     goto $111C (RJMP)
+               F: X ->  ...
+$111F: $93AF:     r26 ->
+$1120: $93BF:     r27 ->
+               F: 1 -> CByte  ...
+$1121: $E001:     $01 -> r16
+$1122: $9300:     r16 -> [$0142]
+$1123: $0142:  
+               F: @RX_Buffer -> X  ...
+$1124: $E2A2:     $22 -> r26
+$1125: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$1126: $EF0F:     $FF -> r16
+$1127: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $1128 ...
+$1128: $B50D:     p$2D -> r16
+$1129: $FF07:     if (r16.7=1 then SKIP
+$112A: $CFFD:     goto $1128 (RJMP)
+               F: SPDR -> [X++]  ...
+$112B: $B50E:     p$2E -> r16
+$112C: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $1126 ...
+$112D: $9100:     [$0142] -> r16
+$112E: $0142:  
+$112F: $5001:     r16 - $01
+$1130: $9300:     r16 -> [$0142]
+$1131: $0142:  
+$1132: $F799:     if (Z=0) then goto $1126
+               F: -> X  ...
+$1133: $91BF:     -> r27
+$1134: $91AF:     -> r26
+$1135: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_STATUS  ...
+$1136: $9100:     [$0122] -> r16
+$1137: $0122:  
+$1138: $9300:     r16 -> [$0207]
+$1139: $0207:  
+               F: [@RX_Buffer + 0] & #b00001110  ...
+$113A: $9100:     [$0122] -> r16
+$113B: $0122:  
+$113C: $700E:     r16 & $0E
+$113D: $9300:     r16 -> [$0122]
+$113E: $0122:  
+               F: [@RX_Buffer + 0] >>  ...
+$113F: $9100:     [$0122] -> r16
+$1140: $0122:  
+$1141: $9506:     r16 >>
+$1142: $9300:     r16 -> [$0122]
+$1143: $0122:  
+               F: [@RX_Buffer + 0] -> nPipe  ...
+$1144: $9100:     [$0122] -> r16
+$1145: $0122:  
+$1146: $9300:     r16 -> [$0143]
+$1147: $0143:  
+               C: if (nPipe > 5) then goto $11A2 ...
+$1148: $E005:     $05 -> r16
+$1149: $9110:     [$0143] -> r17
+$114A: $0143:  
+$114B: $1701:     r16 = r17
+$114C: $F408:     if ( >= ) then goto $114E
+$114D: $C054:     goto $11A2 (RJMP)
+               F: << nPipe  ...
+$114E: $9100:     [$0143] -> r16
+$114F: $0143:  
+$1150: $0F00:     << r16
+$1151: $9300:     r16 -> [$0143]
+$1152: $0143:  
+               F: << nPipe  ...
+$1153: $9100:     [$0143] -> r16
+$1154: $0143:  
+$1155: $0F00:     << r16
+$1156: $9300:     r16 -> [$0143]
+$1157: $0143:  
+               F: << nPipe  ...
+$1158: $9100:     [$0143] -> r16
+$1159: $0143:  
+$115A: $0F00:     << r16
+$115B: $9300:     r16 -> [$0143]
+$115C: $0143:  
+               F: << nPipe  ...
+$115D: $9100:     [$0143] -> r16
+$115E: $0143:  
+$115F: $0F00:     << r16
+$1160: $9300:     r16 -> [$0143]
+$1161: $0143:  
+               F: << nPipe  ...
+$1162: $9100:     [$0143] -> r16
+$1163: $0143:  
+$1164: $0F00:     << r16
+$1165: $9300:     r16 -> [$0143]
+$1166: $0143:  
+$1167: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: R_RX_PAYLOAD -> SPDR  ...
+$1168: $E601:     $61 -> r16
+$1169: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $116A ...
+$116A: $B50D:     p$2D -> r16
+$116B: $FF07:     if (r16.7=1 then SKIP
+$116C: $CFFD:     goto $116A (RJMP)
+               F: X ->  ...
+$116D: $93AF:     r26 ->
+$116E: $93BF:     r27 ->
+               F: 1 -> CByte  ...
+$116F: $E001:     $01 -> r16
+$1170: $9300:     r16 -> [$0142]
+$1171: $0142:  
+               F: @RX_Buffer -> X  ...
+$1172: $E2A2:     $22 -> r26
+$1173: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$1174: $EF0F:     $FF -> r16
+$1175: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $1176 ...
+$1176: $B50D:     p$2D -> r16
+$1177: $FF07:     if (r16.7=1 then SKIP
+$1178: $CFFD:     goto $1176 (RJMP)
+               F: SPDR -> [X++]  ...
+$1179: $B50E:     p$2E -> r16
+$117A: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $1174 ...
+$117B: $9100:     [$0142] -> r16
+$117C: $0142:  
+$117D: $5001:     r16 - $01
+$117E: $9300:     r16 -> [$0142]
+$117F: $0142:  
+$1180: $F799:     if (Z=0) then goto $1174
+               F: -> X  ...
+$1181: $91BF:     -> r27
+$1182: $91AF:     -> r26
+$1183: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_R_RX_PAYLOAD  ...
+$1184: $9100:     [$0122] -> r16
+$1185: $0122:  
+$1186: $9300:     r16 -> [$020B]
+$1187: $020B:  
+               F: X ->  ...
+$1188: $93AF:     r26 ->
+$1189: $93BF:     r27 ->
+               F: Y ->  ...
+$118A: $93CF:     r28 ->
+$118B: $93DF:     r29 ->
+               F: 1 -> CByte  ...
+$118C: $E001:     $01 -> r16
+$118D: $9300:     r16 -> [$0142]
+$118E: $0142:  
+               F: @RX_Buffer -> X  ...
+$118F: $E2A2:     $22 -> r26
+$1190: $E0B1:     $01 -> r27
+               F: nPipe -> Y  ...
+$1191: $91C0:     [$0143] -> r28
+$1192: $0143:  
+$1193: $E0D0:     $00 -> r29
+               F: Y + @Arr_RX_P  ...
+$1194: $5BCB:     r28 - $BB
+$1195: $4FDE:     r29 - $FE -
+-----          L: 
+               F: [X++] -> [Y++]  ...
+$1196: $910D:     [X++] -> r16
+$1197: $9309:     r16 -> [Y++]
+               C: if (CByte --) then goto $1196 ...
+$1198: $9100:     [$0142] -> r16
+$1199: $0142:  
+$119A: $5001:     r16 - $01
+$119B: $9300:     r16 -> [$0142]
+$119C: $0142:  
+$119D: $F7C1:     if (Z=0) then goto $1196
+               F: -> Y  ...
+$119E: $91DF:     -> r29
+$119F: $91CF:     -> r28
+               F: -> X  ...
+$11A0: $91BF:     -> r27
+$11A1: $91AF:     -> r26
+-----          L: 
+$11A2: $985F:  F: 0 -> p$0B.7 (Off -> Led)
+$11A3: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_TX -> SPDR  ...
+$11A4: $EE01:     $E1 -> r16
+$11A5: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $11A6 ...
+$11A6: $B50D:     p$2D -> r16
+$11A7: $FF07:     if (r16.7=1 then SKIP
+$11A8: $CFFD:     goto $11A6 (RJMP)
+$11A9: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+$11AA: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FLUSH_RX -> SPDR  ...
+$11AB: $EE02:     $E2 -> r16
+$11AC: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $11AD ...
+$11AD: $B50D:     p$2D -> r16
+$11AE: $FF07:     if (r16.7=1 then SKIP
+$11AF: $CFFD:     goto $11AD (RJMP)
+$11B0: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+-----          L: 
+$11B1: $940E:  F: CALL $CA (Clear_STATUS)
+$11B2: $00CA:  
+$11B3: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: FIFO_STATUS -> SPDR  ...
+$11B4: $E107:     $17 -> r16
+$11B5: $BD0E:     r16 -> p$2E
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\nRF24L01.alg    ***********
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $11B6 ...
+$11B6: $B50D:     p$2D -> r16
+$11B7: $FF07:     if (r16.7=1 then SKIP
+$11B8: $CFFD:     goto $11B6 (RJMP)
+               F: X ->  ...
+$11B9: $93AF:     r26 ->
+$11BA: $93BF:     r27 ->
+               F: 1 -> CByte  ...
+$11BB: $E001:     $01 -> r16
+$11BC: $9300:     r16 -> [$0142]
+$11BD: $0142:  
+               F: @RX_Buffer -> X  ...
+$11BE: $E2A2:     $22 -> r26
+$11BF: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$11C0: $EF0F:     $FF -> r16
+$11C1: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $11C2 ...
+$11C2: $B50D:     p$2D -> r16
+$11C3: $FF07:     if (r16.7=1 then SKIP
+$11C4: $CFFD:     goto $11C2 (RJMP)
+               F: SPDR -> [X++]  ...
+$11C5: $B50E:     p$2E -> r16
+$11C6: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $11C0 ...
+$11C7: $9100:     [$0142] -> r16
+$11C8: $0142:  
+$11C9: $5001:     r16 - $01
+$11CA: $9300:     r16 -> [$0142]
+$11CB: $0142:  
+$11CC: $F799:     if (Z=0) then goto $11C0
+               F: -> X  ...
+$11CD: $91BF:     -> r27
+$11CE: $91AF:     -> r26
+$11CF: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_FIFO_STATUS  ...
+$11D0: $9100:     [$0122] -> r16
+$11D1: $0122:  
+$11D2: $9300:     r16 -> [$020A]
+$11D3: $020A:  
+$11D4: $982A:  F: 0 -> p$05.2 (SPI_Start -> nRF_CSN)
+               F: RF_CH -> SPDR  ...
+$11D5: $E005:     $05 -> r16
+$11D6: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $11D7 ...
+$11D7: $B50D:     p$2D -> r16
+$11D8: $FF07:     if (r16.7=1 then SKIP
+$11D9: $CFFD:     goto $11D7 (RJMP)
+               F: X ->  ...
+$11DA: $93AF:     r26 ->
+$11DB: $93BF:     r27 ->
+               F: 1 -> CByte  ...
+$11DC: $E001:     $01 -> r16
+$11DD: $9300:     r16 -> [$0142]
+$11DE: $0142:  
+               F: @RX_Buffer -> X  ...
+$11DF: $E2A2:     $22 -> r26
+$11E0: $E0B1:     $01 -> r27
+-----          L: 
+               F: NOP_C -> SPDR  ...
+$11E1: $EF0F:     $FF -> r16
+$11E2: $BD0E:     r16 -> p$2E
+-----          L: 
+               C: if (SPSR.7 = 0) then goto $11E3 ...
+$11E3: $B50D:     p$2D -> r16
+$11E4: $FF07:     if (r16.7=1 then SKIP
+$11E5: $CFFD:     goto $11E3 (RJMP)
+               F: SPDR -> [X++]  ...
+$11E6: $B50E:     p$2E -> r16
+$11E7: $930D:     r16 -> [X++]
+               C: if (CByte --) then goto $11E1 ...
+$11E8: $9100:     [$0142] -> r16
+$11E9: $0142:  
+$11EA: $5001:     r16 - $01
+$11EB: $9300:     r16 -> [$0142]
+$11EC: $0142:  
+$11ED: $F799:     if (Z=0) then goto $11E1
+               F: -> X  ...
+$11EE: $91BF:     -> r27
+$11EF: $91AF:     -> r26
+$11F0: $9A2A:  F: 1 -> p$05.2 (SPI_Stop -> nRF_CSN)
+               F: [@RX_Buffer + 0] -> RF_RF_CH  ...
+$11F1: $9100:     [$0122] -> r16
+$11F2: $0122:  
+$11F3: $9300:     r16 -> [$0205]
+$11F4: $0205:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+-----          L: 
+               F: RF_STATUS -> VBin  ...
+$11F5: $9100:     [$0207] -> r16
+$11F6: $0207:  
+$11F7: $9300:     r16 -> [$0233]
+$11F8: $0233:  
+               F: 1 -> Line  ...
+$11F9: $E001:     $01 -> r16
+$11FA: $9300:     r16 -> [$0230]
+$11FB: $0230:  
+               F: 1 -> Col  ...
+$11FC: $9300:     r16 -> [$022F]
+$11FD: $022F:  
+$11FE: $940E:  F: CALL $AF2 (_Print_Bin/)
+$11FF: $0AF2:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\SSD1306_I2C.alg    ***********
+-----          L: 
+               F: RF_FIFO_STATUS -> VBin  ...
+$1200: $9100:     [$020A] -> r16
+$1201: $020A:  
+$1202: $9300:     r16 -> [$0233]
+$1203: $0233:  
+               F: 1 -> Line  ...
+$1204: $E001:     $01 -> r16
+$1205: $9300:     r16 -> [$0230]
+$1206: $0230:  
+               F: 10 -> Col  ...
+$1207: $E00A:     $0A -> r16
+$1208: $9300:     r16 -> [$022F]
+$1209: $022F:  
+$120A: $940E:  F: CALL $AF2 (_Print_Bin/)
+$120B: $0AF2:  
+-----          L: 
+               F: EE_RF_CH -> VDec  ...
+$120C: $E012:     $02 -> r17
+$120D: $BD11:     r17 -> p$21
+$120E: $E010:     $00 -> r17
+$120F: $BD12:     r17 -> p$22
+$1210: $9AF8:     1 -> p$1F.0
+$1211: $B500:     p$20 -> r16
+$1212: $9300:     r16 -> [$0231]
+$1213: $0231:  
+$1214: $E000:     $00 -> r16
+$1215: $9300:     r16 -> [$0232]
+$1216: $0232:  
+               F: 3 -> Rank  ...
+$1217: $E003:     $03 -> r16
+$1218: $9300:     r16 -> [$022D]
+$1219: $022D:  
+               F: 1 -> Line  ...
+$121A: $E001:     $01 -> r16
+$121B: $9300:     r16 -> [$0230]
+$121C: $0230:  
+               F: 19 -> Col  ...
+$121D: $E103:     $13 -> r16
+$121E: $9300:     r16 -> [$022F]
+$121F: $022F:  
+$1220: $940E:  F: CALL $B7D (_Print_Dec/)
+$1221: $0B7D:  
+-----          L: 
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+               F: EE_ID_1 -> VHex  ...
+$1222: $E010:     $00 -> r17
+$1223: $BD11:     r17 -> p$21
+$1224: $E010:     $00 -> r17
+$1225: $BD12:     r17 -> p$22
+$1226: $9AF8:     1 -> p$1F.0
+$1227: $B430:     p$20 -> r3
+               F: 2 -> Line  ...
+$1228: $E002:     $02 -> r16
+$1229: $9300:     r16 -> [$0230]
+$122A: $0230:  
+               F: 1 -> Col  ...
+$122B: $E001:     $01 -> r16
+$122C: $9300:     r16 -> [$022F]
+$122D: $022F:  
+$122E: $940E:  F: CALL $BB1 (_Print_Hex/)
+$122F: $0BB1:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\SSD1306_I2C.alg    ***********
+-----          L: 
+               F: EE_ID_2 -> VHex  ...
+$1230: $E011:     $01 -> r17
+$1231: $BD11:     r17 -> p$21
+$1232: $E010:     $00 -> r17
+$1233: $BD12:     r17 -> p$22
+$1234: $9AF8:     1 -> p$1F.0
+$1235: $B430:     p$20 -> r3
+               F: 2 -> Line  ...
+$1236: $E002:     $02 -> r16
+$1237: $9300:     r16 -> [$0230]
+$1238: $0230:  
+               F: 4 -> Col  ...
+$1239: $E004:     $04 -> r16
+$123A: $9300:     r16 -> [$022F]
+$123B: $022F:  
+$123C: $940E:  F: CALL $BB1 (_Print_Hex/)
+$123D: $0BB1:  
+-----          L: 
+$123E: $9030:  F: [$0101] -> r3 (nSens -> VHex)
+$123F: $0101:  
+               F: 2 -> Line  ...
+$1240: $E002:     $02 -> r16
+$1241: $9300:     r16 -> [$0230]
+$1242: $0230:  
+               F: 7 -> Col  ...
+$1243: $E007:     $07 -> r16
+$1244: $9300:     r16 -> [$022F]
+$1245: $022F:  
+$1246: $940E:  F: CALL $BB1 (_Print_Hex/)
+$1247: $0BB1:  
+-----          L: 
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          L: 
+               F: X ->  ...
+$1248: $93AF:     r26 ->
+$1249: $93BF:     r27 ->
+               F: @Data_Pipe_1 -> X  ...
+$124A: $E6A5:     $65 -> r26
+$124B: $E0B1:     $01 -> r27
+               F: 1 -> Rank  ...
+$124C: $E001:     $01 -> r16
+$124D: $9300:     r16 -> [$022D]
+$124E: $022D:  
+               F: 8 -> Line  ...
+$124F: $E008:     $08 -> r16
+$1250: $9300:     r16 -> [$0230]
+$1251: $0230:  
+               F: 2 -> Col  ...
+$1252: $E002:     $02 -> r16
+$1253: $9300:     r16 -> [$022F]
+$1254: $022F:  
+$1255: $940E:  F: CALL $6BC (_Print_Row_Hex/)
+$1256: $06BC:  
+               F: -> X  ...
+$1257: $91BF:     -> r27
+$1258: $91AF:     -> r26
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\SSD1306_I2C.alg    ***********
+-----          L: 
+               F: X ->  ...
+$1259: $93AF:     r26 ->
+$125A: $93BF:     r27 ->
+               F: @Data_Pipe_2 -> X  ...
+$125B: $E8A5:     $85 -> r26
+$125C: $E0B1:     $01 -> r27
+               F: 1 -> Rank  ...
+$125D: $E001:     $01 -> r16
+$125E: $9300:     r16 -> [$022D]
+$125F: $022D:  
+               F: 8 -> Line  ...
+$1260: $E008:     $08 -> r16
+$1261: $9300:     r16 -> [$0230]
+$1262: $0230:  
+               F: 6 -> Col  ...
+$1263: $E006:     $06 -> r16
+$1264: $9300:     r16 -> [$022F]
+$1265: $022F:  
+$1266: $940E:  F: CALL $6BC (_Print_Row_Hex/)
+$1267: $06BC:  
+               F: -> X  ...
+$1268: $91BF:     -> r27
+$1269: $91AF:     -> r26
+-----          L: 
+               F: X ->  ...
+$126A: $93AF:     r26 ->
+$126B: $93BF:     r27 ->
+               F: @Data_Pipe_3 -> X  ...
+$126C: $EAA5:     $A5 -> r26
+$126D: $E0B1:     $01 -> r27
+               F: 1 -> Rank  ...
+$126E: $E001:     $01 -> r16
+$126F: $9300:     r16 -> [$022D]
+$1270: $022D:  
+               F: 8 -> Line  ...
+$1271: $E008:     $08 -> r16
+$1272: $9300:     r16 -> [$0230]
+$1273: $0230:  
+               F: 10 -> Col  ...
+$1274: $E00A:     $0A -> r16
+$1275: $9300:     r16 -> [$022F]
+$1276: $022F:  
+$1277: $940E:  F: CALL $6BC (_Print_Row_Hex/)
+$1278: $06BC:  
+               F: -> X  ...
+$1279: $91BF:     -> r27
+$127A: $91AF:     -> r26
+-----          L: 
+               F: X ->  ...
+$127B: $93AF:     r26 ->
+$127C: $93BF:     r27 ->
+               F: @Data_Pipe_4 -> X  ...
+$127D: $ECA5:     $C5 -> r26
+$127E: $E0B1:     $01 -> r27
+               F: 1 -> Rank  ...
+$127F: $E001:     $01 -> r16
+$1280: $9300:     r16 -> [$022D]
+$1281: $022D:  
+               F: 8 -> Line  ...
+$1282: $E008:     $08 -> r16
+$1283: $9300:     r16 -> [$0230]
+$1284: $0230:  
+               F: 14 -> Col  ...
+$1285: $E00E:     $0E -> r16
+$1286: $9300:     r16 -> [$022F]
+$1287: $022F:  
+$1288: $940E:  F: CALL $6BC (_Print_Row_Hex/)
+$1289: $06BC:  
+               F: -> X  ...
+$128A: $91BF:     -> r27
+$128B: $91AF:     -> r26
+-----          L: 
+               F: X ->  ...
+$128C: $93AF:     r26 ->
+$128D: $93BF:     r27 ->
+               F: @Data_Pipe_5 -> X  ...
+$128E: $EEA5:     $E5 -> r26
+$128F: $E0B1:     $01 -> r27
+               F: 1 -> Rank  ...
+$1290: $E001:     $01 -> r16
+$1291: $9300:     r16 -> [$022D]
+$1292: $022D:  
+               F: 8 -> Line  ...
+$1293: $E008:     $08 -> r16
+$1294: $9300:     r16 -> [$0230]
+$1295: $0230:  
+               F: 18 -> Col  ...
+$1296: $E102:     $12 -> r16
+$1297: $9300:     r16 -> [$022F]
+$1298: $022F:  
+$1299: $940E:  F: CALL $6BC (_Print_Row_Hex/)
+$129A: $06BC:  
+               F: -> X  ...
+$129B: $91BF:     -> r27
+$129C: $91AF:     -> r26
+-----          L: 
+$129D: $CE46:  J: goto $10E4 (RJMP)
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\WP_Base.alp    ***********
+-----          V: 
+               F: 250-1 -> r16:Word  ...
+$129E: $EF09:     $F9 -> r16
+$129F: $E010:     $00 -> r17
+$12A0: $940E:  F: CALL $34 (_Wait_ms_)
+$12A1: $0034:  
+*********   D:\GoogleDrive\SOI Tech\SMART WP\Firmware_Base\Delay.alg    ***********
+-----          L: 
+$12A2: $9B48:  C: if (p$09.0=1 then SKIP (PinD.0 = 0)
+$12A3: $DD31:  F: rcall $FD5 (Setup_Mode)
+$12A4: $940E:  F: CALL $287 (Init_Base)
+$12A5: $0287:  
+$12A6: $CE3D:  J: goto $10E4 (RJMP)
